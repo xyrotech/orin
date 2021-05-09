@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Xyrotech\Orin\Tests;
 
 use PHPUnit\Framework\TestCase;
 
