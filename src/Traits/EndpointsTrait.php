@@ -13,5 +13,10 @@ trait EndpointsTrait
     protected $uri;
     protected $parameters = [];
 
-    use DatabaseTrait, IdentityTrait, MarketplaceTrait, CollectionTrait, ListTrait, WantlistTrait;
+    use DatabaseTrait;
+    use IdentityTrait;
+    use MarketplaceTrait;
+    use CollectionTrait;
+    use ListTrait;
+    use WantlistTrait;
 }
