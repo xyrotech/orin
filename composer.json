@@ -15,7 +15,9 @@
         }
     ],
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7.0",
+        "spatie/guzzle-rate-limiter-middleware": "^2.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
