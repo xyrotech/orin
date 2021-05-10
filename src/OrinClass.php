@@ -197,9 +197,7 @@ class OrinClass
             return $e->getMessage();
         }
 
-        $contents = json_decode($response->getBody());
-
-        return $contents;
+        return json_decode($response->getBody());
     }
 
     /**
