@@ -5,12 +5,14 @@ trait MarketplaceTrait
     public function inventory(string $username)
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/inventory';
+
         return $this;
     }
 
     public function listing(int $listing_id)
     {
         $this->uri = $this->base_uri . '/marketplace/listings/' . $listing_id;
+
         return $this;
     }
 
@@ -18,24 +20,28 @@ trait MarketplaceTrait
     {
         $this->uri = $this->base_uri . '/marketplace/listings/';
         $this->parameters = ['query' => $listing];
+
         return $this;
     }
 
     public function order(int $order_id)
     {
         $this->uri = $this->base_uri . '/marketplace/orders/' . $order_id;
+
         return $this;
     }
 
     public function list_orders()
     {
         $this->uri = $this->base_uri . '/marketplace/orders';
+
         return $this;
     }
 
     public function list_orders_messages(string $order_id)
     {
         $this->uri = $this->base_uri . '/marketplace/orders/' . $order_id . '/messages';
+
         return $this;
     }
 
@@ -49,6 +55,7 @@ trait MarketplaceTrait
     public function fee(string $price)
     {
         $this->uri = $this->base_uri . '/marketplace/fee/' . $price;
+
         return $this;
     }
 
@@ -59,13 +66,17 @@ trait MarketplaceTrait
      * @param string $currency
      * @return $this
      */
-    public function fee_with_currency(string $price, string $currency){
+    public function fee_with_currency(string $price, string $currency)
+    {
         $this->uri = $this->base_uri . '/marketplace/fee/' . $price . '/' . $currency;
+
         return $this;
     }
 
-    public function price_suggestions(int $release_id){
+    public function price_suggestions(int $release_id)
+    {
         $this->uri = $this->base_uri . '/marketplace/price_suggestions/' . $release_id;
+
         return $this;
     }
 }

@@ -14,7 +14,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
 
-
 require 'Traits/EndpointsTrait.php';
 
 class OrinClass
@@ -42,17 +41,20 @@ class OrinClass
 
     public static function getInstance()
     {
-        if (self::$instance == null)
-        {
+        if (self::$instance == null) {
             self::$instance = new OrinClass();
         }
 
         return self::$instance;
     }
 
-    private function __clone(){ }
+    private function __clone()
+    {
+    }
 
-    private function __wakeup() { }
+    private function __wakeup()
+    {
+    }
 
     /**
      * Creates CURL client and attaches necessary headers
@@ -67,7 +69,7 @@ class OrinClass
             $this->client = new Client([
                 'base_uri' => $this->uri,
                 'headers' => $this->headers,
-                'handler' => $this->stack
+                'handler' => $this->stack,
             ]);
         } catch (InvalidArgumentException $e) {
             return $e->getMessage();
@@ -145,8 +147,7 @@ class OrinClass
      */
     public function parameters(array $parameters)
     {
-        if(!isset($this->parameters['query']))
-        {
+        if (! isset($this->parameters['query'])) {
             $this->parameters['query'] = [];
         }
 
@@ -176,7 +177,7 @@ class OrinClass
         $this->headers = [
             'User-Agent' => self::USER_AGENT,
             'Authorization' => $this->getAuthHeader(),
-            'Accept' => $this->getAcceptHeader()
+            'Accept' => $this->getAcceptHeader(),
         ];
     }
 
@@ -187,15 +188,11 @@ class OrinClass
      */
     public function get()
     {
-        $request = new Request('GET',$this->uri);
+        $request = new Request('GET', $this->uri);
 
-        try
-        {
+        try {
             $response = $this->client->send($request, $this->parameters);
-        }
-
-        catch (\GuzzleHttp\Exception\GuzzleException $e)
-        {
+        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
             return $e->getMessage();
         }
 
@@ -212,7 +209,7 @@ class OrinClass
     {
         $contents = $this->get();
 
-        if(isset( $contents->results[0])){
+        if (isset($contents->results[0])) {
             // Sets URI to first results resource url which is either of the following: label, artist, release, master
             $this->uri = $contents->results[0]->resource_url;
 
@@ -220,10 +217,9 @@ class OrinClass
             $first = $this->get();
 
             return $first;
-        } else{
+        } else {
             return null;
         }
-
     }
 
     /**
@@ -232,15 +228,11 @@ class OrinClass
      */
     public function put(array $parameters)
     {
-        $request = new Request('PUT',$this->uri);
+        $request = new Request('PUT', $this->uri);
 
-        try
-        {
-            $response = $this->client->send($request,$parameters);
-        }
-
-        catch (\GuzzleHttp\Exception\GuzzleException $e)
-        {
+        try {
+            $response = $this->client->send($request, $parameters);
+        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
             return $e->getMessage();
         }
 
@@ -253,15 +245,11 @@ class OrinClass
      */
     public function post(array $parameters)
     {
-        $request = new Request('POST',$this->uri);
+        $request = new Request('POST', $this->uri);
 
-        try
-        {
-            $response = $this->client->send($request,$parameters);
-        }
-
-        catch (\GuzzleHttp\Exception\GuzzleException $e)
-        {
+        try {
+            $response = $this->client->send($request, $parameters);
+        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
             return $e->getMessage();
         }
 
@@ -274,15 +262,11 @@ class OrinClass
      */
     public function delete()
     {
-        $request = new Request('DELETE',$this->uri);
+        $request = new Request('DELETE', $this->uri);
 
-        try
-        {
+        try {
             $response = $this->client->send($request);
-        }
-
-        catch (\GuzzleHttp\Exception\GuzzleException $e)
-        {
+        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
             return $e->getMessage();
         }
 
