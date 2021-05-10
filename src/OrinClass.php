@@ -37,6 +37,7 @@ class OrinClass
     private $stack;
     private $headers;
 
+
     private static $instance;
 
     public static function getInstance()
@@ -78,11 +79,13 @@ class OrinClass
      */
     private function setEnv()
     {
-        $this->token = env('DISCOGS_TOKEN');
-        $this->consumer_key = env('DISCOGS_CONSUMER_KEY');
-        $this->consumer_secret = env('DISCOGS_CONSUMER_SECRET');
-        $this->version = env('DISCOGS_VERSION');
-        $this->media_type = env('DISCOGS_MEDIA_TYPE');
+        $config = include('config.php');
+
+        $this->token = $config['DISCOGS_TOKEN'];
+        $this->consumer_key = $config['DISCOGS_CONSUMER_KEY'];
+        $this->consumer_secret = $config['DISCOGS_CONSUMER_SECRET'];
+        $this->version = $config['DISCOGS_VERSION'];
+        $this->media_type = $config['DISCOGS_MEDIA_TYPE'];
     }
 
     /**
