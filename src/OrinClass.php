@@ -215,9 +215,7 @@ class OrinClass
 
             // Get data for first result
             return $this->get();
-
         } else {
-
             return null;
         }
     }
