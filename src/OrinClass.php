@@ -9,6 +9,7 @@ namespace Xyrotech\Orin;
 
 use EndpointsTrait;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\InvalidArgumentException;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
@@ -81,7 +82,7 @@ class OrinClass
      */
     private function setEnv()
     {
-        $config = include('config.php');
+        $config = include('config.test.php');
 
         $this->token = $config['DISCOGS_TOKEN'];
         $this->consumer_key = $config['DISCOGS_CONSUMER_KEY'];
@@ -203,9 +204,9 @@ class OrinClass
 
     /**
      * Return first results set from search query
-     * @return string
+     * @return string|null
      */
-    public function first()
+    public function first(): ?string
     {
         $contents = $this->get();
 
@@ -224,7 +225,7 @@ class OrinClass
 
     /**
      * Sends PUT HTTP request to endpoint
-     * @return string
+     * @return \Psr\Http\Message\ResponseInterface|string
      */
     public function put(array $parameters)
     {
@@ -241,7 +242,7 @@ class OrinClass
 
     /**
      * Sends POST HTTP request to endpoint
-     * @return string
+     * @return \Psr\Http\Message\ResponseInterface|string
      */
     public function post(array $parameters)
     {
@@ -258,7 +259,7 @@ class OrinClass
 
     /**
      * Sends DELETE HTTP request to endpoint
-     * @return string
+     * @return \Psr\Http\Message\ResponseInterface|string
      */
     public function delete()
     {
