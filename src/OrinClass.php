@@ -79,9 +79,11 @@ class OrinClass
     }
 
     /**
-     *  Setup Environment Variables
+     * Setup Environment Variables
+     *
+     * @return void
      */
-    private function setEnv()
+    private function setEnv(): void
     {
         $config = include('config.test.php');
 
@@ -93,9 +95,11 @@ class OrinClass
     }
 
     /**
-     *  Setup Throttle Middleware
+     * Setup Throttle Middleware
+     *
+     * @return void
      */
-    private function setMiddleware()
+    private function setMiddleware(): void
     {
         // @throws Exp
 //        $rules = new RequestLimitRuleset([
@@ -113,8 +117,10 @@ class OrinClass
 //        // Invoke the middleware
 //        $this->stack->push($throttle());
 
+        $limit = $this->usingAuth() ? self::AUTH : self::NON_AUTH;
+
         $this->stack = HandlerStack::create();
-        $this->stack->push(RateLimiterMiddleware::perMinute(60));
+        $this->stack->push(RateLimiterMiddleware::perMinute($limit));
     }
 
     /**
@@ -173,8 +179,10 @@ class OrinClass
 
     /**
      * Sets headers for HTTP request
+     *
+     * @return void
      */
-    private function setHeaders()
+    private function setHeaders(): void
     {
         $this->headers = [
             'User-Agent' => self::USER_AGENT,
@@ -203,9 +211,10 @@ class OrinClass
 
     /**
      * Return first results set from search query
-     * @return string
+     *
+     * @return null|string
      */
-    public function first()
+    public function first(): ?string
     {
         $contents = $this->get();
 
@@ -215,9 +224,7 @@ class OrinClass
 
             // Get data for first result
             return $this->get();
-
         } else {
-
             return null;
         }
     }

@@ -2,42 +2,42 @@
 
 trait CollectionTrait
 {
-    public function collection(string $username)
+    public function collection(string $username): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/folders';
 
         return $this;
     }
 
-    public function collection_folder(string $username, int $folder_id)
+    public function collection_folder(string $username, int $folder_id): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/folders/' . $folder_id;
 
         return $this;
     }
 
-    public function collection_items_by_release(string $username, int $release_id)
+    public function collection_items_by_release(string $username, int $release_id): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/releases/' . $release_id;
 
         return $this;
     }
 
-    public function collection_items_by_folder(string $username, int $folder_id)
+    public function collection_items_by_folder(string $username, int $folder_id): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/folders/' . $folder_id . '/releases';
 
         return $this;
     }
 
-    public function add_collection_to_folder(string $username, int $folder_id, int $release_id)
+    public function add_collection_to_folder(string $username, int $folder_id, int $release_id): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/folders/' . $folder_id . '/releases/' . $release_id;
 
         return $this;
     }
 
-    public function change_rating_of_release(string $username, int $folder_id, int $release_id, int $instance_id)
+    public function change_rating_of_release(string $username, int $folder_id, int $release_id, int $instance_id): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/folders/' . $folder_id . '/releases/' .
                      $release_id . '/instances/' . $instance_id;
@@ -45,14 +45,14 @@ trait CollectionTrait
         return $this;
     }
 
-    public function list_custom_fields(string $username)
+    public function list_custom_fields(string $username): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/fields';
 
         return $this;
     }
 
-    public function edit_fields_instance(string $username, string $value, int $folder_id, int $release_id, int $instance_id, int $field_id)
+    public function edit_fields_instance(string $username, string $value, int $folder_id, int $release_id, int $instance_id, int $field_id): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/folders/' . $folder_id . '/releases/' .
                      $release_id . '/instances/' . $instance_id . '/fields/' . $field_id;
@@ -62,7 +62,7 @@ trait CollectionTrait
         return $this;
     }
 
-    public function collection_value(string $username)
+    public function collection_value(string $username): CollectionTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/collection/value';
 

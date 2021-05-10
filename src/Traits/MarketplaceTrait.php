@@ -2,21 +2,21 @@
 
 trait MarketplaceTrait
 {
-    public function inventory(string $username)
+    public function inventory(string $username): MarketplaceTrait
     {
         $this->uri = $this->base_uri . '/users/' . $username . '/inventory';
 
         return $this;
     }
 
-    public function listing(int $listing_id)
+    public function listing(int $listing_id): MarketplaceTrait
     {
         $this->uri = $this->base_uri . '/marketplace/listings/' . $listing_id;
 
         return $this;
     }
 
-    public function list($listing)
+    public function list($listing): MarketplaceTrait
     {
         $this->uri = $this->base_uri . '/marketplace/listings/';
         $this->parameters = ['query' => $listing];
@@ -24,21 +24,21 @@ trait MarketplaceTrait
         return $this;
     }
 
-    public function order(int $order_id)
+    public function order(int $order_id): MarketplaceTrait
     {
         $this->uri = $this->base_uri . '/marketplace/orders/' . $order_id;
 
         return $this;
     }
 
-    public function list_orders()
+    public function list_orders(): MarketplaceTrait
     {
         $this->uri = $this->base_uri . '/marketplace/orders';
 
         return $this;
     }
 
-    public function list_orders_messages(string $order_id)
+    public function list_orders_messages(string $order_id): MarketplaceTrait
     {
         $this->uri = $this->base_uri . '/marketplace/orders/' . $order_id . '/messages';
 
@@ -73,7 +73,7 @@ trait MarketplaceTrait
         return $this;
     }
 
-    public function price_suggestions(int $release_id)
+    public function price_suggestions(int $release_id): MarketplaceTrait
     {
         $this->uri = $this->base_uri . '/marketplace/price_suggestions/' . $release_id;
 

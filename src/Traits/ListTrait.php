@@ -2,14 +2,14 @@
 
 trait ListTrait
 {
-    public function user_lists(string $username)
+    public function user_lists(string $username): ListTrait
     {
         $this->uri = $this->base_uri = '/users/' . $username . '/lists';
 
         return $this;
     }
 
-    public function lists(string $list_id)
+    public function lists(string $list_id): ListTrait
     {
         $this->uri = $this->base_uri = '/lists/' . $list_id;
 
