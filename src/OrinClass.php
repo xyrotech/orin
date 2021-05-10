@@ -13,6 +13,7 @@ use GuzzleHttp\Exception\InvalidArgumentException;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\ResponseInterface;
 use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
 
 require 'Traits/EndpointsTrait.php';
@@ -202,9 +203,9 @@ class OrinClass
 
     /**
      * Return first results set from search query
-     * @return string|null
+     * @return string
      */
-    public function first(): ?string
+    public function first()
     {
         $contents = $this->get();
 
@@ -213,17 +214,17 @@ class OrinClass
             $this->uri = $contents->results[0]->resource_url;
 
             // Get data for first result
-            $first = $this->get();
+            return $this->get();
 
-            return $first;
         } else {
+
             return null;
         }
     }
 
     /**
      * Sends PUT HTTP request to endpoint
-     * @return \Psr\Http\Message\ResponseInterface|string
+     * @return ResponseInterface
      */
     public function put(array $parameters)
     {
@@ -240,7 +241,7 @@ class OrinClass
 
     /**
      * Sends POST HTTP request to endpoint
-     * @return \Psr\Http\Message\ResponseInterface|string
+     * @return ResponseInterface|string
      */
     public function post(array $parameters)
     {
@@ -257,7 +258,7 @@ class OrinClass
 
     /**
      * Sends DELETE HTTP request to endpoint
-     * @return \Psr\Http\Message\ResponseInterface|string
+     * @return ResponseInterface|string
      */
     public function delete()
     {
