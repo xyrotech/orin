@@ -64,5 +64,5 @@ return [
     |
     */
 
-    'DISCOGS_MEDIA_TYPE' => 'discogs'
+    'DISCOGS_MEDIA_TYPE' => 'discogs',
 ];
