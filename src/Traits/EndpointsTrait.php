@@ -11,7 +11,7 @@ require 'WantlistTrait.php';
 
 trait EndpointsTrait
 {
-    protected $parameters = [];
+    protected array $parameters = [];
 
     use DatabaseTrait;
     use IdentityTrait;

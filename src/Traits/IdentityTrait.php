@@ -2,33 +2,35 @@
 
 namespace Xyrotech\Orin\Traits;
 
+use Psr\Http\Message\StreamInterface;
+
 trait IdentityTrait
 {
-    public function identity(): IdentityTrait
+    public function identity(): StreamInterface
     {
-        $this->uri = $this->base_uri . '/oauth/identity';
+        $uri = self::base_uri . '/oauth/identity';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function profile(string $username): IdentityTrait
+    public function profile(string $username): StreamInterface
     {
-        $this->uri = $this->base_uri . '/users/' . $username;
+        $uri = self::base_uri . '/users/' . $username;
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function user_submissions(string $username): IdentityTrait
+    public function user_submissions(string $username): StreamInterface
     {
-        $this->uri = $this->base_uri . '/users/' . $username . '/submissions';
+        $uri = self::base_uri . '/users/' . $username . '/submissions';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function user_contributions(string $username): IdentityTrait
+    public function user_contributions(string $username): StreamInterface
     {
-        $this->uri = $this->base_uri . '/users/' . $username . '/contributions';
+        $uri = self::base_uri . '/users/' . $username . '/contributions';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 }

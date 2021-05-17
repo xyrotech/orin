@@ -2,19 +2,21 @@
 
 namespace Xyrotech\Orin\Traits;
 
+use Psr\Http\Message\StreamInterface;
+
 trait WantlistTrait
 {
-    public function wantlist(string $username): WantlistTrait
+    public function wantlist(string $username): StreamInterface
     {
-        $this->uri = $this->base_uri = '/users/' . $username . '/wants';
+        $uri = self::base_uri . '/users/' . $username . '/wants';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function add_to_wantlist(string $username, int $release_id): WantlistTrait
+    public function add_to_wantlist(string $username, int $release_id): StreamInterface
     {
-        $this->uri = $this->base_uri = '//users/' . $username . '/wants/' . $release_id;
+        $uri = self::base_uri . '/users/' . $username . '/wants/' . $release_id;
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 }

@@ -10,7 +10,7 @@ use Xyrotech\Orin\Traits\EndpointsTrait;
 
 require 'Traits/EndpointsTrait.php';
 
-class Orin extends Client
+class Orin
 {
     use EndpointsTrait;
 
@@ -18,11 +18,13 @@ class Orin extends Client
     const NON_AUTH = 25;
 
     public int $limit;
-    public array $headers;
+    public array $headers = [];
     private array $config;
 
     private HandlerStack $stack;
     private const base_uri = 'https://api.discogs.com';
+
+    public Client $client;
 
     /**
      * Orin constructor.
@@ -42,7 +44,7 @@ class Orin extends Client
         $config['headers'] = $this->headers;
         $config['base_uri'] = self::base_uri;
 
-        parent::__construct($config);
+        $this->client = new Client($config);
     }
 
     /**
@@ -98,8 +100,7 @@ class Orin extends Client
             return "Discogs token=" . $this->config['DISCOGS_TOKEN'];
         }
 
-        if ((isset($this->config['DISCOGS_CONSUMER_KEY']) && $this->config['DISCOGS_CONSUMER_KEY'] != null)
-            && (isset($this->config['DISCOGS_CONSUMER_SECRET']) && $this->config['DISCOGS_CONSUMER_KEY'] != null)) {
+        if ((isset($this->config['DISCOGS_CONSUMER_KEY']) && $this->config['DISCOGS_CONSUMER_KEY'] != null) && (isset($this->config['DISCOGS_CONSUMER_SECRET']) && $this->config['DISCOGS_CONSUMER_SECRET'] != null)) {
             return "Discogs key=" . $this->config['DISCOGS_CONSUMER_KEY'] . ", secret=" . $this->config['DISCOGS_CONSUMER_SECRET'];
         }
 
@@ -108,7 +109,9 @@ class Orin extends Client
 
     public function getRates(): array
     {
-        $headers = $this->request('GET', self::base_uri)->getHeaders();
+        $headers = $this->client->request('GET', self::base_uri)->getHeaders();
+
+        $rate = [];
 
         $rate['used'] = $headers['X-Discogs-Ratelimit-Used'][0];
         $rate['remaining'] = $headers['X-Discogs-Ratelimit-Remaining'][0];

@@ -16,7 +16,7 @@ class OrinTest extends TestCase
 
         $discog = new Orin($config);
 
-        $this->assertEquals('https://api.discogs.com', $discog->getConfig('base_uri'));
+        $this->assertEquals('https://api.discogs.com', $discog->client->getConfig('base_uri'));
     }
 
     /** @test */
@@ -91,7 +91,6 @@ class OrinTest extends TestCase
         $config = include('configs/config.test.php');
 
         $discog = new Orin($config);
-
 
         $json = $discog->collection_folder('kunli0', 1);
 

@@ -2,77 +2,79 @@
 
 namespace Xyrotech\Orin\Traits;
 
+use Psr\Http\Message\StreamInterface;
+
 trait DatabaseTrait
 {
-    public function release(int $release_id) : string
+    public function release(int $release_id) : StreamInterface
     {
         $uri = self::base_uri . '/releases/' . $release_id;
 
-        return $this->request('GET', $uri)->getBody();
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function release_rating_by_user(int $release_id, string $username): static
+    public function release_rating_by_user(int $release_id, string $username): StreamInterface
     {
-        $this->uri = $this->base_uri . '/releases/' . $release_id . '/rating/' . $username;
+        $uri = self::base_uri . '/releases/' . $release_id . '/rating/' . $username;
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function community_release_rating(int $release_id): static
+    public function community_release_rating(int $release_id): StreamInterface
     {
-        $this->uri = $this->base_uri . '/releases/' . $release_id . '/rating';
+        $uri = self::base_uri . '/releases/' . $release_id . '/rating';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function master_releases(int $master_id): static
+    public function master_releases(int $master_id): StreamInterface
     {
-        $this->uri = $this->base_uri . '/masters/' . $master_id . '/versions';
+        $uri = self::base_uri . '/masters/' . $master_id . '/versions';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function master_release_versions(int $master_id): static
+    public function master_release_versions(int $master_id): StreamInterface
     {
-        $this->uri = $this->base_uri . '/masters/' . $master_id . '/versions';
+        $uri = self::base_uri . '/masters/' . $master_id . '/versions';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function artist($artist_id): static
+    public function artist(int $artist_id): StreamInterface
     {
-        $this->uri = $this->base_uri . '/artists/' . $artist_id;
+        $uri = self::base_uri . '/artists/' . $artist_id;
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function artist_releases(int $artist_id): static
+    public function artist_releases(int $artist_id): StreamInterface
     {
-        $this->uri = $this->base_uri . '/artists/' . $artist_id . '/releases';
+        $uri = self::base_uri . '/artists/' . $artist_id . '/releases';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function label(int $label_id): static
+    public function label(int $label_id): StreamInterface
     {
-        $this->uri = $this->base_uri . '/label/' . $label_id;
+        $uri = self::base_uri . '/label/' . $label_id;
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function all_label_releases(int $label_id): static
+    public function all_label_releases(int $label_id): StreamInterface
     {
-        $this->uri = $this->base_uri . '/labels/' . $label_id . '/releases';
+        $uri = self::base_uri . '/labels/' . $label_id . '/releases';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function search($query): static
+    public function search(string $query): StreamInterface
     {
-        $this->uri = $this->base_uri . '/database/search';
+        $uri = self::base_uri . '/database/search';
 
         $this->parameters = ['query' => ['q' => $query]];
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 }

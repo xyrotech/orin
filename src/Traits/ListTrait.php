@@ -2,19 +2,21 @@
 
 namespace Xyrotech\Orin\Traits;
 
+use Psr\Http\Message\StreamInterface;
+
 trait ListTrait
 {
-    public function user_lists(string $username): ListTrait
+    public function user_lists(string $username): StreamInterface
     {
-        $this->uri = $this->base_uri = '/users/' . $username . '/lists';
+        $uri = self::base_uri . '/users/' . $username . '/lists';
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function lists(string $list_id): ListTrait
+    public function lists(string $list_id): StreamInterface
     {
-        $this->uri = $this->base_uri = '/lists/' . $list_id;
+        $uri = self::base_uri . '/lists/' . $list_id;
 
-        return $this;
+        return $this->client->request('GET', $uri)->getBody();
     }
 }
