@@ -1,5 +1,7 @@
 <?php
 
+namespace Xyrotech\Orin\Traits;
+
 trait IdentityTrait
 {
     public function identity(): IdentityTrait

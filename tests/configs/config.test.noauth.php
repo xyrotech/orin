@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'DISCOGS_TOKEN' => 'YOUR_TOKEN',
+    'DISCOGS_TOKEN' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'DISCOGS_CONSUMER_KEY' => 'YOUR_CONSUMER_KEY',
+    'DISCOGS_CONSUMER_KEY' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'DISCOGS_CONSUMER_SECRET' => 'YOUR_CONSUMER_SECRET',
+    'DISCOGS_CONSUMER_SECRET' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ return [
     | I've set this to v2 by default until a new version.
     */
 
-    'DISCOGS_VERSION' => 'v2',
+    'DISCOGS_VERSION' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -64,16 +64,17 @@ return [
     |
     */
 
-    'DISCOGS_MEDIA_TYPE' => 'discogs',
+    'DISCOGS_MEDIA_TYPE' => null,
+
 
     /*
     |--------------------------------------------------------------------------
-    | Discogs Auth Type
+    | Discogs User Agent
     |--------------------------------------------------------------------------
     |
-    | Key vs Token
+    | User Agent
     |
     */
 
-    'DISCOGS_AUTH_TYPE' => 'personal',
+    'DISCOGS_USER_AGENT' => null,
 ];

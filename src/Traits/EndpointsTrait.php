@@ -1,5 +1,7 @@
 <?php
 
+namespace Xyrotech\Orin\Traits;
+
 require 'CollectionTrait.php';
 require 'DatabaseTrait.php';
 require 'IdentityTrait.php';
@@ -9,8 +11,6 @@ require 'WantlistTrait.php';
 
 trait EndpointsTrait
 {
-    protected $base_uri = "https://api.discogs.com";
-    protected $uri;
     protected $parameters = [];
 
     use DatabaseTrait;

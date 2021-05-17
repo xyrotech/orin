@@ -1,5 +1,7 @@
 <?php
 
+namespace Xyrotech\Orin\Traits;
+
 trait ListTrait
 {
     public function user_lists(string $username): ListTrait

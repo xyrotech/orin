@@ -1,5 +1,7 @@
 <?php
 
+namespace Xyrotech\Orin\Traits;
+
 trait MarketplaceTrait
 {
     public function inventory(string $username): MarketplaceTrait

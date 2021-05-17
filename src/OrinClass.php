@@ -7,14 +7,13 @@
  */
 namespace Xyrotech\Orin;
 
-use EndpointsTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\InvalidArgumentException;
-use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
+use Xyrotech\Orin\Traits\EndpointsTrait;
 
 require 'Traits/EndpointsTrait.php';
 
@@ -39,31 +38,12 @@ class OrinClass
     private $headers;
 
 
-    private static $instance;
-
-    public static function getInstance()
-    {
-        if (self::$instance == null) {
-            self::$instance = new OrinClass();
-        }
-
-        return self::$instance;
-    }
-
-    private function __clone()
-    {
-    }
-
-    private function __wakeup()
-    {
-    }
-
     /**
      * Creates CURL client and attaches necessary headers
      */
-    private function __construct()
+    public function __construct(array $config)
     {
-        $this->setEnv();
+        $this->setEnv($config);
         $this->setMiddleware();
         $this->setHeaders();
 
@@ -83,15 +63,13 @@ class OrinClass
      *
      * @return void
      */
-    private function setEnv(): void
+    private function setEnv(array $config): void
     {
-        $config = include('config.test.php');
-
-        $this->token = $config['DISCOGS_TOKEN'];
-        $this->consumer_key = $config['DISCOGS_CONSUMER_KEY'];
-        $this->consumer_secret = $config['DISCOGS_CONSUMER_SECRET'];
-        $this->version = $config['DISCOGS_VERSION'];
-        $this->media_type = $config['DISCOGS_MEDIA_TYPE'];
+        $this->token = isset($config['DISCOGS_TOKEN']) ?? null;
+        $this->consumer_key = isset($config['DISCOGS_CONSUMER_KEY']) ?? null;
+        $this->consumer_secret = isset($config['DISCOGS_CONSUMER_SECRET']) ?? null;
+        $this->version = isset($config['DISCOGS_VERSION']) ?? null;
+        $this->media_type = isset($config['DISCOGS_MEDIA_TYPE']) ?? null;
     }
 
     /**
@@ -139,7 +117,7 @@ class OrinClass
      */
     private function getAuthHeader()
     {
-        $authorization = isset($this->token)
+        $authorization = $this->token != null
             ? "Discogs token=" . $this->token
             : "Discogs key=" . $this->consumer_key . ", secret=" . $this->consumer_secret;
 
@@ -170,7 +148,7 @@ class OrinClass
      */
     private function getAcceptHeader()
     {
-        $accept = (isset($this->version) && isset($this->media_type))
+        $accept = ($this->version != null && $this->media_type != null)
             ? 'application/vnd.discogs.' . $this->version . '.' . $this->media_type . '+json'
             : 'application/vnd.discogs.v2.discogs+json';
 
@@ -206,7 +184,7 @@ class OrinClass
             return $e->getMessage();
         }
 
-        return json_decode($response->getBody());
+        return $response->getBody();
     }
 
     /**

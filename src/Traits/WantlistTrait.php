@@ -1,5 +1,7 @@
 <?php
 
+namespace Xyrotech\Orin\Traits;
+
 trait WantlistTrait
 {
     public function wantlist(string $username): WantlistTrait

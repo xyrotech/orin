@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'DISCOGS_TOKEN' => 'YOUR_TOKEN',
+    'DISCOGS_TOKEN' => 'afCQWkoDrtVfxXKKWfWmssFxgFWYxWbhyiXtDGJh',
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'DISCOGS_CONSUMER_KEY' => 'YOUR_CONSUMER_KEY',
+    'DISCOGS_CONSUMER_KEY' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'DISCOGS_CONSUMER_SECRET' => 'YOUR_CONSUMER_SECRET',
+    'DISCOGS_CONSUMER_SECRET' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -76,4 +76,15 @@ return [
     */
 
     'DISCOGS_AUTH_TYPE' => 'personal',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Discogs User Agent
+    |--------------------------------------------------------------------------
+    |
+    | User Agent
+    |
+    */
+
+    'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
 ];
