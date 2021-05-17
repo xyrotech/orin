@@ -1,0 +1,119 @@
+<?php
+
+
+namespace Xyrotech\Orin;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
+use Xyrotech\Orin\Traits\EndpointsTrait;
+
+require 'Traits/EndpointsTrait.php';
+
+class Orin extends Client
+{
+    use EndpointsTrait;
+
+    const AUTH = 60;
+    const NON_AUTH = 25;
+
+    public int $limit;
+    public array $headers;
+    private array $config;
+
+    private HandlerStack $stack;
+    private const base_uri = 'https://api.discogs.com';
+
+    /**
+     * Orin constructor.
+     * @param array $config
+     */
+    public function __construct(array $config = [])
+    {
+        $this->config = $config;
+
+        $this->setHeaders();
+
+        $this->stack = HandlerStack::create();
+        $this->limit = $this->usingAuth() ? self::AUTH : self::NON_AUTH;
+        $this->stack->push(RateLimiterMiddleware::perMinute($this->limit));
+
+        $config['handler'] = $this->stack;
+        $config['headers'] = $this->headers;
+        $config['base_uri'] = self::base_uri;
+
+        parent::__construct($config);
+    }
+
+    /**
+     * Determines if Authentication will be used during the request
+     * @return bool
+     */
+    private function usingAuth(): bool
+    {
+        return $this->config['DISCOGS_TOKEN'] ?? null || ($this->config['DISCOGS_CONSUMER_KEY'] ?? null) && ($this->config['DISCOGS_CONSUMER_SECRET'] ?? null);
+    }
+
+    /**
+     * Sets headers for HTTP request
+     *
+     * @return void
+     */
+    private function setHeaders(): void
+    {
+        if ($this->getAuthHeader() != null) {
+            $this->headers['Authorization'] = $this->getAuthHeader();
+        }
+
+        if ($this->config['DISCOGS_USER_AGENT'] != null) {
+            $this->headers['User-Agent'] = $this->config['DISCOGS_USER_AGENT'];
+        }
+
+        if ($this->getAcceptHeader() != null) {
+            $this->headers['Accept'] = $this->getAcceptHeader();
+        }
+    }
+
+    /**
+     * Gets Accept header for DISCOGS API future proofing
+     * @return string
+     */
+    private function getAcceptHeader(): string
+    {
+        $accept = ($this->config['DISCOGS_VERSION'] ?? null && $this->config['DISCOGS_MEDIA_TYPE'] != null)
+            ? 'application/vnd.discogs.' . $this->config['DISCOGS_VERSION'] . '.' . $this->config['DISCOGS_MEDIA_TYPE'] . '+json'
+            : 'application/vnd.discogs.v2.discogs+json';
+
+        return $accept;
+    }
+
+    /**
+     * Returns authorization headers based Token or Consumer Key/Secret
+     *
+     * @return null|string
+     */
+    private function getAuthHeader(): ?string
+    {
+        if (isset($this->config['DISCOGS_TOKEN']) && $this->config['DISCOGS_TOKEN'] != null) {
+            return "Discogs token=" . $this->config['DISCOGS_TOKEN'];
+        }
+
+        if ((isset($this->config['DISCOGS_CONSUMER_KEY']) && $this->config['DISCOGS_CONSUMER_KEY'] != null)
+            && (isset($this->config['DISCOGS_CONSUMER_SECRET']) && $this->config['DISCOGS_CONSUMER_KEY'] != null)) {
+            return "Discogs key=" . $this->config['DISCOGS_CONSUMER_KEY'] . ", secret=" . $this->config['DISCOGS_CONSUMER_SECRET'];
+        }
+
+        return null;
+    }
+
+    public function getRates(): array
+    {
+        $headers = $this->request('GET', self::base_uri)->getHeaders();
+
+        $rate['used'] = $headers['X-Discogs-Ratelimit-Used'][0];
+        $rate['remaining'] = $headers['X-Discogs-Ratelimit-Remaining'][0];
+        $rate['limit'] = $headers['X-Discogs-Ratelimit'][0];
+
+        return $rate;
+    }
+}
