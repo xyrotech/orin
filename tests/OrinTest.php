@@ -82,7 +82,35 @@ class OrinTest extends TestCase
 
         $json = $discog->collection('kunli0');
 
-        $this->assertJson($json);
+        $this->assertJson($json['response']);
+        $this->assertEquals('200', $json['status']);
+    }
+
+    /** @test */
+    public function verify_new_meta_delete_collection_folder()
+    {
+        $config = include('configs/config.test.php');
+
+        $discog = new Orin($config);
+
+        // Creating "new" folder
+        $new = $discog->new_collection_folder('kunli0', 'new');
+
+        $this->assertJson($new['response']);
+        $this->assertEquals('201', $new['status']);
+
+        $folder = json_decode($new['response']);
+
+        // Renaming "new" folder
+        $rename = $discog->collection_folder_meta('kunli0', $folder->id, 'Rename' . time());
+
+        $this->assertJson($rename['response']);
+        $this->assertEquals('200', $rename['status']);
+
+        // Deleting "new" folder
+        $delete = $discog->collection_folder_delete('kunli0', $folder->id);
+
+        $this->assertEquals('204', $delete['status']);
     }
 
     /** @test */
@@ -94,6 +122,7 @@ class OrinTest extends TestCase
 
         $json = $discog->collection_folder('kunli0', 1);
 
-        $this->assertJson($json);
+        $this->assertJson($json['response']);
+        $this->assertEquals('200', $json['status']);
     }
 }

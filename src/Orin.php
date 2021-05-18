@@ -43,6 +43,7 @@ class Orin
         $config['handler'] = $this->stack;
         $config['headers'] = $this->headers;
         $config['base_uri'] = self::base_uri;
+        $config['Content-Type'] = 'application/json';
 
         $this->client = new Client($config);
     }

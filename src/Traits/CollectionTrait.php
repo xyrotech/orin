@@ -6,19 +6,37 @@ use Psr\Http\Message\StreamInterface;
 
 trait CollectionTrait
 {
-    public function collection(string $username): StreamInterface
+    public function collection(string $username): array
     {
-        $uri = self::base_uri . '/users/' . $username . '/collection/folders';
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', '/users/' . $username . '/collection/folders');
     }
 
-    public function collection_folder(string $username, int $folder_id): StreamInterface
+    public function new_collection_folder(string $username, string $name): array
     {
-        $uri = self::base_uri . '/users/' . $username . '/collection/folders/' . $folder_id;
+        $this->parameters = ['json' => ['name' => $name]];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('POST', '/users/' . $username . '/collection/folders');
     }
+
+    public function collection_folder(string $username, int $folder_id): array
+    {
+        return $this->response('GET', '/users/' . $username . '/collection/folders/' . $folder_id);
+    }
+
+
+
+    public function collection_folder_meta(string $username, int $folder_id, string $name): array
+    {
+        $this->parameters = ['json' => ['name' => $name]];
+
+        return $this->response('POST', '/users/' . $username . '/collection/folders/' . $folder_id);
+    }
+
+    public function collection_folder_delete(string $username, int $folder_id): array
+    {
+        return $this->response('DELETE', '/users/' . $username . '/collection/folders/' . $folder_id);
+    }
+
 
     public function collection_items_by_release(string $username, int $release_id): StreamInterface
     {
@@ -71,5 +89,12 @@ trait CollectionTrait
         $uri = self::base_uri . '/users/' . $username . '/collection/value';
 
         return $this->client->request('GET', $uri)->getBody();
+    }
+
+    private function response(string $type, string $uri) : array
+    {
+        $response = $this->client->request($type, self::base_uri . $uri, $this->parameters);
+
+        return ['response' => $response->getBody(), 'status' => $response->getStatusCode()];
     }
 }
