@@ -159,7 +159,7 @@ class OrinTest extends TestCase
 
         $discog = new Orin($config);
 
-        $json = $discog->add_collection_to_folder('kunli0', 1,2097562);
+        $json = $discog->add_collection_to_folder('kunli0', 1, 2097562);
 
         $this->assertJson($json['response']);
         $this->assertEquals('201', $json['status']);
@@ -172,10 +172,8 @@ class OrinTest extends TestCase
 
         $discog = new Orin($config);
 
-        $json = $discog->change_rating_of_release('kunli0', 1,8836, 364087313, 5);
+        $json = $discog->change_rating_of_release('kunli0', 1, 8836, 364087313, 5);
 
         $this->assertEquals('204', $json['status']);
     }
-
-
 }

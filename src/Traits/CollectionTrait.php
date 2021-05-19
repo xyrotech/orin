@@ -2,9 +2,6 @@
 
 namespace Xyrotech\Orin\Traits;
 
-use phpDocumentor\Reflection\Types\Array_;
-use Psr\Http\Message\StreamInterface;
-
 trait CollectionTrait
 {
     public function collection(string $username): array
@@ -83,6 +80,4 @@ trait CollectionTrait
 
         return $this->response('GET', $uri)->getBody();
     }
-
-
 }
