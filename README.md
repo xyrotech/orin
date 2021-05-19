@@ -1,8 +1,9 @@
 # Discog PHP Client
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/xyrotech/orin.svg?style=flat-square)](https://packagist.org/packages/xyrotech/orin)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/xyrotech/orin/run-tests?label=tests)](https://github.com/xyrotech/orin/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/xyrotech/orin/Check%20&%20fix%20styling?label=code%20style)](https://github.com/xyrotech/orin/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![Tests](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml)
+[![Check & fix styling](https://github.com/xyrotech/orin/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/php-cs-fixer.yml)
+[![Psalm](https://github.com/xyrotech/orin/actions/workflows/psalm.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/psalm.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/xyrotech/orin.svg?style=flat-square)](https://packagist.org/packages/xyrotech/orin)
 
 ---
