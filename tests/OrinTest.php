@@ -125,4 +125,57 @@ class OrinTest extends TestCase
         $this->assertJson($json['response']);
         $this->assertEquals('200', $json['status']);
     }
+
+    /** @test */
+    public function verify_collection_items_by_release()
+    {
+        $config = include('configs/config.test.php');
+
+        $discog = new Orin($config);
+
+        $json = $discog->collection_items_by_release('kunli0', 16457562);
+
+        $this->assertJson($json['response']);
+        $this->assertEquals('200', $json['status']);
+    }
+
+    /** @test */
+    public function verify_collection_items_by_folder()
+    {
+        $config = include('configs/config.test.php');
+
+        $discog = new Orin($config);
+
+        $json = $discog->collection_items_by_folder('kunli0', 0);
+
+        $this->assertJson($json['response']);
+        $this->assertEquals('200', $json['status']);
+    }
+
+    /** @test */
+    public function verify_add_collection_to_folder()
+    {
+        $config = include('configs/config.test.php');
+
+        $discog = new Orin($config);
+
+        $json = $discog->add_collection_to_folder('kunli0', 1,2097562);
+
+        $this->assertJson($json['response']);
+        $this->assertEquals('201', $json['status']);
+    }
+
+    /** @test */
+    public function verify_change_rating_of_release()
+    {
+        $config = include('configs/config.test.php');
+
+        $discog = new Orin($config);
+
+        $json = $discog->change_rating_of_release('kunli0', 1,8836, 364087313, 5);
+
+        $this->assertEquals('204', $json['status']);
+    }
+
+
 }
