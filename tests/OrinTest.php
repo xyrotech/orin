@@ -74,19 +74,6 @@ class OrinTest extends TestCase
     }
 
     /** @test */
-    public function verify_collection()
-    {
-        $config = include('configs/config.test.noauth.php');
-
-        $discog = new Orin($config);
-
-        $json = $discog->collection('kunli0');
-
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
-    }
-
-    /** @test */
     public function verify_new_meta_delete_collection_folder()
     {
         $config = include('configs/config.test.php');
@@ -153,27 +140,65 @@ class OrinTest extends TestCase
     }
 
     /** @test */
-    public function verify_add_collection_to_folder()
+    public function verify_add_to_collection_folder()
     {
         $config = include('configs/config.test.php');
 
         $discog = new Orin($config);
 
-        $json = $discog->add_collection_to_folder('kunli0', 1, 2097562);
+        $release_id = 2097562;
+
+        $json = $discog->add_to_collection_folder('kunli0', 1, $release_id);
 
         $this->assertJson($json['response']);
         $this->assertEquals('201', $json['status']);
+
+        $instance = json_decode($json['response']);
+
+        //Change rating of release
+
+        $rating = $discog->change_rating_of_release('kunli0', 1, $release_id, $instance->instance_id, 5);
+
+        $this->assertEquals('204', $rating['status']);
+
+        //Change release custom fields
+
+        $edit = $discog->edit_fields_instance('kunli0', 'Testing', 1, $release_id, $instance->instance_id, 3);
+
+        $this->assertEquals('204', $edit['status']);
+
+
+        //Delete release
+
+        $delete = $discog->delete_instance_from_folder('kunli0', 1, $release_id, $instance->instance_id);
+
+        $this->assertEquals('204', $delete['status']);
     }
 
+
     /** @test */
-    public function verify_change_rating_of_release()
+    public function verify_list_custom_fields()
     {
         $config = include('configs/config.test.php');
 
         $discog = new Orin($config);
 
-        $json = $discog->change_rating_of_release('kunli0', 1, 8836, 364087313, 5);
+        $json = $discog->list_custom_fields('kunli0');
 
-        $this->assertEquals('204', $json['status']);
+        $this->assertJson($json['response']);
+        $this->assertEquals('200', $json['status']);
+    }
+
+    /** @test */
+    public function verify_collection_value()
+    {
+        $config = include('configs/config.test.php');
+
+        $discog = new Orin($config);
+
+        $json = $discog->collection_value('kunli0');
+
+        $this->assertJson($json['response']);
+        $this->assertEquals('200', $json['status']);
     }
 }
