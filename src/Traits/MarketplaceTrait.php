@@ -20,13 +20,6 @@ trait MarketplaceTrait
         return $this->client->request('GET', $uri)->getBody();
     }
 
-    public function list(string $listing): StreamInterface
-    {
-        $uri = self::base_uri . '/marketplace/listings/';
-        $this->parameters = ['query' => $listing];
-
-        return $this->client->request('GET', $uri)->getBody();
-    }
 
     public function order(int $order_id): StreamInterface
     {

@@ -2,35 +2,34 @@
 
 namespace Xyrotech\Orin\Traits;
 
-use Psr\Http\Message\StreamInterface;
-
 trait IdentityTrait
 {
-    public function identity(): StreamInterface
+    public function identity(): array
     {
-        $uri = self::base_uri . '/oauth/identity';
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', '/oauth/identity');
     }
 
-    public function profile(string $username): StreamInterface
+    public function profile(string $username) : array
     {
-        $uri = self::base_uri . '/users/' . $username;
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', "/users/{$username}");
     }
 
-    public function user_submissions(string $username): StreamInterface
+    public function edit_profile(string $username, string $name = null, string $home_page = null, string $location = null, string $profile = null, string $curr_abbr = null) : array
     {
-        $uri = self::base_uri . '/users/' . $username . '/submissions';
+        $this->parameters = ['json' => ['name' => $name, 'home_page' => $home_page, 'location' => $location, 'profile' => $profile, 'curr_abbr' => $curr_abbr]];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('POST', "/users/{$username}");
     }
 
-    public function user_contributions(string $username): StreamInterface
+    public function user_submissions(string $username) : array
     {
-        $uri = self::base_uri . '/users/' . $username . '/contributions';
+        return $this->response('GET', "/users/{$username}/submissions");
+    }
 
-        return $this->client->request('GET', $uri)->getBody();
+    public function user_contributions(string $username, string $sort = null, string $sort_order = null) : array
+    {
+        $this->parameters = ['query' => ['sort' => $sort, 'sort_order' => $sort_order]];
+
+        return $this->response('GET', "/users/{$username}/contributions");
     }
 }
