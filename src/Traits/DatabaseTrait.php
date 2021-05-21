@@ -2,79 +2,82 @@
 
 namespace Xyrotech\Orin\Traits;
 
-use Psr\Http\Message\StreamInterface;
-
 trait DatabaseTrait
 {
-    public function release(int $release_id) : StreamInterface
+    public function release(int $release_id, string $curr_abbr = null) : array
     {
-        $uri = self::base_uri . '/releases/' . $release_id;
+        $this->parameters = ['json' => ['curr_abbr' => $curr_abbr]];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', "/releases/{$release_id}");
     }
 
-    public function release_rating_by_user(int $release_id, string $username): StreamInterface
+    public function release_rating_by_user(int $release_id, string $username): array
     {
-        $uri = self::base_uri . '/releases/' . $release_id . '/rating/' . $username;
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', "/releases/{$release_id}/rating/{$username}");
     }
 
-    public function community_release_rating(int $release_id): StreamInterface
+    public function update_release_rating_by_user(int $release_id, string $username, int $rating = null): array
     {
-        $uri = self::base_uri . '/releases/' . $release_id . '/rating';
+        $this->parameters = ['json' => ['rating' => $rating]];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('PUT', "/releases/{$release_id}/rating/{$username}");
     }
 
-    public function master_releases(int $master_id): StreamInterface
+    public function delete_release_rating_by_user(int $release_id, string $username): array
     {
-        $uri = self::base_uri . '/masters/' . $master_id . '/versions';
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('DELETE', "/releases/{$release_id}/rating/{$username}");
     }
 
-    public function master_release_versions(int $master_id): StreamInterface
+    public function community_release_rating(int $release_id): array
     {
-        $uri = self::base_uri . '/masters/' . $master_id . '/versions';
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET',  "/releases/{$release_id}/rating");
     }
 
-    public function artist(int $artist_id): StreamInterface
+    public function release_stats(int $release_id): array
     {
-        $uri = self::base_uri . '/artists/' . $artist_id;
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET',  "/releases/{$release_id}/stats");
     }
 
-    public function artist_releases(int $artist_id): StreamInterface
+    public function master_releases(int $master_id): array
     {
-        $uri = self::base_uri . '/artists/' . $artist_id . '/releases';
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', "/masters/{$master_id}/versions");
     }
 
-    public function label(int $label_id): StreamInterface
+    public function master_release_versions(int $master_id, array $parameters = null): array
     {
-        $uri = self::base_uri . '/label/' . $label_id;
+        $this->parameters = ['q' => $parameters ];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', "/masters/{$master_id}/versions");
     }
 
-    public function all_label_releases(int $label_id): StreamInterface
+    public function artist(int $artist_id): array
     {
-        $uri = self::base_uri . '/labels/' . $label_id . '/releases';
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', "/artists/{$artist_id}");
     }
 
-    public function search(string $query): StreamInterface
+    public function artist_releases(int $artist_id, array $parameters): array
     {
-        $uri = self::base_uri . '/database/search';
+        $this->parameters = ['q' => $parameters];
 
-        $this->parameters = ['query' => ['q' => $query]];
+        return $this->response('GET', "/artists/{$artist_id}/releases");
+    }
 
-        return $this->client->request('GET', $uri)->getBody();
+    public function label(int $label_id): array
+    {
+        return $this->response('GET', "/labels/{$label_id}");
+    }
+
+    public function all_label_releases(int $label_id, array $parameters = null): array
+    {
+        $this->parameters = ['q' => $parameters];
+
+        return $this->response('GET', "/labels/{$label_id}/releases");
+    }
+
+    public function search(string $query, array $parameters = null): array
+    {
+        $this->parameters = ['q' => $parameters];
+
+        return $this->response('GET', "/database/search");
     }
 }

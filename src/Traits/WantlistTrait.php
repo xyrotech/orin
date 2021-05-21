@@ -16,7 +16,7 @@ trait WantlistTrait
         return $this->response('PUT', "/users/{$username}/wants/{$release_id}");
     }
 
-    public function delete_from_wantlist(string $username, int $release_id, string $notes = null, int $rating = null)
+    public function delete_from_wantlist(string $username, int $release_id, string $notes = null, int $rating = null) : array
     {
         $this->parameters = ['json' => ['notes' => $notes, 'rating' => $rating]];
 
