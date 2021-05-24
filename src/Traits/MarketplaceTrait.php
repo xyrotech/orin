@@ -2,44 +2,56 @@
 
 namespace Xyrotech\Orin\Traits;
 
-use Psr\Http\Message\StreamInterface;
-
 trait MarketplaceTrait
 {
-    public function inventory(string $username): StreamInterface
+    public function inventory(string $username, array $parameters = null): array
     {
-        $uri = self::base_uri . '/users/' . $username . '/inventory';
+        $this->parameters = ['q' => $parameters ];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', "/users/{$username}/inventory");
     }
 
-    public function listing(int $listing_id): StreamInterface
+    public function listing(int $listing_id, string $curr_abbr = null): array
     {
-        $uri = self::base_uri . '/marketplace/listings/' . $listing_id;
+        $this->parameters = ['q' => ['curr_abbr' => $curr_abbr] ];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', "/marketplace/listings/{$listing_id}");
     }
 
-
-    public function order(int $order_id): StreamInterface
+    public function edit_listing(int $listing_id, array $parameters = null): array
     {
-        $uri = self::base_uri . '/marketplace/orders/' . $order_id;
+        $this->parameters = ['json' => $parameters];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('POST', "/marketplace/listings/{$listing_id}");
     }
 
-    public function list_orders(): StreamInterface
+    public function new_listing(array $parameters): array
     {
-        $uri = self::base_uri . '/marketplace/orders';
+        $this->parameters = ['json' => $parameters];
 
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('POST', "/marketplace/listings");
     }
 
-    public function list_orders_messages(string $order_id): StreamInterface
+    public function delete_listing(int $listing_id): array
     {
-        $uri = self::base_uri . '/marketplace/orders/' . $order_id . '/messages';
+        return $this->response('DELETE', "/marketplace/listings/{$listing_id}");
+    }
 
-        return $this->client->request('GET', $uri)->getBody();
+    public function order(int $order_id): array
+    {
+        return $this->response('GET', "/marketplace/orders/{$order_id}");
+    }
+
+    public function list_orders(array $parameters = null): array
+    {
+        $this->parameters = ['q' => $parameters ];
+
+        return $this->response('GET', '/marketplace/orders');
+    }
+
+    public function list_orders_messages(string $order_id): array
+    {
+        return $this->response('GET', '/marketplace/orders/' . $order_id . '/messages');
     }
 
     /**
@@ -49,11 +61,9 @@ trait MarketplaceTrait
      * @param string $price
      * @return mixed
      */
-    public function fee(string $price): StreamInterface
+    public function fee(string $price): array
     {
-        $uri = self::base_uri . '/marketplace/fee/' . $price;
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', '/marketplace/fee/' . $price);
     }
 
     /**
@@ -61,19 +71,15 @@ trait MarketplaceTrait
      * API response value changes, however currency remains at USD
      * @param string $price
      * @param string $currency
-     * @return StreamInterface
+     * @return array
      */
-    public function fee_with_currency(string $price, string $currency): StreamInterface
+    public function fee_with_currency(string $price, string $currency): array
     {
-        $uri = self::base_uri . '/marketplace/fee/' . $price . '/' . $currency;
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', '/marketplace/fee/' . $price . '/' . $currency);
     }
 
-    public function price_suggestions(int $release_id): StreamInterface
+    public function price_suggestions(int $release_id): array
     {
-        $uri = self::base_uri . '/marketplace/price_suggestions/' . $release_id;
-
-        return $this->client->request('GET', $uri)->getBody();
+        return $this->response('GET', '/marketplace/price_suggestions/' . $release_id);
     }
 }

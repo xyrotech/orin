@@ -13,7 +13,7 @@ class MultiTest extends TestCase
         sleep(5);
     }
 
-    /** @test */
+
     public function verify_user_lists()
     {
         $config = include('configs/config.test.php');
@@ -35,7 +35,7 @@ class MultiTest extends TestCase
         $this->assertEquals('200', $list['status']);
     }
 
-    /** @test */
+
     public function verify_identity()
     {
         $config = include('configs/config.test.php');
@@ -76,7 +76,7 @@ class MultiTest extends TestCase
         $this->assertEquals('200', $submissions['status']);
     }
 
-    /** @test */
+
     public function verify_wantlist()
     {
         $config = include('configs/config.test.php');
