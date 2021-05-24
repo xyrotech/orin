@@ -3,13 +3,11 @@
 
 namespace Xyrotech\Orin\Tests;
 
-
 use PHPUnit\Framework\TestCase;
 use Xyrotech\Orin\Orin;
 
 class MarketplaceTest extends TestCase
 {
-
     private Orin  $discog;
 
     public function setUp() : void
@@ -24,7 +22,7 @@ class MarketplaceTest extends TestCase
     /** @test */
     public function verify_inventory()
     {
-        $inventory = $this->discog->inventory('kunli0',['sort' => 'artist']);
+        $inventory = $this->discog->inventory('kunli0', ['sort' => 'artist']);
 
         $this->assertJson($inventory['response']);
         $this->assertEquals('200', $inventory['status']);
@@ -53,7 +51,7 @@ class MarketplaceTest extends TestCase
             'release_id' => 16457562,
             'condition' => 'Poor (P)',
             'price' => 99.00,
-            'status' => 'For Sale'
+            'status' => 'For Sale',
         ];
 
         // View listing
@@ -79,11 +77,9 @@ class MarketplaceTest extends TestCase
      */
     public function verify_list_orders()
     {
-
         $list = $this->discog->list_orders();
 
         $this->assertJson($list['response']);
         $this->assertEquals('200', $list['status']);
     }
-
 }

@@ -8,8 +8,6 @@ use Xyrotech\Orin\Orin;
 
 class OrinTest extends TestCase
 {
-
-
     public function test_config()
     {
         $config = include('src/config.test.php');
