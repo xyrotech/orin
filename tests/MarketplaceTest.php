@@ -133,7 +133,7 @@ class MarketplaceTest extends TestCase
         $this->assertJson($price_suggestions['response']);
         $this->assertEquals('200', $price_suggestions['status']);
     }
-<<<<<<< HEAD
+
 
     /** @test */
     public function verify_release_statistics()
@@ -143,6 +143,5 @@ class MarketplaceTest extends TestCase
         $this->assertJson($release_stats['response']);
         $this->assertEquals('200', $release_stats['status']);
     }
-=======
->>>>>>> 938982d3e1a89e920514310c572daa6adce3b19a
+
 }
