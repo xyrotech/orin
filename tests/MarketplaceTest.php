@@ -143,5 +143,4 @@ class MarketplaceTest extends TestCase
         $this->assertJson($release_stats['response']);
         $this->assertEquals('200', $release_stats['status']);
     }
-
 }
