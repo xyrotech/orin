@@ -19,7 +19,7 @@ class CollectionTest extends TestCase
         $this->discog = new Orin($config);
     }
 
-
+    /** @test */
     public function verify_new_meta_delete_collection_folder()
     {
         // Creating "new" folder
@@ -42,7 +42,7 @@ class CollectionTest extends TestCase
         $this->assertEquals('204', $delete['status']);
     }
 
-
+    /** @test */
     public function verify_collection_folder()
     {
         $json = $this->discog->collection_folder('kunli0', 1);
@@ -51,7 +51,7 @@ class CollectionTest extends TestCase
         $this->assertEquals('200', $json['status']);
     }
 
-
+    /** @test */
     public function verify_collection_items_by_release()
     {
         $json = $this->discog->collection_items_by_release('kunli0', 16457562);
@@ -60,7 +60,7 @@ class CollectionTest extends TestCase
         $this->assertEquals('200', $json['status']);
     }
 
-
+    /** @test */
     public function verify_collection_items_by_folder()
     {
         $json = $this->discog->collection_items_by_folder('kunli0', 0);
@@ -69,7 +69,7 @@ class CollectionTest extends TestCase
         $this->assertEquals('200', $json['status']);
     }
 
-
+    /** @test */
     public function verify_add_rating_edit_delete_on_collection_folder()
     {
         $release_id = 2097562;
@@ -101,7 +101,7 @@ class CollectionTest extends TestCase
         $this->assertEquals('204', $delete['status']);
     }
 
-
+    /** @test */
     public function verify_list_custom_fields()
     {
         $json = $this->discog->list_custom_fields('kunli0');
@@ -110,7 +110,7 @@ class CollectionTest extends TestCase
         $this->assertEquals('200', $json['status']);
     }
 
-
+    /** @test */
     public function verify_collection_value()
     {
         $json = $this->discog->collection_value('kunli0');

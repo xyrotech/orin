@@ -37,9 +37,16 @@ trait MarketplaceTrait
         return $this->response('DELETE', "/marketplace/listings/{$listing_id}");
     }
 
-    public function order(int $order_id): array
+    public function order(string $order_id): array
     {
         return $this->response('GET', "/marketplace/orders/{$order_id}");
+    }
+
+    public function edit_order(string $order_id, array $parameters = null): array
+    {
+        $this->parameters = ['json' => $parameters];
+
+        return $this->response('POST', "/marketplace/orders/{$order_id}");
     }
 
     public function list_orders(array $parameters = null): array
@@ -51,7 +58,14 @@ trait MarketplaceTrait
 
     public function list_orders_messages(string $order_id): array
     {
-        return $this->response('GET', '/marketplace/orders/' . $order_id . '/messages');
+        return $this->response('GET', "/marketplace/orders/{$order_id}/messages");
+    }
+
+    public function new_orders_message(string $order_id, string $message = null, string $status = null): array
+    {
+        $this->parameters = ['json' => ['message' => $message, 'status' => $status]];
+
+        return $this->response('POST', "/marketplace/orders/{$order_id}/messages");
     }
 
     /**
@@ -63,7 +77,7 @@ trait MarketplaceTrait
      */
     public function fee(string $price): array
     {
-        return $this->response('GET', '/marketplace/fee/' . $price);
+        return $this->response('GET', "/marketplace/fee/{$price}");
     }
 
     /**
@@ -75,11 +89,18 @@ trait MarketplaceTrait
      */
     public function fee_with_currency(string $price, string $currency): array
     {
-        return $this->response('GET', '/marketplace/fee/' . $price . '/' . $currency);
+        return $this->response('GET', "/marketplace/fee/{$price}/{$currency}");
     }
 
     public function price_suggestions(int $release_id): array
     {
-        return $this->response('GET', '/marketplace/price_suggestions/' . $release_id);
+        return $this->response('GET', "/marketplace/price_suggestions/{$release_id}");
+    }
+
+    public function release_statistics(int $release_id, string $curr_abbr = null): array
+    {
+        $this->parameters = ['q' => ['curr_abbr' => $curr_abbr] ];
+
+        return $this->response('GET', "/marketplace/stats/{$release_id}");
     }
 }
