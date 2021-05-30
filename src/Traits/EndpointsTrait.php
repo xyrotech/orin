@@ -24,6 +24,10 @@ trait EndpointsTrait
     {
         $response = $this->client->request($type, self::base_uri . $uri, $this->parameters);
 
-        return ['response' => $response->getBody(), 'status' => $response->getStatusCode()];
+        return [
+            'response' => $response->getBody(),
+            'status' => $response->getStatusCode(),
+            'rates' => $this->setRates($response->getHeaders()),
+        ];
     }
 }

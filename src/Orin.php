@@ -20,6 +20,7 @@ class Orin
     public int $limit;
     public array $headers = [];
     private array $config;
+    public array $rates = [];
 
     private HandlerStack $stack;
     private const base_uri = 'https://api.discogs.com';
@@ -108,16 +109,16 @@ class Orin
         return null;
     }
 
-    public function getRates(): array
+    private function setRates(array $headers): array
     {
-        $headers = $this->client->request('GET', self::base_uri)->getHeaders();
+        $this->rates['used'] = $headers['X-Discogs-Ratelimit-Used'][0];
+        $this->rates['remaining'] = $headers['X-Discogs-Ratelimit-Remaining'][0];
+        $this->rates['limit'] = $headers['X-Discogs-Ratelimit'][0];
 
-        $rate = [];
+        if ($this->rates['remaining'] <= 10) {
+            sleep(60);
+        }
 
-        $rate['used'] = $headers['X-Discogs-Ratelimit-Used'][0];
-        $rate['remaining'] = $headers['X-Discogs-Ratelimit-Remaining'][0];
-        $rate['limit'] = $headers['X-Discogs-Ratelimit'][0];
-
-        return $rate;
+        return $this->rates;
     }
 }

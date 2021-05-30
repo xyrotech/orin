@@ -12,8 +12,6 @@ class CollectionTest extends TestCase
 
     public function setUp() : void
     {
-        sleep(5);
-
         $config = include('configs/config.test.php');
 
         $this->discog = new Orin($config);

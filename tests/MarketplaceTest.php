@@ -12,8 +12,6 @@ class MarketplaceTest extends TestCase
 
     public function setUp() : void
     {
-        sleep(5);
-
         $config = include('configs/config.test.php');
 
         $this->discog = new Orin($config);
@@ -143,5 +141,4 @@ class MarketplaceTest extends TestCase
         $this->assertJson($release_stats['response']);
         $this->assertEquals('200', $release_stats['status']);
     }
-
 }

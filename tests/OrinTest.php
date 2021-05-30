@@ -20,6 +20,7 @@ class OrinTest extends TestCase
         $this->assertArrayHasKey('DISCOGS_AUTH_TYPE', $config);
     }
 
+
     /** @test */
     public function base_uri_is_correct()
     {
@@ -38,7 +39,6 @@ class OrinTest extends TestCase
         $discog = new Orin($config);
 
         $this->assertEquals($discog->limit, 60);
-        $this->assertEquals(60, $discog->getRates()['limit']);
     }
 
     /** @test */
@@ -49,7 +49,6 @@ class OrinTest extends TestCase
         $discog = new Orin($config);
 
         $this->assertEquals($discog->limit, 25);
-        $this->assertEquals(25, $discog->getRates()['limit']);
     }
 
 
@@ -70,6 +69,6 @@ class OrinTest extends TestCase
 
         $discog = new Orin($config);
 
-        $this->assertIsArray($discog->getRates());
+        $this->assertIsArray($discog->rates);
     }
 }

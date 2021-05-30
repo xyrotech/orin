@@ -8,19 +8,19 @@ use Xyrotech\Orin\Orin;
 
 class MultiTest extends TestCase
 {
+    private Orin  $discog;
+
     public function setUp(): void
     {
-        sleep(5);
+        $config = include('configs/config.test.php');
+
+        $this->discog = new Orin($config);
     }
 
     /** @test */
     public function verify_user_lists()
     {
-        $config = include('configs/config.test.php');
-
-        $discog = new Orin($config);
-
-        $json = $discog->user_lists('kunli0');
+        $json = $this->discog->user_lists('kunli0');
 
         $this->assertJson($json['response']);
         $this->assertEquals('200', $json['status']);
@@ -29,7 +29,7 @@ class MultiTest extends TestCase
 
         $id = $user_list->lists[0]->id;
 
-        $list = $discog->list($id);
+        $list = $this->discog->list($id);
 
         $this->assertJson($list['response']);
         $this->assertEquals('200', $list['status']);
@@ -42,35 +42,35 @@ class MultiTest extends TestCase
 
         $discog = new Orin($config);
 
-        $json = $discog->identity();
+        $json = $this->discog->identity();
 
         $this->assertJson($json['response']);
         $this->assertEquals('200', $json['status']);
 
         // User Profile
 
-        $profile = $discog->profile('kunli0');
+        $profile = $this->discog->profile('kunli0');
 
         $this->assertJson($profile['response']);
         $this->assertEquals('200', $profile['status']);
 
         // Edit Profile
 
-        $profile = $discog->edit_profile('kunli0', 'Adekunle Adelakun');
+        $profile = $this->discog->edit_profile('kunli0', 'Adekunle Adelakun');
 
         $this->assertJson($profile['response']);
         $this->assertEquals('200', $profile['status']);
 
         // User Submissions
 
-        $submissions = $discog->user_submissions('kunli0');
+        $submissions = $this->discog->user_submissions('kunli0');
 
         $this->assertJson($submissions['response']);
         $this->assertEquals('200', $submissions['status']);
 
         // User Contributions
 
-        $submissions = $discog->user_contributions('kunli0');
+        $submissions = $this->discog->user_contributions('kunli0');
 
         $this->assertJson($submissions['response']);
         $this->assertEquals('200', $submissions['status']);
@@ -79,28 +79,24 @@ class MultiTest extends TestCase
     /** @test */
     public function verify_wantlist()
     {
-        $config = include('configs/config.test.php');
-
-        $discog = new Orin($config);
-
         $release_id = 2097562;
 
         // Get want list
-        $json = $discog->wantlist('kunli0');
+        $json = $this->discog->wantlist('kunli0');
 
         $this->assertJson($json['response']);
         $this->assertEquals('200', $json['status']);
 
         // Add to wantlist
 
-        $add = $discog->add_to_wantlist('kunli0', $release_id);
+        $add = $this->discog->add_to_wantlist('kunli0', $release_id);
 
         $this->assertJson($add['response']);
         $this->assertEquals('201', $add['status']);
 
         // Delete from wantlist
 
-        $delete = $discog->delete_from_wantlist('kunli0', $release_id);
+        $delete = $this->discog->delete_from_wantlist('kunli0', $release_id);
 
         $this->assertEquals('204', $delete['status']);
     }
