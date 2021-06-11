@@ -68,7 +68,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $release_stats->status);
     }
 
-   /** @test */
+    /** @test */
     public function verify_master_release()
     {
         $master = $this->discog->master_release(2482);

@@ -109,7 +109,7 @@ class CollectionTest extends TestCase
         $this->assertEquals('200', $json->status);
     }
 
-   // /** @test */
+    // /** @test */
     public function verify_collection_value()
     {
         $json = $this->discog->collection_value('kunli0');

@@ -76,7 +76,7 @@ class MultiTest extends TestCase
         $this->assertEquals('200', $submissions['status']);
     }
 
-   // /** @test */
+    // /** @test */
     public function verify_wantlist()
     {
         $release_id = 2097562;

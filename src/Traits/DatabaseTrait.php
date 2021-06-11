@@ -4,7 +4,6 @@ namespace Xyrotech\Orin\Traits;
 
 trait DatabaseTrait
 {
-
     public function release(int $release_id, string $curr_abbr = null) : object
     {
         $this->parameters = ['json' => ['curr_abbr' => $curr_abbr]];
