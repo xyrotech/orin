@@ -115,7 +115,7 @@ class Orin
      * @param array $headers
      * @return array
      */
-    private function setRates(array $headers): array
+    public function setRates(array $headers): array
     {
         $this->rates['used'] = $headers['X-Discogs-Ratelimit-Used'][0];
         $this->rates['remaining'] = $headers['X-Discogs-Ratelimit-Remaining'][0];

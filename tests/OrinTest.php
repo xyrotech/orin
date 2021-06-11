@@ -70,5 +70,13 @@ class OrinTest extends TestCase
         $discog = new Orin($config);
 
         $this->assertIsArray($discog->rates);
+
+        $headers = [];
+
+        $headers['X-Discogs-Ratelimit-Used'][0] = 5;
+        $headers['X-Discogs-Ratelimit-Remaining'][0] = 5;
+        $headers['X-Discogs-Ratelimit'][0] = 60;
+
+        $this->assertIsArray($discog->setRates($headers));
     }
 }

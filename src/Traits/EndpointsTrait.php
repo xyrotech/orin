@@ -26,8 +26,8 @@ trait EndpointsTrait
     {
         $response = $this->client->request($type, self::base_uri . $uri, $this->parameters);
 
-        $data = json_decode($response->getBody()) ?? new stdClass();
-        $data->status = $response->getStatusCode();
+        $data = json_decode((string) $response->getBody()) ?? new stdClass();
+        $data->status_code = $response->getStatusCode();
         $data->rates = $this->setRates($response->getHeaders());
 
         return $data;

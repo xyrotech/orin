@@ -23,7 +23,7 @@ class DatabaseTest extends TestCase
         $release = $this->discog->release(192988);
 
         $this->assertEquals("While You Were Sleeping", $release->title);
-        $this->assertEquals(200, $release->status);
+        $this->assertEquals(200, $release->status_code);
     }
 
     /** @test */
@@ -33,19 +33,19 @@ class DatabaseTest extends TestCase
 
 
         $this->assertEquals(0, $release_rating->rating);
-        $this->assertEquals(200, $release_rating->status);
+        $this->assertEquals(200, $release_rating->status_code);
 
         //Update Rating
 
         $update_rating = $this->discog->update_release_rating_by_user(16457562, 'kunli0', 5);
 
-        $this->assertEquals(201, $update_rating->status);
+        $this->assertEquals(201, $update_rating->status_code);
 
         //Delete Rating
 
         $delete_rating = $this->discog->delete_release_rating_by_user(16457562, 'kunli0');
 
-        $this->assertEquals(204, $delete_rating->status);
+        $this->assertEquals(204, $delete_rating->status_code);
     }
 
     /** @test */
@@ -54,7 +54,7 @@ class DatabaseTest extends TestCase
         $community_release_rating = $this->discog->community_release_rating(16457562);
 
         $this->assertEquals(16457562, $community_release_rating->release_id);
-        $this->assertEquals('200', $community_release_rating->status);
+        $this->assertEquals('200', $community_release_rating->status_code);
     }
 
     /** @test */
@@ -65,7 +65,7 @@ class DatabaseTest extends TestCase
         // TODO: Functionally currently broken on API side see .xls
 
         $this->assertEquals(false, $release_stats->is_offensive);
-        $this->assertEquals('200', $release_stats->status);
+        $this->assertEquals('200', $release_stats->status_code);
     }
 
     /** @test */
@@ -74,7 +74,7 @@ class DatabaseTest extends TestCase
         $master = $this->discog->master_release(2482);
 
         $this->assertEquals('Classics', $master->title);
-        $this->assertEquals('200', $master->status);
+        $this->assertEquals('200', $master->status_code);
     }
 
     /** @test */
@@ -83,7 +83,7 @@ class DatabaseTest extends TestCase
         $master_releases = $this->discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'asc']);
 
         $this->assertEquals(188144, $master_releases->versions[0]->id);
-        $this->assertEquals('200', $master_releases->status);
+        $this->assertEquals('200', $master_releases->status_code);
     }
 
     /** @test */
@@ -92,7 +92,7 @@ class DatabaseTest extends TestCase
         $artist = $this->discog->artist(45);
 
         $this->assertEquals("Aphex Twin", $artist->name);
-        $this->assertEquals('200', $artist->status);
+        $this->assertEquals('200', $artist->status_code);
     }
 
     /** @test */
@@ -101,7 +101,7 @@ class DatabaseTest extends TestCase
         $artist = $this->discog->artist_releases(45, ['sort' => 'year']);
 
         $this->assertJson(870, $artist->releases[0]->id);
-        $this->assertEquals('200', $artist->status);
+        $this->assertEquals('200', $artist->status_code);
     }
 
     /** @test */
@@ -110,7 +110,7 @@ class DatabaseTest extends TestCase
         $label = $this->discog->label(107);
 
         $this->assertEquals("Rephlex", $label->name);
-        $this->assertEquals('200', $label->status);
+        $this->assertEquals('200', $label->status_code);
     }
 
     /** @test */
@@ -119,7 +119,7 @@ class DatabaseTest extends TestCase
         $label = $this->discog->all_label_releases(107);
 
         $this->assertEquals(101788, $label->releases[0]->id);
-        $this->assertEquals('200', $label->status);
+        $this->assertEquals('200', $label->status_code);
     }
 
     /** @test */
@@ -128,6 +128,6 @@ class DatabaseTest extends TestCase
         $search = $this->discog->search("While You Were Sleeping", ['artist' => "Opiate"]);
 
         $this->assertEquals(259279, $search->results[0]->id);
-        $this->assertEquals('200', $search->status);
+        $this->assertEquals('200', $search->status_code);
     }
 }

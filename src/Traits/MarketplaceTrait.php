@@ -4,7 +4,7 @@ namespace Xyrotech\Orin\Traits;
 
 trait MarketplaceTrait
 {
-    public function inventory(string $username, object $parameters = null): object
+    public function inventory(string $username, array $parameters = null): object
     {
         $this->parameters = ['q' => $parameters ];
 
@@ -18,14 +18,14 @@ trait MarketplaceTrait
         return $this->response('GET', "/marketplace/listings/{$listing_id}");
     }
 
-    public function edit_listing(int $listing_id, object $parameters = null): object
+    public function edit_listing(int $listing_id, array $parameters = null): object
     {
         $this->parameters = ['json' => $parameters];
 
         return $this->response('POST', "/marketplace/listings/{$listing_id}");
     }
 
-    public function new_listing(object $parameters): object
+    public function new_listing(array $parameters): object
     {
         $this->parameters = ['json' => $parameters];
 
@@ -42,16 +42,16 @@ trait MarketplaceTrait
         return $this->response('GET', "/marketplace/orders/{$order_id}");
     }
 
-    public function edit_order(string $order_id, object $parameters = null): object
+    public function edit_order(string $order_id, array $parameters = null): object
     {
         $this->parameters = ['json' => $parameters];
 
         return $this->response('POST', "/marketplace/orders/{$order_id}");
     }
 
-    public function list_orders(object $parameters = null): object
+    public function list_orders(array $parameters = null): object
     {
-        $this->parameters = ['q' => $parameters ];
+        $this->parameters = ['query' => $parameters ];
 
         return $this->response('GET', '/marketplace/orders');
     }

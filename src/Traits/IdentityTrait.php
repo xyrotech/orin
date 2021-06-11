@@ -14,9 +14,9 @@ trait IdentityTrait
         return $this->response('GET', "/users/{$username}");
     }
 
-    public function edit_profile(string $username, string $name = null, string $home_page = null, string $location = null, string $profile = null, string $curr_abbr = null) : object
+    public function edit_profile(string $username, array $parameters) : object
     {
-        $this->parameters = ['json' => ['name' => $name, 'home_page' => $home_page, 'location' => $location, 'profile' => $profile, 'curr_abbr' => $curr_abbr]];
+        $this->parameters = ['json' => $parameters];
 
         return $this->response('POST', "/users/{$username}");
     }

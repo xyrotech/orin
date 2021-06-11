@@ -17,87 +17,81 @@ class MultiTest extends TestCase
         $this->discog = new Orin($config);
     }
 
-    ///** @test */
+    /** @test */
     public function verify_user_lists()
     {
-        $json = $this->discog->user_lists('kunli0');
+        $users = $this->discog->user_lists('kunli0');
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals("Testing", $users->lists[0]->name);
+        $this->assertEquals('200', $users->status_code);
 
-        $user_list = json_decode($json['response']);
 
-        $id = $user_list->lists[0]->id;
+        $id = $users->lists[0]->id;
 
         $list = $this->discog->list($id);
 
-        $this->assertJson($list['response']);
-        $this->assertEquals('200', $list['status']);
+        $this->assertEquals("Testing", $list->name);
+        $this->assertEquals('200', $list->status_code);
     }
 
-    ///** @test */
+    /** @test */
     public function verify_identity()
     {
-        $config = include('configs/config.test.php');
+        $identity = $this->discog->identity();
 
-        $discog = new Orin($config);
-
-        $json = $this->discog->identity();
-
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals("kunli0", $identity->username);
+        $this->assertEquals('200', $identity->status_code);
 
         // User Profile
 
         $profile = $this->discog->profile('kunli0');
 
-        $this->assertJson($profile['response']);
-        $this->assertEquals('200', $profile['status']);
+        $this->assertEquals("Adekunle Adelakun", $profile->name);
+        $this->assertEquals('200', $profile->status_code);
 
         // Edit Profile
 
-        $profile = $this->discog->edit_profile('kunli0', 'Adekunle Adelakun');
+        $profile = $this->discog->edit_profile('kunli0', ['name' => 'Adekunle Adelakun']);
 
-        $this->assertJson($profile['response']);
-        $this->assertEquals('200', $profile['status']);
+        $this->assertEquals("kunli0", $profile->username);
+        $this->assertEquals('200', $profile->status_code);
 
         // User Submissions
 
-        $submissions = $this->discog->user_submissions('kunli0');
+        $user = $this->discog->user_submissions('kunli0');
 
-        $this->assertJson($submissions['response']);
-        $this->assertEquals('200', $submissions['status']);
+        $this->assertEquals(16457562, $user->submissions->releases[0]->id);
+        $this->assertEquals('200', $user->status_code);
 
         // User Contributions
 
-        $submissions = $this->discog->user_contributions('kunli0');
+        $user = $this->discog->user_contributions('kunli0');
 
-        $this->assertJson($submissions['response']);
-        $this->assertEquals('200', $submissions['status']);
+        $this->assertEquals(16457562, $user->contributions[0]->id);
+        $this->assertEquals('200', $user->status_code);
     }
 
-    // /** @test */
+    /** @test */
     public function verify_wantlist()
     {
         $release_id = 2097562;
 
         // Get want list
-        $json = $this->discog->wantlist('kunli0');
+        $user = $this->discog->wantlist('kunli0');
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals(6798, $user->wants[0]->id);
+        $this->assertEquals('200', $user->status_code);
 
         // Add to wantlist
 
         $add = $this->discog->add_to_wantlist('kunli0', $release_id);
 
-        $this->assertJson($add['response']);
-        $this->assertEquals('201', $add['status']);
+        $this->assertEquals('201', $add->status_code);
 
         // Delete from wantlist
 
         $delete = $this->discog->delete_from_wantlist('kunli0', $release_id);
 
-        $this->assertEquals('204', $delete['status']);
+        $this->assertEquals('204', $delete->status_code);
     }
 }
