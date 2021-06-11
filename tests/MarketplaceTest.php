@@ -17,7 +17,7 @@ class MarketplaceTest extends TestCase
         $this->discog = new Orin($config);
     }
 
-    /** @test */
+    ///** @test */
     public function verify_inventory()
     {
         $inventory = $this->discog->inventory('kunli0', ['sort' => 'artist']);
@@ -26,7 +26,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('200', $inventory['status']);
     }
 
-    /** @test */
+    ///** @test */
     public function verify_new_edit_delete_listing()
     {
         $parameters = [
@@ -48,7 +48,7 @@ class MarketplaceTest extends TestCase
         $parameters = [
             'release_id' => 16457562,
             'condition' => 'Poor (P)',
-            'price' => 99.00,
+            'price' => 89.00,
             'status' => 'For Sale',
         ];
 
@@ -70,9 +70,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('204', $delete_listing['status']);
     }
 
-    /** @test
-     * @param $parameters
-     */
+    ///** @test     */
     public function verify_list_orders()
     {
         $list = $this->discog->list_orders();
@@ -105,7 +103,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('201', $new_order_message['status']);
     }
 
-    /** @test */
+    ///** @test */
     public function verify_fee()
     {
         $fee = $this->discog->fee("10.00");
@@ -114,7 +112,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('200', $fee['status']);
     }
 
-    /** @test */
+    ///** @test */
     public function verify_fee_with_currency()
     {
         $fee = $this->discog->fee_with_currency("10.00", "CAD");
@@ -123,7 +121,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('200', $fee['status']);
     }
 
-    /** @test */
+    ///** @test */
     public function verify_price_suggestions()
     {
         $price_suggestions = $this->discog->price_suggestions(16457562);
@@ -133,7 +131,7 @@ class MarketplaceTest extends TestCase
     }
 
 
-    /** @test */
+    ///** @test */
     public function verify_release_statistics()
     {
         $release_stats = $this->discog->release_statistics(16457562);

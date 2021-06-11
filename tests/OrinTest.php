@@ -17,7 +17,7 @@ class OrinTest extends TestCase
         $this->assertArrayHasKey('DISCOGS_CONSUMER_SECRET', $config);
         $this->assertArrayHasKey('DISCOGS_VERSION', $config);
         $this->assertArrayHasKey('DISCOGS_MEDIA_TYPE', $config);
-        $this->assertArrayHasKey('DISCOGS_AUTH_TYPE', $config);
+        $this->assertArrayHasKey('DISCOGS_USER_AGENT', $config);
     }
 
 

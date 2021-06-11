@@ -17,7 +17,7 @@ class MultiTest extends TestCase
         $this->discog = new Orin($config);
     }
 
-    /** @test */
+    ///** @test */
     public function verify_user_lists()
     {
         $json = $this->discog->user_lists('kunli0');
@@ -35,7 +35,7 @@ class MultiTest extends TestCase
         $this->assertEquals('200', $list['status']);
     }
 
-    /** @test */
+    ///** @test */
     public function verify_identity()
     {
         $config = include('configs/config.test.php');
@@ -76,7 +76,7 @@ class MultiTest extends TestCase
         $this->assertEquals('200', $submissions['status']);
     }
 
-    /** @test */
+   // /** @test */
     public function verify_wantlist()
     {
         $release_id = 2097562;

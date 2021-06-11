@@ -109,13 +109,20 @@ class Orin
         return null;
     }
 
+    /**
+     * After each request this function updates discog rates locally
+     *
+     * @param array $headers
+     * @return array
+     */
     private function setRates(array $headers): array
     {
         $this->rates['used'] = $headers['X-Discogs-Ratelimit-Used'][0];
         $this->rates['remaining'] = $headers['X-Discogs-Ratelimit-Remaining'][0];
         $this->rates['limit'] = $headers['X-Discogs-Ratelimit'][0];
 
-        if ($this->rates['remaining'] <= 10) {
+        // The magic number 6 comes from +1 the greatest number of request per test which is 5.
+        if ($this->rates['remaining'] <= 6) {
             sleep(60);
         }
 

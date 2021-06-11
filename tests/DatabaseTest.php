@@ -18,12 +18,12 @@ class DatabaseTest extends TestCase
     }
 
     /** @test */
-    public function verify_database_release_trait()
+    public function verify_database_release()
     {
-        $json = $this->discog->release(192988);
+        $release = $this->discog->release(192988);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals("While You Were Sleeping", $release->title);
+        $this->assertEquals(200, $release->status);
     }
 
     /** @test */
@@ -31,101 +31,103 @@ class DatabaseTest extends TestCase
     {
         $release_rating = $this->discog->release_rating_by_user(16457562, 'kunli0');
 
-        // die(var_dump(json_decode($release_rating['response'])));
-        $this->assertJson($release_rating['response']);
-        $this->assertEquals('200', $release_rating['status']);
+
+        $this->assertEquals(0, $release_rating->rating);
+        $this->assertEquals(200, $release_rating->status);
 
         //Update Rating
 
         $update_rating = $this->discog->update_release_rating_by_user(16457562, 'kunli0', 5);
 
-        $this->assertEquals('201', $update_rating['status']);
+        $this->assertEquals(201, $update_rating->status);
 
         //Delete Rating
 
         $delete_rating = $this->discog->delete_release_rating_by_user(16457562, 'kunli0');
 
-        $this->assertEquals('204', $delete_rating['status']);
+        $this->assertEquals(204, $delete_rating->status);
     }
 
     /** @test */
     public function verify_community_release_rating()
     {
-        $json = $this->discog->community_release_rating(16457562);
+        $community_release_rating = $this->discog->community_release_rating(16457562);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals(16457562, $community_release_rating->release_id);
+        $this->assertEquals('200', $community_release_rating->status);
     }
 
     /** @test */
     public function verify_release_stats()
     {
-        $json = $this->discog->release_stats(16457562);
+        $release_stats = $this->discog->release_stats(16457562);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        // TODO: Functionally currently broken on API side see .xls
+
+        $this->assertEquals(false, $release_stats->is_offensive);
+        $this->assertEquals('200', $release_stats->status);
     }
 
-    /** @test */
+   /** @test */
     public function verify_master_release()
     {
-        $json = $this->discog->master_releases(2482);
+        $master = $this->discog->master_release(2482);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals('Classics', $master->title);
+        $this->assertEquals('200', $master->status);
     }
 
     /** @test */
     public function verify_master_release_versions()
     {
-        $json = $this->discog->master_release_versions(2482, ['sort' => 'released']);
+        $master_releases = $this->discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'asc']);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals(188144, $master_releases->versions[0]->id);
+        $this->assertEquals('200', $master_releases->status);
     }
 
     /** @test */
     public function verify_artist()
     {
-        $json = $this->discog->artist(45);
+        $artist = $this->discog->artist(45);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals("Aphex Twin", $artist->name);
+        $this->assertEquals('200', $artist->status);
     }
 
     /** @test */
     public function verify_artist_releases()
     {
-        $json = $this->discog->artist_releases(45, ['sort' => 'year']);
+        $artist = $this->discog->artist_releases(45, ['sort' => 'year']);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertJson(870, $artist->releases[0]->id);
+        $this->assertEquals('200', $artist->status);
     }
 
     /** @test */
     public function verify_label()
     {
-        $json = $this->discog->label(107);
+        $label = $this->discog->label(107);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals("Rephlex", $label->name);
+        $this->assertEquals('200', $label->status);
     }
 
     /** @test */
     public function verify_all_label_releases()
     {
-        $json = $this->discog->all_label_releases(107);
+        $label = $this->discog->all_label_releases(107);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals(101788, $label->releases[0]->id);
+        $this->assertEquals('200', $label->status);
     }
 
     /** @test */
     public function verify_search()
     {
-        $json = $this->discog->search('test');
+        $search = $this->discog->search("While You Were Sleeping", ['artist' => "Opiate"]);
 
-        $this->assertJson($json['response']);
-        $this->assertEquals('200', $json['status']);
+        $this->assertEquals(259279, $search->results[0]->id);
+        $this->assertEquals('200', $search->status);
     }
 }

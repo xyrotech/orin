@@ -68,12 +68,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Discogs Auth Type
+    | Discogs User Agent
     |--------------------------------------------------------------------------
     |
-    | Key vs Token
+    | User Agent
     |
     */
 
-    'DISCOGS_AUTH_TYPE' => 'personal',
+    'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
 ];

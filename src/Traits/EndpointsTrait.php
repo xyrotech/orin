@@ -2,6 +2,8 @@
 
 namespace Xyrotech\Orin\Traits;
 
+use stdClass;
+
 require 'CollectionTrait.php';
 require 'DatabaseTrait.php';
 require 'IdentityTrait.php';
@@ -20,14 +22,14 @@ trait EndpointsTrait
     use ListTrait;
     use WantlistTrait;
 
-    private function response(string $type, string $uri) : array
+    private function response(string $type, string $uri) : object
     {
         $response = $this->client->request($type, self::base_uri . $uri, $this->parameters);
 
-        return [
-            'response' => $response->getBody(),
-            'status' => $response->getStatusCode(),
-            'rates' => $this->setRates($response->getHeaders()),
-        ];
+        $data = json_decode($response->getBody()) ?? new stdClass();
+        $data->status = $response->getStatusCode();
+        $data->rates = $this->setRates($response->getHeaders());
+
+        return $data;
     }
 }
