@@ -82,7 +82,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals(2968486, $get_order->seller->id);
         $this->assertEquals('200', $get_order->status_code);
 
-        $new_status = $get_order->status == "Payment Pending" ? "Invoice Sent" : "Payment Pending";
+        $new_status = ($get_order->status == "Payment Pending") ? "Invoice Sent" : "Payment Pending";
 
         $edit_order = $this->discog->edit_order($get_order->id, ['status' => $new_status]);
 
