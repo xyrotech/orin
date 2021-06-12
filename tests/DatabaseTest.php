@@ -18,7 +18,7 @@ class DatabaseTest extends TestCase
     }
 
     /** @test */
-    public function verify_database_release()
+    public function verify_release()
     {
         $release = $this->discog->release(192988);
 

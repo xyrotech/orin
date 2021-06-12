@@ -53,7 +53,7 @@ class Orin
      * Determines if Authentication will be used during the request
      * @return bool
      */
-    private function usingAuth(): bool
+    private function usingAuth() : bool
     {
         return $this->config['DISCOGS_TOKEN'] ?? null || ($this->config['DISCOGS_CONSUMER_KEY'] ?? null) && ($this->config['DISCOGS_CONSUMER_SECRET'] ?? null);
     }
@@ -63,7 +63,7 @@ class Orin
      *
      * @return void
      */
-    private function setHeaders(): void
+    private function setHeaders() : void
     {
         if ($this->getAuthHeader() != null) {
             $this->headers['Authorization'] = $this->getAuthHeader();
@@ -80,9 +80,10 @@ class Orin
 
     /**
      * Gets Accept header for DISCOGS API future proofing
+     *
      * @return string
      */
-    private function getAcceptHeader(): string
+    private function getAcceptHeader() : string
     {
         $accept = ($this->config['DISCOGS_VERSION'] ?? null && $this->config['DISCOGS_MEDIA_TYPE'] != null)
             ? 'application/vnd.discogs.' . $this->config['DISCOGS_VERSION'] . '.' . $this->config['DISCOGS_MEDIA_TYPE'] . '+json'
@@ -96,7 +97,7 @@ class Orin
      *
      * @return null|string
      */
-    private function getAuthHeader(): ?string
+    private function getAuthHeader() : ?string
     {
         if (isset($this->config['DISCOGS_TOKEN']) && $this->config['DISCOGS_TOKEN'] != null) {
             return "Discogs token=" . $this->config['DISCOGS_TOKEN'];
@@ -115,7 +116,7 @@ class Orin
      * @param array $headers
      * @return array
      */
-    public function setRates(array $headers): array
+    public function setRates(array $headers) : array
     {
         $this->rates['used'] = $headers['X-Discogs-Ratelimit-Used'][0];
         $this->rates['remaining'] = $headers['X-Discogs-Ratelimit-Remaining'][0];

@@ -4,103 +4,182 @@ namespace Xyrotech\Orin\Traits;
 
 trait MarketplaceTrait
 {
-    public function inventory(string $username, array $parameters = null): object
+    /**
+     * Get a seller’s inventory
+     *
+     * @param string $username
+     * @param array|null $parameters
+     * @return object
+     */
+    public function inventory(string $username, array $parameters = null) : object
     {
-        $this->parameters = ['q' => $parameters ];
+        $this->parameters = ['query' => $parameters ];
 
-        return $this->response('GET', "/users/{$username}/inventory");
+        return $this->response('GET', "/users/$username/inventory");
     }
 
-    public function listing(int $listing_id, string $curr_abbr = null): object
+    /**
+     * View the data associated with a listing.
+     *
+     * @param int $listing_id
+     * @param string|null $curr_abbr
+     * @return object
+     */
+    public function listing(int $listing_id, string $curr_abbr = null) : object
     {
-        $this->parameters = ['q' => ['curr_abbr' => $curr_abbr] ];
+        $this->parameters = ['query' => ['curr_abbr' => $curr_abbr] ];
 
-        return $this->response('GET', "/marketplace/listings/{$listing_id}");
+        return $this->response('GET', "/marketplace/listings/$listing_id");
     }
 
-    public function edit_listing(int $listing_id, array $parameters = null): object
+    /**
+     * Edit the data associated with a listing.
+     *
+     * @param int $listing_id
+     * @param array|null $parameters
+     * @return object
+     */
+    public function edit_listing(int $listing_id, array $parameters = null) : object
     {
         $this->parameters = ['json' => $parameters];
 
-        return $this->response('POST', "/marketplace/listings/{$listing_id}");
+        return $this->response('POST', "/marketplace/listings/$listing_id");
     }
 
-    public function new_listing(array $parameters): object
+    /**
+     * Create a Marketplace listing.
+     *
+     * @param array $parameters
+     * @return object
+     */
+    public function new_listing(array $parameters) : object
     {
         $this->parameters = ['json' => $parameters];
 
         return $this->response('POST', "/marketplace/listings");
     }
 
-    public function delete_listing(int $listing_id): object
+    /**
+     * Permanently remove a listing from the Marketplace.
+     *
+     * @param int $listing_id
+     * @return object
+     */
+    public function delete_listing(int $listing_id) : object
     {
-        return $this->response('DELETE', "/marketplace/listings/{$listing_id}");
+        return $this->response('DELETE', "/marketplace/listings/$listing_id");
     }
 
-    public function order(string $order_id): object
+    /**
+     * View the data associated with an order.
+     *
+     * @param string $order_id
+     * @return object
+     */
+    public function order(string $order_id) : object
     {
-        return $this->response('GET', "/marketplace/orders/{$order_id}");
+        return $this->response('GET', "/marketplace/orders/$order_id");
     }
 
-    public function edit_order(string $order_id, array $parameters = null): object
+    /**
+     * Edit the data associated with an order.
+     *
+     * @param string $order_id
+     * @param array|null $parameters
+     * @return object
+     */
+    public function edit_order(string $order_id, array $parameters = null) : object
     {
         $this->parameters = ['json' => $parameters];
 
-        return $this->response('POST', "/marketplace/orders/{$order_id}");
+        return $this->response('POST', "/marketplace/orders/$order_id");
     }
 
-    public function list_orders(array $parameters = null): object
+    /**
+     * Returns a list of the authenticated user’s orders.
+     *
+     * @param array|null $parameters
+     * @return object
+     */
+    public function list_orders(array $parameters = null) : object
     {
         $this->parameters = ['query' => $parameters ];
 
         return $this->response('GET', '/marketplace/orders');
     }
 
-    public function list_orders_messages(string $order_id): object
+    /**
+     * Returns a list of the order’s messages with the most recent first.
+     *
+     * @param string $order_id
+     * @return object
+     */
+    public function list_orders_messages(string $order_id) : object
     {
-        return $this->response('GET', "/marketplace/orders/{$order_id}/messages");
+        return $this->response('GET', "/marketplace/orders/$order_id/messages");
     }
 
-    public function new_orders_message(string $order_id, string $message = null, string $status = null): object
+    /**
+     * Adds a new message to the order’s message log.
+     *
+     * @param string $order_id
+     * @param string|null $message
+     * @param string|null $status
+     * @return object
+     */
+    public function new_orders_message(string $order_id, string $message = null, string $status = null) : object
     {
         $this->parameters = ['json' => ['message' => $message, 'status' => $status]];
 
-        return $this->response('POST', "/marketplace/orders/{$order_id}/messages");
+        return $this->response('POST', "/marketplace/orders/$order_id/messages");
     }
 
     /**
+     * The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace.
      *
-     * Has to be in 'XX.yy' form where X and y are numeric values
-     * API states price is optional, however when price is null endpoint can't be found
      * @param string $price
      * @return mixed
      */
-    public function fee(string $price): object
+    public function fee(string $price) : object
     {
-        return $this->response('GET', "/marketplace/fee/{$price}");
+        return $this->response('GET', "/marketplace/fee/$price");
     }
 
     /**
+     * The Fee resource allows you to quickly calculate the fee for selling
+     * an item on the Marketplace given a particular currency.
      *
-     * API response value changes, however currency remains at USD
      * @param string $price
      * @param string $currency
      * @return object
      */
-    public function fee_with_currency(string $price, string $currency): object
+    public function fee_with_currency(string $price, string $currency) : object
     {
-        return $this->response('GET', "/marketplace/fee/{$price}/{$currency}");
+        return $this->response('GET', "/marketplace/fee/$price/$currency");
     }
 
-    public function price_suggestions(int $release_id): object
+    /**
+     * Retrieve price suggestions for the provided Release ID.
+     *
+     * @param int $release_id
+     * @return object
+     */
+    public function price_suggestions(int $release_id) : object
     {
-        return $this->response('GET', "/marketplace/price_suggestions/{$release_id}");
+        return $this->response('GET', "/marketplace/price_suggestions/$release_id");
     }
 
-    public function release_statistics(int $release_id, string $curr_abbr = null): object
+    /**
+     * Retrieve marketplace statistics for the provided Release ID.
+     *
+     * @param int $release_id
+     * @param string|null $curr_abbr
+     * @return object
+     */
+    public function release_statistics(int $release_id, string $curr_abbr = null) : object
     {
-        $this->parameters = ['q' => ['curr_abbr' => $curr_abbr] ];
+        $this->parameters = ['query' => ['curr_abbr' => $curr_abbr] ];
 
-        return $this->response('GET', "/marketplace/stats/{$release_id}");
+        return $this->response('GET', "/marketplace/stats/$release_id");
     }
 }

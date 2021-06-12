@@ -30,7 +30,7 @@ class CollectionTest extends TestCase
         $new_name = 'Rename' . time();
 
         // Renaming "new" folder
-        $rename = $this->discog->collection_folder_meta('kunli0', $new_folder->id, $new_name);
+        $rename = $this->discog->collection_folder_edit('kunli0', $new_folder->id, $new_name);
 
         $this->assertEquals($new_name, $rename->name);
         $this->assertEquals('200', $rename->status_code);
