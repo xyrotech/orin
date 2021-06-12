@@ -74,12 +74,11 @@ class MultiTest extends TestCase
     /** @test */
     public function verify_wantlist()
     {
-
-        $releases =[
+        $releases = [
             2097562, 85968, 23266, 197277,
             68256, 9864, 154165, 478135,
             68364, 1879862, 340357, 239247,
-            237600, 1769821, 30194, 87874
+            237600, 1769821, 30194, 87874,
         ];
 
         $release_id = array_rand(array_flip($releases), 1);
