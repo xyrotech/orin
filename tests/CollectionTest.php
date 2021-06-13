@@ -21,7 +21,7 @@ class CollectionTest extends TestCase
     public function verify_new_meta_delete_collection_folder()
     {
         // Creating "new" folder
-        $new_folder = $this->discog->new_collection_folder('kunli0', 'new');
+        $new_folder = $this->discog->new_collection_folder($this->discog->config['USERNAME'], 'new');
 
         $this->assertEquals("new", $new_folder->name);
         $this->assertEquals('201', $new_folder->status_code);
@@ -30,13 +30,13 @@ class CollectionTest extends TestCase
         $new_name = 'Rename' . time();
 
         // Renaming "new" folder
-        $rename = $this->discog->collection_folder_edit('kunli0', $new_folder->id, $new_name);
+        $rename = $this->discog->collection_folder_edit($this->discog->config['USERNAME'], $new_folder->id, $new_name);
 
         $this->assertEquals($new_name, $rename->name);
         $this->assertEquals('200', $rename->status_code);
 
         // Deleting "new" folder
-        $delete = $this->discog->collection_folder_delete('kunli0', $rename->id);
+        $delete = $this->discog->collection_folder_delete($this->discog->config['USERNAME'], $rename->id);
 
         $this->assertEquals('204', $delete->status_code);
     }
@@ -44,7 +44,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function verify_collection_folder()
     {
-        $folder = $this->discog->collection_folder('kunli0', 1);
+        $folder = $this->discog->collection_folder($this->discog->config['USERNAME'], 1);
 
         $this->assertEquals("Uncategorized", $folder->name);
         $this->assertEquals('200', $folder->status_code);
@@ -53,7 +53,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function verify_collection_items_by_release()
     {
-        $folder = $this->discog->collection_items_by_release('kunli0', 16457562);
+        $folder = $this->discog->collection_items_by_release($this->discog->config['USERNAME'], 16457562);
 
         $this->assertEquals(540101661, $folder->releases[0]->instance_id);
         $this->assertEquals('200', $folder->status_code);
@@ -62,7 +62,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function verify_collection_items_by_folder()
     {
-        $folder = $this->discog->collection_items_by_folder('kunli0', 0);
+        $folder = $this->discog->collection_items_by_folder($this->discog->config['USERNAME'], 0);
 
         $this->assertEquals(8836, $folder->releases[0]->id);
         $this->assertEquals('200', $folder->status_code);
@@ -73,25 +73,25 @@ class CollectionTest extends TestCase
     {
         $release_id = 2097562;
 
-        $add = $this->discog->add_to_collection_folder('kunli0', 1, $release_id);
+        $add = $this->discog->add_to_collection_folder($this->discog->config['USERNAME'], 1, $release_id);
 
         $this->assertEquals('201', $add->status_code);
 
         //Change rating of release
 
-        $rating = $this->discog->change_rating_of_release('kunli0', 1, $release_id, $add->instance_id, 5);
+        $rating = $this->discog->change_rating_of_release($this->discog->config['USERNAME'], 1, $release_id, $add->instance_id, 5);
 
         $this->assertEquals('204', $rating->status_code);
 
         //Change release custom fields
 
-        $edit = $this->discog->edit_fields_instance('kunli0', 'Testing', 1, $release_id, $add->instance_id, 3);
+        $edit = $this->discog->edit_fields_instance($this->discog->config['USERNAME'], 'Testing', 1, $release_id, $add->instance_id, 3);
 
         $this->assertEquals('204', $edit->status_code);
 
         //Delete release
 
-        $delete = $this->discog->delete_instance_from_folder('kunli0', 1, $release_id, $add->instance_id);
+        $delete = $this->discog->delete_instance_from_folder($this->discog->config['USERNAME'], 1, $release_id, $add->instance_id);
 
         $this->assertEquals('204', $delete->status_code);
     }
@@ -99,7 +99,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function verify_list_custom_fields()
     {
-        $custom = $this->discog->list_custom_fields('kunli0');
+        $custom = $this->discog->list_custom_fields($this->discog->config['USERNAME']);
 
         $this->assertEquals("Media Condition", $custom->fields[0]->name);
         $this->assertEquals('200', $custom->status_code);
@@ -108,7 +108,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function verify_collection_value()
     {
-        $collection = $this->discog->collection_value('kunli0');
+        $collection = $this->discog->collection_value($this->discog->config['USERNAME']);
 
         $this->assertEquals('200', $collection->status_code);
     }

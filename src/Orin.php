@@ -19,7 +19,7 @@ class Orin
 
     public int $limit;
     public array $headers = [];
-    private array $config;
+    public array $config;
     public array $rates = [];
 
     private HandlerStack $stack;

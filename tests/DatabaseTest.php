@@ -29,7 +29,7 @@ class DatabaseTest extends TestCase
     /** @test */
     public function verify_release_rating_by_user()
     {
-        $release_rating = $this->discog->release_rating_by_user(16457562, 'kunli0');
+        $release_rating = $this->discog->release_rating_by_user(16457562, $this->discog->config['USERNAME']);
 
 
         $this->assertEquals(0, $release_rating->rating);
@@ -37,13 +37,13 @@ class DatabaseTest extends TestCase
 
         //Update Rating
 
-        $update_rating = $this->discog->update_release_rating_by_user(16457562, 'kunli0', 5);
+        $update_rating = $this->discog->update_release_rating_by_user(16457562, $this->discog->config['USERNAME'], 5);
 
         $this->assertEquals(201, $update_rating->status_code);
 
         //Delete Rating
 
-        $delete_rating = $this->discog->delete_release_rating_by_user(16457562, 'kunli0');
+        $delete_rating = $this->discog->delete_release_rating_by_user(16457562, $this->discog->config['USERNAME']);
 
         $this->assertEquals(204, $delete_rating->status_code);
     }
@@ -80,9 +80,9 @@ class DatabaseTest extends TestCase
     /** @test */
     public function verify_master_release_versions()
     {
-        $master_releases = $this->discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'asc']);
+        $master_releases = $this->discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'desc']);
 
-        $this->assertEquals(188144, $master_releases->versions[0]->id);
+        $this->assertEquals(13567396, $master_releases->versions[0]->id);
         $this->assertEquals('200', $master_releases->status_code);
     }
 

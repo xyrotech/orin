@@ -20,7 +20,7 @@ class MarketplaceTest extends TestCase
     /** @test */
     public function verify_inventory()
     {
-        $inventory = $this->discog->inventory('kunli0', ['sort' => 'artist']);
+        $inventory = $this->discog->inventory($this->discog->config['USERNAME'], ['sort' => 'artist']);
 
         $this->assertEquals(1486528570, $inventory->listings[0]->id);
         $this->assertEquals('200', $inventory->status_code);

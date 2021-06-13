@@ -76,4 +76,16 @@ return [
     */
 
     'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Testing
+    |--------------------------------------------------------------------------
+    |
+    | Username associate with Discog Token / Consumer Key/Secret
+    |
+    */
+
+    'USERNAME' => 'kunli0',
+    'TEST_NAME' => 'Adekunle Adelakun'
 ];

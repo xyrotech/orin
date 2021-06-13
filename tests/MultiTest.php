@@ -20,7 +20,7 @@ class MultiTest extends TestCase
     /** @test */
     public function verify_user_lists()
     {
-        $users = $this->discog->user_lists('kunli0');
+        $users = $this->discog->user_lists($this->discog->config['USERNAME']);
 
         $this->assertEquals("Testing", $users->lists[0]->name);
         $this->assertEquals('200', $users->status_code);
@@ -39,33 +39,33 @@ class MultiTest extends TestCase
     {
         $identity = $this->discog->identity();
 
-        $this->assertEquals("kunli0", $identity->username);
+        $this->assertEquals($this->discog->config['USERNAME'], $identity->username);
         $this->assertEquals('200', $identity->status_code);
 
         // User Profile
 
-        $profile = $this->discog->profile('kunli0');
+        $profile = $this->discog->profile($this->discog->config['USERNAME']);
 
-        $this->assertEquals("Adekunle Adelakun", $profile->name);
+        $this->assertEquals($this->discog->config['TEST_NAME'], $profile->name);
         $this->assertEquals('200', $profile->status_code);
 
         // Edit Profile
 
-        $profile = $this->discog->edit_profile('kunli0', ['name' => 'Adekunle Adelakun']);
+        $profile = $this->discog->edit_profile($this->discog->config['USERNAME'], ['name' => $this->discog->config['TEST_NAME']]);
 
-        $this->assertEquals("kunli0", $profile->username);
+        $this->assertEquals($this->discog->config['USERNAME'], $profile->username);
         $this->assertEquals('200', $profile->status_code);
 
         // User Submissions
 
-        $user = $this->discog->user_submissions('kunli0');
+        $user = $this->discog->user_submissions($this->discog->config['USERNAME']);
 
         $this->assertEquals(16457562, $user->submissions->releases[0]->id);
         $this->assertEquals('200', $user->status_code);
 
         // User Contributions
 
-        $user = $this->discog->user_contributions('kunli0');
+        $user = $this->discog->user_contributions($this->discog->config['USERNAME']);
 
         $this->assertEquals(16457562, $user->contributions[0]->id);
         $this->assertEquals('200', $user->status_code);
@@ -84,20 +84,20 @@ class MultiTest extends TestCase
         $release_id = array_rand(array_flip($releases), 1);
 
         // Get want list
-        $user = $this->discog->wantlist('kunli0');
+        $user = $this->discog->wantlist($this->discog->config['USERNAME']);
 
         $this->assertEquals(6798, $user->wants[0]->id);
         $this->assertEquals('200', $user->status_code);
 
         // Add to wantlist
 
-        $add = $this->discog->add_to_wantlist('kunli0', $release_id);
+        $add = $this->discog->add_to_wantlist($this->discog->config['USERNAME'], $release_id);
 
         $this->assertEquals('201', $add->status_code);
 
         // Delete from wantlist
 
-        $delete = $this->discog->delete_from_wantlist('kunli0', $release_id);
+        $delete = $this->discog->delete_from_wantlist($this->discog->config['USERNAME'], $release_id);
 
         $this->assertEquals('204', $delete->status_code);
     }
