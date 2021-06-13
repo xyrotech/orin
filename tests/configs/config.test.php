@@ -87,5 +87,5 @@ return [
     */
 
     'USERNAME' => 'kunli0',
-    'TEST_NAME' => 'Adekunle Adelakun'
+    'TEST_NAME' => 'Adekunle Adelakun',
 ];
