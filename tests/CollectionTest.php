@@ -89,7 +89,6 @@ class CollectionTest extends TestCase
 
         $this->assertEquals('204', $edit->status_code);
 
-
         //Delete release
 
         $delete = $this->discog->delete_instance_from_folder('kunli0', 1, $release_id, $add->instance_id);
@@ -111,7 +110,6 @@ class CollectionTest extends TestCase
     {
         $collection = $this->discog->collection_value('kunli0');
 
-        $this->assertEquals("$10.00", $collection->minimum);
         $this->assertEquals('200', $collection->status_code);
     }
 }
