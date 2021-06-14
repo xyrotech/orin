@@ -30,7 +30,7 @@ $artist = $discog->artist(45);
 echo $artist->name;
 ```
 
-###Output
+### Output
 ```php
 'Aphex Twin'
 ```
