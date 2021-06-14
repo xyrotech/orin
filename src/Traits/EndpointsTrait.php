@@ -22,6 +22,14 @@ trait EndpointsTrait
     use ListTrait;
     use WantlistTrait;
 
+
+    /**
+     * The results of the request to Discogs API
+     *
+     * @param string $type
+     * @param string $uri
+     * @return object
+     */
     private function response(string $type, string $uri) : object
     {
         $response = $this->client->request($type, self::base_uri . $uri, $this->parameters);

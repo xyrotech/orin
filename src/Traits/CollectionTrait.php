@@ -38,7 +38,7 @@ trait CollectionTrait
      * @param string $name
      * @return object
      */
-    public function collection_folder_edit(string $username, int $folder_id, string $name) : object
+    public function edit_collection_folder(string $username, int $folder_id, string $name) : object
     {
         $this->parameters = ['json' => ['name' => $name]];
 
@@ -52,7 +52,7 @@ trait CollectionTrait
      * @param int $folder_id
      * @return object
      */
-    public function collection_folder_delete(string $username, int $folder_id) : object
+    public function delete_collection_folder(string $username, int $folder_id) : object
     {
         return $this->response('DELETE', "/users/$username/collection/folders/$folder_id");
     }

@@ -10,7 +10,7 @@ class OrinTest extends TestCase
 {
     public function test_config()
     {
-        $config = include('src/config.test.php');
+        $config = include('src/orin_config.test.php');
 
         $this->assertArrayHasKey('DISCOGS_TOKEN', $config);
         $this->assertArrayHasKey('DISCOGS_CONSUMER_KEY', $config);

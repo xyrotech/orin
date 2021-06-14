@@ -30,13 +30,13 @@ class CollectionTest extends TestCase
         $new_name = 'Rename' . time();
 
         // Renaming "new" folder
-        $rename = $this->discog->collection_folder_edit($this->discog->config['USERNAME'], $new_folder->id, $new_name);
+        $rename = $this->discog->edit_collection_folder($this->discog->config['USERNAME'], $new_folder->id, $new_name);
 
         $this->assertEquals($new_name, $rename->name);
         $this->assertEquals('200', $rename->status_code);
 
         // Deleting "new" folder
-        $delete = $this->discog->collection_folder_delete($this->discog->config['USERNAME'], $rename->id);
+        $delete = $this->discog->delete_collection_folder($this->discog->config['USERNAME'], $rename->id);
 
         $this->assertEquals('204', $delete->status_code);
     }

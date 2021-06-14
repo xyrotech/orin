@@ -20,7 +20,11 @@ return [
     | Discogs Consumer Key
     |--------------------------------------------------------------------------
     |
-    | I'm not sure what this is, but it is used as header information per request.
+    | OAuth consumer key
+    | After you have created an application  navigate to this link:
+    | https://www.discogs.com/settings/developers and click on the settings
+    | button next to you app to reveal the key and secret
+    |
     |
     */
 
@@ -31,7 +35,10 @@ return [
     | Discogs Consumer Secret
     |--------------------------------------------------------------------------
     |
-    | I'm not sure what this is, but it is used as header information per request.
+    | OAuth consumer secret
+    | After you have created an application from this page link:
+    | https://www.discogs.com/settings/developers and click on the settings
+    | button next to you app to reveal the key and secret
     |
     */
 
@@ -76,4 +83,17 @@ return [
     */
 
     'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Testing
+    |--------------------------------------------------------------------------
+    |
+    | Username associate with Discog Token / Consumer Key/Secret
+    | The name associated with the discogs account
+    |
+    */
+
+    'USERNAME' => 'USERNAME',
+    'TEST_NAME' => 'TEST NAME',
 ];

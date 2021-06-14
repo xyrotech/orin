@@ -125,9 +125,9 @@ class DatabaseTest extends TestCase
     /** @test */
     public function verify_search()
     {
-        $search = $this->discog->search("While You Were Sleeping", ['artist' => "Opiate"]);
+        $search = $this->discog->search("While You Were Sleeping", ['artist' => "Opiate", 'type' => "master"]);
 
-        $this->assertEquals(259279, $search->results[0]->id);
+        $this->assertEquals(33299, $search->results[0]->id);
         $this->assertEquals('200', $search->status_code);
     }
 }

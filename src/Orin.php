@@ -29,6 +29,7 @@ class Orin
 
     /**
      * Orin constructor.
+     *
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -51,6 +52,7 @@ class Orin
 
     /**
      * Determines if Authentication will be used during the request
+     *
      * @return bool
      */
     private function usingAuth() : bool

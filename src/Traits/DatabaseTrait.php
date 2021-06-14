@@ -144,10 +144,13 @@ trait DatabaseTrait
      * Returns a list of Releases associated with the label.
      *
      * @param int $label_id
+     * @param array|null $parameters
      * @return object
      */
-    public function all_label_releases(int $label_id) : object
+    public function all_label_releases(int $label_id, array $parameters = null) : object
     {
+        $this->parameters = ['query' => $parameters];
+
         return $this->response('GET', "/labels/$label_id/releases");
     }
 
@@ -160,8 +163,8 @@ trait DatabaseTrait
      */
     public function search(string $query, array $parameters = null) : object
     {
-        $this->parameters = ['query' => $parameters];
+        $this->parameters = ['query' => ['q' => $query] + $parameters];
 
-        return $this->response('GET', "/database/search?q=$query");
+        return $this->response('GET', "/database/search");
     }
 }
