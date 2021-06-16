@@ -2,9 +2,11 @@
 
 [![API](https://www.discogs.com/images/discogs-white.png)](https://www.discogs.com/developers) 
 
-##API CLIENT
+## API CLIENT
 
 Orin is a Discogs API PHP client library which utilizes GuzzleHttp.
+
+<br>
 
 ## Getting Started
 ***
@@ -42,7 +44,7 @@ AwesomeDiscogsBrowser/0.1 +http://adb.example.com
 LibraryMetadataEnhancer/0.3 +http://example.com/lime
 MyDiscogsClient/1.0 +http://mydiscogsclient.org
 ```
-> Note: Please don’t just copy one of those! Make it unique so we can let you know if your application starts to misbehave – the alternative is that discogs just silently blocks it.
+> Note: Please don’t just copy one of those! Make it unique so discogs can let you know if your application starts to misbehave – the alternative is that discogs just silently blocks it.
 
 <br/>
 
@@ -74,7 +76,7 @@ Currently, Discogs API only supports one version: v2. However, you can specify a
 
 **DISCOGS_MEDIA_TYPE**
 
-*Default: discogs*
+<small>Default: discogs</small>
 
 If you are requesting information from an endpoint that may have text formatting in it, you can choose which kind of formatting you want to be returned by changing that section of the Accept header. Discogs currently support 3 types: html, plaintext, discogs.
 
@@ -208,7 +210,7 @@ $discog->all_label_releases(107);
 
 **Search** [:mag:](https://www.discogs.com/developers#page:database,header:database-search)
 
-*Issue a search query to our database.* 
+<small>Issue a search query to our database.</small>
 ```php
 $search = $discog->search('While you were sleeping', ['artist' => 'opiate', 'type' => 'master');
 
