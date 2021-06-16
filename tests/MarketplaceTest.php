@@ -33,7 +33,6 @@ class MarketplaceTest extends TestCase
             'release_id' => 16457562,
             'condition' => 'Fair (F)',
             'price' => 99.00,
-
         ];
 
         // Create Listing
@@ -93,7 +92,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals("status", $list_order_messages->messages[0]->type);
         $this->assertEquals('200', $list_order_messages->status_code);
 
-        $new_order_message = $this->discog->new_orders_message($get_order->id, 'Testing', $get_order->status);
+        $new_order_message = $this->discog->new_order_message($get_order->id, 'Testing', $get_order->status);
 
         $this->assertEquals('201', $new_order_message->status_code);
     }

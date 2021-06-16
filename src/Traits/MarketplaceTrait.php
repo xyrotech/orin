@@ -127,7 +127,7 @@ trait MarketplaceTrait
      * @param string|null $status
      * @return object
      */
-    public function new_orders_message(string $order_id, string $message = null, string $status = null) : object
+    public function new_order_message(string $order_id, string $message = null, string $status = null) : object
     {
         $this->parameters = ['json' => ['message' => $message, 'status' => $status]];
 

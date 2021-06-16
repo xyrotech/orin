@@ -5,6 +5,18 @@ namespace Xyrotech\Orin\Traits;
 trait CollectionTrait
 {
     /**
+     * Get folders in a user’s collection.
+     *
+     * @param string $username
+     * @param string $name
+     * @return object
+     */
+    public function collection_folders(string $username) : object
+    {
+        return $this->response('GET', "/users/$username/collection/folders");
+    }
+
+    /**
      * Create a new folder in a user’s collection.
      *
      * @param string $username
@@ -106,9 +118,9 @@ trait CollectionTrait
      * @param string $rating
      * @return object
      */
-    public function change_rating_of_release(string $username, int $folder_id, int $release_id, int $instance_id, string $rating) : object
+    public function change_rating_of_release(string $username, int $folder_id, int $release_id, int $instance_id, array $parameter = null) : object
     {
-        $this->parameters = ['json' => ['rating' => $rating]];
+        $this->parameters = ['json' => $parameter];
 
         return $this->response('POST', "/users/$username/collection/folders/$folder_id/releases/$release_id/instances/$instance_id");
     }

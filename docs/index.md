@@ -1,7 +1,6 @@
 # Orin
 
 [![API](https://www.discogs.com/images/discogs-white.png)](https://www.discogs.com/developers) 
-
 ## API CLIENT
 
 Orin is a Discogs API PHP client library which utilizes GuzzleHttp.
@@ -11,12 +10,12 @@ Orin is a Discogs API PHP client library which utilizes GuzzleHttp.
 ## Getting Started
 ***
 Install via Composer:
-```sh
+```bash
 composer require xyrotech/orin
 ```
 
 Copy test config file.
-```sh
+```bash
 cp vendor/xyrotech/orin/src/orin_config.test.php myconfig.php
 ```
 > Note: While technically this isn't require, there's no guarentee your API call will work at all
@@ -38,6 +37,7 @@ echo $artist->name; // 'Aphex Twin'
 
 ### Configuration
 **DISCOGS_USER_AGENT**
+
 Your application must provide a User-Agent string that identifies itself – preferably something that follows RFC 1945. Some good examples below
 ```
 AwesomeDiscogsBrowser/0.1 +http://adb.example.com
@@ -68,7 +68,7 @@ After you have created an application  navigate to this link: https://www.discog
 
 **DISCOGS_VERSION**
 
-*Default: v2*
+<small>Default: v2</small>
 
 Currently, Discogs API only supports one version: v2. However, you can specify a version in your requests to future-proof your application. By adding an Accept header with the version and media type, you can guarantee your requests will receive data from the correct version you develop your app on.
 
@@ -93,7 +93,7 @@ If you are requesting information from an endpoint that may have text formatting
 
 **Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
 
-*Get a Release* 
+<small>Get a Release</small> 
 ```php
 $discog->release(192988);
 ```
@@ -102,15 +102,15 @@ $discog->release(192988);
 
 **Release Rating by User** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-rating-by-user)
 
-*Retrieves the release’s rating for a given user.* 
+<small>Retrieves the release’s rating for a given user.</small> 
 ```php
 $discog->release_rating_by_user(16457562, 'kunli0');
 ```
-*Edit the release’s rating for a given user.* 
+<small>Edit the release’s rating for a given user.</small> 
 ```php
 $discog->update_release_rating_by_user(16457562, 'kunli0', 5);
 ```
-*Delete the release’s rating for a given user.* 
+<small>Delete the release’s rating for a given user.</small> 
 ```php
 $discog->delete_release_rating_by_user(16457562, 'kunli0');
 ```
@@ -119,7 +119,7 @@ $discog->delete_release_rating_by_user(16457562, 'kunli0');
 
 **Community Release Rating** [:mag:](https://www.discogs.com/developers#page:database,header:database-community-release-rating)
 
-*Retrieves the community release rating average and count.* 
+<small>Retrieves the community release rating average and count.</small> 
 ```php
 $discog->community_release_rating(16457562);
 ```
@@ -128,7 +128,7 @@ $discog->community_release_rating(16457562);
 
 **Release Stats** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-stats)
 
-*Retrieves the release’s “have” and “want” counts.* 
+<small>Retrieves the release’s “have” and “want” counts.</small> 
 ```php
 $discog->release_stats(16457562);
 ```
@@ -137,7 +137,7 @@ $discog->release_stats(16457562);
 
 **Master Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release)
 
-*Get a master release* 
+<small>Get a master release</small> 
 ```php
 $discog->master_release(2482);
 ```
@@ -146,7 +146,7 @@ $discog->master_release(2482);
 
 **Master Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release)
 
-*Get a master release* 
+<small>Get a master release</small>
 ```php
 $discog->master_release(2482);
 ```
@@ -155,7 +155,7 @@ $discog->master_release(2482);
 
 **Master Release Versions** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
 
-*Retrieves a list of all Releases that are versions of this master.* 
+<small>Retrieves a list of all Releases that are versions of this master.</small>
 ```php
 $master = $discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'desc']);
 
@@ -169,7 +169,7 @@ foreach($master->releases as $release)
 
 **Artist** [:mag:](https://www.discogs.com/developers#page:database,header:database-artist-releases)
 
-*Get an artist* 
+<small>Get an artist</small>
 ```php
 $discog->artist(45);
 ```
@@ -178,7 +178,7 @@ $discog->artist(45);
 
 **Artist Releases** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
 
-*Get an artist’s releases* 
+<small>Get an artist’s releases</small> 
 ```php
 $artist = $discog->artist_releases(45, ['sort' => 'year']);
 
@@ -192,7 +192,7 @@ foreach($artist->releases as $release)
 
 **Label** [:mag:](https://www.discogs.com/developers#page:database,header:database-label)
 
-*Get a label* 
+<small>Get a label</small>
 ```php
 $discog->label(107);
 ```
@@ -201,7 +201,7 @@ $discog->label(107);
 
 **All Label Releases** [:mag:](https://www.discogs.com/developers#page:database,header:database-all-label-releases)
 
-*Returns a list of Releases associated with the label.* 
+<small>Returns a list of Releases associated with the label.</small>
 ```php
 $discog->all_label_releases(107);
 ```
@@ -210,7 +210,7 @@ $discog->all_label_releases(107);
 
 **Search** [:mag:](https://www.discogs.com/developers#page:database,header:database-search)
 
-<small>Issue a search query to our database.</small>
+<small>Issue a search query to discog's database.</small>
 ```php
 $search = $discog->search('While you were sleeping', ['artist' => 'opiate', 'type' => 'master');
 
@@ -218,4 +218,297 @@ foreach($search->results as $result)
 {
     var_dump($result);
 }
+```
+
+<br/>
+
+### Marketplace
+
+<br/>
+
+**Inventory** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-inventory)
+
+<small>Get a seller’s inventory</small>
+```php
+$user = $discog->inventory('kunli0', ['sort' => 'artist']);
+
+foreach($user->listings as $listing)
+{
+    var_dump($listing);
+}
+```
+
+<br/>
+
+**Listing** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-listing)
+
+<small>The Listing resource allows you to view Marketplace listings.</small>
+```php
+$listing = $discog->listing(172723812);
+```
+
+<small>Edit the data associated with a listing.</small>
+```php
+$parameters = [
+    'release_id' => 16457562,
+    'condition' => 'Poor (P)',
+    'price' => 89.00,
+    'status' => 'For Sale'
+];
+        
+$discog->edit_listing(172723812, $parameters);
+```
+
+<small>Permanently remove a listing from the Marketplace.</small>
+```php
+$discog->delete_listing(172723812);
+```
+
+<br/>
+
+**New Listing** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-new-listing)
+
+<small>Create a Marketplace listing.</small>
+```php
+$parameters = [
+    'release_id' => 16457562,
+    'condition' => 'Fair (F)',
+    'price' => 99.00,
+];
+        
+$discog->new_listing($parameters);
+```
+
+<br/>
+
+**Order** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-order)
+
+<small>The Order resource allows you to manage a seller’s Marketplace orders.</small>
+```php
+$discog->order(156896);
+```
+
+<small>Edit the data associated with an order.</small>
+```php
+$discog->edit_order(156896, ['status' => $new_status]);
+```
+
+<br/>
+
+**List Orders** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-orders)
+
+<small>Returns a list of the authenticated user’s orders.</small>
+```php
+$user = $discog->list_orders();
+
+foreach($user->orders as $order)
+{
+    var_dump($order);
+}
+```
+
+<br/>
+
+**List Order Messages** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-order-messages)
+
+<small>Returns a list of the order’s messages with the most recent first.</small>
+```php
+$order = $discog->list_order_messages();
+
+foreach($order->messages as $message)
+{
+    var_dump($message);
+}
+```
+
+<small>Adds a new message to the order’s message log.</small>
+```php
+$discog->new_order_message(15359, 'Test Message', 'New Order');
+```
+
+<br/>
+
+**Fee** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-fee)
+
+<small>The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace.</small>
+```php
+$discog->fee('10.00');
+```
+
+<br/>
+
+**Fee with Currency** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-fee-with-currency)
+
+<small>The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace given a particular currency.</small>
+```php
+$discog->fee_with_currency('10.00', 'USD');
+```
+
+<br/>
+
+**Price Suggestion** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-price-suggestions)
+
+<small>Retrieve price suggestions for the provided Release ID.</small>
+```php
+$discog->price_suggestions(123456);
+```
+
+<br/>
+
+**Release Statistics** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-release-statistics)
+
+<small>Retrieve marketplace statistics for the provided Release ID.</small>
+```php
+$discog->price_suggestions(123456);
+```
+
+<br/>
+
+### User Identity
+
+<br/>
+
+**Identity** [:mag:](https://www.discogs.com/developers#page:user-identity,header:user-identity-identity)
+
+<small>Retrieve basic information about the authenticated user.</small>
+```php
+$discog->identity();
+```
+
+<br/>
+
+**Profile** [:mag:](https://www.discogs.com/developers#page:user-identity,header:user-identity-profile)
+
+<small>Retrieve a user by username.</small>
+```php
+$discog->profile('kunli0');
+```
+
+<small>Edit a user’s profile data.</small>
+```php
+$discog->edit_profile('kunli0', ['name' => 'Adekunle Adelakun']);
+```
+
+<br>
+
+**User Submissions** [:mag:](https://www.discogs.com/developers#page:user-identity,header:user-identity-user-submissions)
+
+<small>Retrieve a user’s submissions by username.</small>
+```php
+$user = $discog->user_submissions('kunli0');
+
+foreach($user->submissions as $submission)
+{
+    var_dump($submission);
+}
+```
+
+<br/>
+
+### User Collection
+
+<br/>
+
+**Collection** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection)
+
+<small>Retrieve a list of folders in a user’s collection.</small>
+```php
+$user = $discog->collection_folders('kunli0');
+
+foreach($user->folders as $folder)
+{
+    var_dump($folder);
+}
+```
+
+<small>Create a new folder in a user’s collection.</small>
+```php
+$discog->new_collection_folder('kunli0', 'New Folder');
+```
+
+<br/>
+
+**Collection Folder** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-folder)
+
+<small>Retrieve metadata about a folder in a user’s collection.</small>
+```php
+$discog->collection_folder('kunli0', 1);
+```
+
+<small>Retrieve metadata about a folder in a user’s collection.</small>
+```php
+$discog->edit_collection_folder('kunli0', 3, 'New Folder Name');
+```
+
+<small>Delete a folder from a user’s collection.</small>
+```php
+$discog->delete_collection_folder('kunli0', 3);
+```
+
+<br/>
+
+**Collection Items by Release** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-items-by-release)
+
+<small>View the user’s collection folders which contain a specified release.</small>
+```php
+$discog->collection_items_by_release('kunli0', 16457562);
+```
+
+<br/>
+
+**Collection Items by Folder** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-items-by-folder)
+
+<small>Returns the list of item in a folder in a user’s collection.</small>
+```php
+$discog->collection_items_by_release('kunli0', 1);
+```
+
+<br/>
+
+**Add to Collection Folder** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-add-to-collection-folder)
+
+<small>Add a release to a folder in a user’s collection.</small>
+```php
+$discog->add_to_collection_folder('kunli0', 1, 1598736);
+```
+
+<br/>
+
+**Change Rating of Release** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-change-rating-of-release)
+
+<small>Change the rating on a release and/or move the instance to another folder.</small>
+```php
+$discog->change_rating_of_release('kunli0', 1, 1598736, 2921113, 5);
+```
+
+<br/>
+
+**Delete Instance from Folder** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-delete-instance-from-folder)
+
+<small>Remove an instance of a release from a user’s collection folder.</small>
+```php
+$discog->delete_instance_from_folder('kunli0', 1, 1598736, 2921113);
+```
+
+<br/>
+
+**List Custom Fields** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-list-custom-fields)
+
+<small>Retrieve a list of user-defined collection notes fields.</small>
+```php
+$discog->list_custom_fields('kunli0');
+```
+
+<small>Change the value of a notes field on a particular instance.</small>
+```php
+$discog->edit_fields_instance('kunli0', 'Testing', 1, 1598736, 3, 3);
+```
+
+<br/>
+
+**Collection Value** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-value)
+
+<small>Returns the minimum, median, and maximum value of a user’s collection.</small>
+```php
+$discog->collection_value('kunli0');
 ```

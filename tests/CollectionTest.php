@@ -79,7 +79,7 @@ class CollectionTest extends TestCase
 
         //Change rating of release
 
-        $rating = $this->discog->change_rating_of_release($this->discog->config['USERNAME'], 1, $release_id, $add->instance_id, 5);
+        $rating = $this->discog->change_rating_of_release($this->discog->config['USERNAME'], 1, $release_id, $add->instance_id, ['rating' => 5]);
 
         $this->assertEquals('204', $rating->status_code);
 
