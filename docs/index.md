@@ -71,6 +71,8 @@ If you are requesting information from an endpoint that may have text formatting
 
 ## Supported API Endpoints
 ***
+
+
 ### Database
 
 **Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
