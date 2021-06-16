@@ -1,37 +1,159 @@
-## Welcome to GitHub Pages
+# Orin
+## _Discogs API PHP Client_
 
-You can use the [editor on GitHub](https://github.com/xyrotech/orin/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+[![API](https://www.discogs.com/images/discogs-white.png)](https://www.discogs.com/developers)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Orin is a Discogs API PHP client library which utilizes GuzzleHttp.
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## Getting Started
+***
+Install via Composer:
+```sh
+composer require xyrotech/orin
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Copy test config file.
+```sh
+cp vendor/xyrotech/orin/src/orin_config.test.php myconfig.php
+```
+> Note: While technically this isn't require, there's no guarentee your API call will work at all
 
-### Jekyll Themes
+Start using the library! See example below
+```php
+use Xyrotech\Orin;
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/xyrotech/orin/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+$config = include('myconfig.php');
+$discog = new Orin($config);
 
-### Support or Contact
+$artist = $discogs->artist(45);
+echo $artist->name; // 'Aphex Twin'
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Configuration
+**DISCOGS_USER_AGENT**
+Your application must provide a User-Agent string that identifies itself – preferably something that follows RFC 1945. Some good examples below
+```
+AwesomeDiscogsBrowser/0.1 +http://adb.example.com
+LibraryMetadataEnhancer/0.3 +http://example.com/lime
+MyDiscogsClient/1.0 +http://mydiscogsclient.org
+```
+> Note: Please don’t just copy one of those! Make it unique so we can let you know if your application starts to misbehave – the alternative is that discogs just silently blocks it.
+
+**DISCOGS_TOKEN**
+You'll need a token otherwise you'll be rate limited to 25 request per minute. Find your token here: https://www.discogs.com/settings/developers after you've create an app.
+
+**DISCOGS_CONSUMER_KEY**
+After you have created an application  navigate to this link: https://www.discogs.com/settings/developers and click on the settings button next to you app to reveal the key and secret
+
+**DISCOGS_CONSUMER_SECRET**
+After you have created an application  navigate to this link: https://www.discogs.com/settings/developers and click on the settings button next to you app to reveal the key and secret
+
+**DISCOGS_VERSION**
+*Default: v2*
+Currently, Discogs API only supports one version: v2. However, you can specify a version in your requests to future-proof your application. By adding an Accept header with the version and media type, you can guarantee your requests will receive data from the correct version you develop your app on.
+
+**DISCOGS_MEDIA_TYPE**
+*Default: discogs*
+If you are requesting information from an endpoint that may have text formatting in it, you can choose which kind of formatting you want to be returned by changing that section of the Accept header. Discogs currently support 3 types: html, plaintext, discogs.
+
+
+
+## Supported API Endpoints
+***
+### Database
+
+**Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
+*Get a Release* 
+```php
+$discog->release(192988);
+```
+
+
+**Release Rating by User** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-rating-by-user)
+*Retrieves the release’s rating for a given user.* 
+```php
+$discog->release_rating_by_user(16457562, 'kunli0');
+```
+*Edit the release’s rating for a given user.* 
+```php
+$discog->update_release_rating_by_user(16457562, 'kunli0', 5);
+```
+*Delete the release’s rating for a given user.* 
+```php
+$discog->delete_release_rating_by_user(16457562, 'kunli0');
+```
+
+**Community Release Rating** [:mag:](https://www.discogs.com/developers#page:database,header:database-community-release-rating)
+*Retrieves the community release rating average and count.* 
+```php
+$discog->community_release_rating(16457562);
+```
+
+**Release Stats** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-stats)
+*Retrieves the release’s “have” and “want” counts.* 
+```php
+$discog->release_stats(16457562);
+```
+
+**Master Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release)
+*Get a master release* 
+```php
+$discog->master_release(2482);
+```
+
+**Master Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release)
+*Get a master release* 
+```php
+$discog->master_release(2482);
+```
+
+**Master Release Versions** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
+*Retrieves a list of all Releases that are versions of this master.* 
+```php
+$master = $discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'desc']);
+
+foreach($master->releases as $release)
+{
+    echo $release->name;
+}
+```
+
+**Artist** [:mag:](https://www.discogs.com/developers#page:database,header:database-artist)
+*Get an artist* 
+```php
+$discog->artist(45);
+```
+
+**Artist Releases** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
+*Get an artist’s releases* 
+```php
+$artist = $discog->artist_releases(45, ['sort' => 'year']);
+
+foreach($artist->releases as $release)
+{
+    echo $release->name;
+}
+```
+
+**Label** [:mag:](https://www.discogs.com/developers#page:database,header:database-label)
+*Get a label* 
+```php
+$discog->label(107);
+```
+
+**All Label Releases** [:mag:](https://www.discogs.com/developers#page:database,header:database-all-label-releases)
+*Returns a list of Releases associated with the label.* 
+```php
+$discog->all_label_releases(107);
+```
+
+**Search** [:mag:](https://www.discogs.com/developers#page:database,header:database-search)
+*Issue a search query to our database.* 
+```php
+$search = $discog->search('While you were sleeping', ['artist' => 'opiate', 'type' => 'master');
+
+foreach($search->results as $result)
+{
+    var_dump($result);
+}
+```
