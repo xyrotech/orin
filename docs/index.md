@@ -43,19 +43,23 @@ MyDiscogsClient/1.0 +http://mydiscogsclient.org
 
 You'll need a token otherwise you'll be rate limited to 25 request per minute. Find your token here: https://www.discogs.com/settings/developers after you've create an app.
 
+
 **DISCOGS_CONSUMER_KEY**
 
 After you have created an application  navigate to this link: https://www.discogs.com/settings/developers and click on the settings button next to you app to reveal the key and secret
 
+
 **DISCOGS_CONSUMER_SECRET**
 
 After you have created an application  navigate to this link: https://www.discogs.com/settings/developers and click on the settings button next to you app to reveal the key and secret
+
 
 **DISCOGS_VERSION**
 
 *Default: v2*
 
 Currently, Discogs API only supports one version: v2. However, you can specify a version in your requests to future-proof your application. By adding an Accept header with the version and media type, you can guarantee your requests will receive data from the correct version you develop your app on.
+
 
 **DISCOGS_MEDIA_TYPE**
 
