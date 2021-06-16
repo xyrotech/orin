@@ -81,6 +81,7 @@ $discog->release(192988);
 
 
 **Release Rating by User** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-rating-by-user)
+
 *Retrieves the release’s rating for a given user.* 
 ```php
 $discog->release_rating_by_user(16457562, 'kunli0');
@@ -95,30 +96,35 @@ $discog->delete_release_rating_by_user(16457562, 'kunli0');
 ```
 
 **Community Release Rating** [:mag:](https://www.discogs.com/developers#page:database,header:database-community-release-rating)
+
 *Retrieves the community release rating average and count.* 
 ```php
 $discog->community_release_rating(16457562);
 ```
 
 **Release Stats** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-stats)
+
 *Retrieves the release’s “have” and “want” counts.* 
 ```php
 $discog->release_stats(16457562);
 ```
 
 **Master Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release)
+
 *Get a master release* 
 ```php
 $discog->master_release(2482);
 ```
 
 **Master Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release)
+
 *Get a master release* 
 ```php
 $discog->master_release(2482);
 ```
 
 **Master Release Versions** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
+
 *Retrieves a list of all Releases that are versions of this master.* 
 ```php
 $master = $discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'desc']);
@@ -130,12 +136,14 @@ foreach($master->releases as $release)
 ```
 
 **Artist** [:mag:](https://www.discogs.com/developers#page:database,header:database-artist)
+
 *Get an artist* 
 ```php
 $discog->artist(45);
 ```
 
 **Artist Releases** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
+
 *Get an artist’s releases* 
 ```php
 $artist = $discog->artist_releases(45, ['sort' => 'year']);
@@ -147,18 +155,21 @@ foreach($artist->releases as $release)
 ```
 
 **Label** [:mag:](https://www.discogs.com/developers#page:database,header:database-label)
+
 *Get a label* 
 ```php
 $discog->label(107);
 ```
 
 **All Label Releases** [:mag:](https://www.discogs.com/developers#page:database,header:database-all-label-releases)
+
 *Returns a list of Releases associated with the label.* 
 ```php
 $discog->all_label_releases(107);
 ```
 
 **Search** [:mag:](https://www.discogs.com/developers#page:database,header:database-search)
+
 *Issue a search query to our database.* 
 ```php
 $search = $discog->search('While you were sleeping', ['artist' => 'opiate', 'type' => 'master');
