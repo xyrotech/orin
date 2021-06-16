@@ -1,7 +1,6 @@
 # Orin
-## _Discogs API PHP Client_
 
-[![API](https://www.discogs.com/images/discogs-white.png)](https://www.discogs.com/developers)
+[![API](https://www.discogs.com/images/discogs-white.png)](https://www.discogs.com/developers) _API CLIENT_
 
 Orin is a Discogs API PHP client library which utilizes GuzzleHttp.
 
