@@ -71,18 +71,16 @@ If you are requesting information from an endpoint that may have text formatting
 
 ## Supported API Endpoints
 ***
-
-
+<br/>
 ### Database
-
+<br/>
 **Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
 
 *Get a Release* 
 ```php
 $discog->release(192988);
 ```
-
-
+<br/>
 **Release Rating by User** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-rating-by-user)
 
 *Retrieves the release’s rating for a given user.* 
