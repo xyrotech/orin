@@ -74,6 +74,7 @@ If you are requesting information from an endpoint that may have text formatting
 ### Database
 
 **Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
+
 *Get a Release* 
 ```php
 $discog->release(192988);
