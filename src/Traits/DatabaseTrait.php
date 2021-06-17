@@ -158,11 +158,12 @@ trait DatabaseTrait
      * Issue a search query
      *
      * @param string $query
-     * @param array|null $parameters
+     * @param array $parameters
      * @return object
      */
-    public function search(string $query, array $parameters = null) : object
+    public function search(string $query, array $parameters) : object
     {
+
         $this->parameters = ['query' => ['q' => $query] + $parameters];
 
         return $this->response('GET', "/database/search");

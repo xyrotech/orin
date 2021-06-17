@@ -115,7 +115,7 @@ trait CollectionTrait
      * @param int $folder_id
      * @param int $release_id
      * @param int $instance_id
-     * @param string $rating
+     * @param array|null $parameter
      * @return object
      */
     public function change_rating_of_release(string $username, int $folder_id, int $release_id, int $instance_id, array $parameter = null) : object
