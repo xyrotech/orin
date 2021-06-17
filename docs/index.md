@@ -7,6 +7,20 @@ Orin is a Discogs API PHP client library which utilizes GuzzleHttp.
 
 <br>
 
+## Todo List
+
+- [x] Database Endpoints
+- [x] Marketplace Endpoints
+- [x] User Identiy
+- [x] User Collection
+- [x] User Wantlist
+- [x] User Lists
+- [ ] Authentication
+- [ ] Inventory Export
+- [ ] Inventory Upload
+
+<br>
+
 ## Getting Started
 ***
 Install via Composer:
