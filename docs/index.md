@@ -89,7 +89,7 @@ If you are requesting information from an endpoint that may have text formatting
 
 ### Database
 
-<br/>
+***
 
 **Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
 
@@ -215,7 +215,7 @@ foreach($search->results as $result)
 
 ### Marketplace
 
-<br/>
+***
 
 **Inventory** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-inventory)
 
@@ -398,7 +398,7 @@ foreach($user->submissions as $submission)
 
 ### User Collection
 
-<br/>
+***
 
 **Collection** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection)
 
