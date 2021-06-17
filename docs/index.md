@@ -547,6 +547,7 @@ $discog->user_lists(string $username);
 <br>
 
 **List** [:mag:](https://www.discogs.com/developers#page:user-lists,header:user-lists-list)
+
 <small>Returns items from a specified List.</small>
 ```php
 $discog->user_lists(int $list_id);
