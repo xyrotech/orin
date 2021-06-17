@@ -83,7 +83,6 @@ If you are requesting information from an endpoint that may have text formatting
 <br/>
 
 ## Supported API Endpoints
-***
 
 <br/>
 
