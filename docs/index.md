@@ -129,11 +129,11 @@ Retrieves the release’s rating for a given user.
 ```php
 $discog->release_rating_by_user(int $release_id, string $username);
 ```
-Edit the release’s rating for a given user. 
+Edit the release’s rating for a given user. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication) 
 ```php
 $discog->update_release_rating_by_user(int $release_id, string $username, int $rating);
 ```
-Delete the release’s rating for a given user. 
+Delete the release’s rating for a given user. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->delete_release_rating_by_user(int $release_id, string $username);
 ```
@@ -244,7 +244,7 @@ $discog->all_label_releases(int $label_id, array $parameters = null);
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-search)
 
-Issue a search query to discog's database.
+Issue a search query to discog's database. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $search = $discog->search(string $query, array $parameters = null);
 
@@ -285,7 +285,7 @@ The Listing resource allows you to view Marketplace listings.
 $listing = $discog->listing(int $listing_id, string $curr_abbr = null);
 ```
 
-Edit the data associated with a listing. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Edit the data associated with a listing. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $parameters = [
     'release_id' => 16457562,
@@ -297,7 +297,7 @@ $parameters = [
 $discog->edit_listing(int $listing_id, array $parameters);
 ```
 
-Permanently remove a listing from the Marketplace. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Permanently remove a listing from the Marketplace. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->delete_listing(int $listing_id);
 ```
@@ -308,7 +308,7 @@ $discog->delete_listing(int $listing_id);
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-new-listing)
 
-Create a Marketplace listing. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Create a Marketplace listing. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $parameters = [
     'release_id' => 16457562,
@@ -325,12 +325,12 @@ $discog->new_listing(array $parameters);
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-order)
 
-The Order resource allows you to manage a seller’s Marketplace orders. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+View the data associated with an order. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->order(int $order_id);
 ```
 
-Edit the data associated with an order. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Edit the data associated with an order. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->edit_order(int $order_id, array $parameters = null);
 ```
@@ -341,7 +341,7 @@ $discog->edit_order(int $order_id, array $parameters = null);
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-orders)
 
-Returns a list of the authenticated user’s orders. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Returns a list of the authenticated user’s orders. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $user = $discog->list_orders();
 
@@ -357,7 +357,7 @@ foreach($user->orders as $order)
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-order-messages)
 
-Returns a list of the order’s messages with the most recent first.
+Returns a list of the order’s messages with the most recent first.  [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $order = $discog->list_order_messages();
 
@@ -367,7 +367,7 @@ foreach($order->messages as $message)
 }
 ```
 
-Adds a new message to the order’s message log.
+Adds a new message to the order’s message log.  [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->new_order_message(int $order_id, string $message = null, string $status = null);
 ```
@@ -400,7 +400,7 @@ $discog->fee_with_currency(float $price, string $currency = null);
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-price-suggestions)
 
-Retrieve price suggestions for the provided Release ID.
+Retrieve price suggestions for the provided Release ID.  [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->price_suggestions(int $release_id);
 ```
@@ -426,7 +426,7 @@ $discog->release_statistics(int $release_id, string $curr_abbr = null);
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-identity,header:user-identity-identity)
 
-Retrieve basic information about the authenticated user. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Retrieve basic information about the authenticated user. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->identity();
 ```
@@ -442,7 +442,7 @@ Retrieve a user by username.
 $discog->profile(string $username);
 ```
 
-Edit a user’s profile data. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Edit a user’s profile data. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->edit_profile(string $username, array $parameters => null);
 ```
@@ -483,7 +483,7 @@ foreach($user->folders as $folder)
 }
 ```
 
-Create a new folder in a user’s collection. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Create a new folder in a user’s collection. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->new_collection_folder(string $username, string $name);
 ```
@@ -494,17 +494,27 @@ $discog->new_collection_folder(string $username, string $name);
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-folder)
 
+Retrieve a list of folders in a user’s collection.
+```php
+$discog->collection_folders(string $username);
+```
+
+Create a new folder in a user’s collection.
+```php
+$discog->new_collection_folder(string $username, string $name);
+```
+
 Retrieve metadata about a folder in a user’s collection.
 ```php
 $discog->collection_folder(string $username, int $folder_id);
 ```
 
-Edit the metadata about a folder in a user’s collection.
+Edit the metadata about a folder in a user’s collection. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->edit_collection_folder(string $username, int $folder_id, string $name);
 ```
 
-Delete a folder from a user’s collection.
+Delete a folder from a user’s collection. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->delete_collection_folder(string $username, int $folder_id);
 ```
@@ -537,7 +547,7 @@ $discog->collection_items_by_release(string $username, int $release_id);
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-add-to-collection-folder)
 
-Add a release to a folder in a user’s collection. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Add a release to a folder in a user’s collection. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->add_to_collection_folder(string $username, int $folder_id, int $release_id);
 ```
@@ -548,7 +558,7 @@ $discog->add_to_collection_folder(string $username, int $folder_id, int $release
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-change-rating-of-release)
 
-Change the rating on a release and/or move the instance to another folder. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
+Change the rating on a release and/or move the instance to another folder. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->change_rating_of_release(string $username, int $folder_id, int $release_id, int $instance_id, array $parameters = null);
 ```
@@ -559,7 +569,7 @@ $discog->change_rating_of_release(string $username, int $folder_id, int $release
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-delete-instance-from-folder)
 
-Remove an instance of a release from a user’s collection folder.
+Remove an instance of a release from a user’s collection folder. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->delete_instance_from_folder(string $username, int $folder_id, int $release_id, int $instance_id);
 ```
@@ -586,7 +596,7 @@ $discog->edit_fields_instance(string $username, string $value, int $folder_id, i
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-value)
 
-Returns the minimum, median, and maximum value of a user’s collection.
+Returns the minimum, median, and maximum value of a user’s collection. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->collection_value(string $username);
 ```
@@ -606,17 +616,17 @@ Returns the list of releases in a user’s wantlist.
 $discog->wantlist(string $username);
 ```
 
-Add a release to a user’s wantlist.
+Add a release to a user’s wantlist. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->add_to_wantlist(string $username, int $relase_id, string $notes = null, int $rating = null);
 ```
 
-Edit a release from a user’s wantlist.
+Edit a release from a user’s wantlist. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->edit_from_wantlist(string $username, int $relase_id, string $notes = null, int $rating = null);
 ```
 
-Delete a release from a user’s wantlist.
+Delete a release from a user’s wantlist. [:closed_lock_with_key: Auth Required](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->delete_from_wantlist(string $username, int $relase_id, string $notes = null, int $rating = null);
 ```
