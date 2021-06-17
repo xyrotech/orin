@@ -180,7 +180,9 @@ $discog->artist(int $artist_id);
 
 <br/>
 
-**Artist Releases** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
+**Artist Releases** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
 
 <small>Get an artist’s releases</small> 
 ```php
