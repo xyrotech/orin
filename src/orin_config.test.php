@@ -89,11 +89,11 @@ return [
     | Ratelimit Threshold
     |--------------------------------------------------------------------------
     |
-    | User Agent
+    | Mostly used for testing purposes.
     |
     */
 
-    'RATE_THRESHOLD' => '6',
+    'RATE_THRESHOLD' => '2',
 
     /*
     |--------------------------------------------------------------------------

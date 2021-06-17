@@ -101,6 +101,14 @@ If you are requesting information from an endpoint that may have text formatting
 
 <br/>
 
+**RATE_THRESHOLD**
+
+Default: 2, Testing: 6
+
+Mostly used for testing purposes.
+
+<br/>
+
 ## Supported API Endpoints
 
 <br/>
@@ -153,11 +161,9 @@ $discog->community_release_rating(int $release_id);
 
 **Release Stats** 
 
-Retrieves the release’s “have” and “want” counts.
-
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-release-stats)
 
-
+Retrieves the release’s “have” and “want” counts.
 ```php
 $discog->release_stats(int $release_id);
 ```

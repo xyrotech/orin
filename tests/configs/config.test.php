@@ -82,7 +82,7 @@ return [
     | Ratelimit Threshold
     |--------------------------------------------------------------------------
     |
-    | User Agent
+    | Mostly used for testing purposes.
     |
     */
 
