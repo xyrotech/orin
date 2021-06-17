@@ -32,7 +32,7 @@ trait IdentityTrait
      * @param array $parameters
      * @return object
      */
-    public function edit_profile(string $username, array $parameters) : object
+    public function edit_profile(string $username, array $parameters = null) : object
     {
         $this->parameters = ['json' => $parameters];
 

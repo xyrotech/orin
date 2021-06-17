@@ -140,7 +140,7 @@ trait MarketplaceTrait
      * @param string $price
      * @return mixed
      */
-    public function fee(string $price) : object
+    public function fee(float $price) : object
     {
         return $this->response('GET', "/marketplace/fee/$price");
     }
@@ -153,7 +153,7 @@ trait MarketplaceTrait
      * @param string $currency
      * @return object
      */
-    public function fee_with_currency(string $price, string $currency) : object
+    public function fee_with_currency(string $price, string $currency = null) : object
     {
         return $this->response('GET', "/marketplace/fee/$price/$currency");
     }

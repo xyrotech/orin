@@ -95,7 +95,7 @@ If you are requesting information from an endpoint that may have text formatting
 
 <small>Get a Release</small> 
 ```php
-$discog->release(192988);
+$discog->release(int $release_id, string $curr_abbr = null);
 ```
 
 <br/>
@@ -104,15 +104,15 @@ $discog->release(192988);
 
 <small>Retrieves the release’s rating for a given user.</small> 
 ```php
-$discog->release_rating_by_user(16457562, 'kunli0');
+$discog->release_rating_by_user(int $release_id, string $username);
 ```
 <small>Edit the release’s rating for a given user.</small> 
 ```php
-$discog->update_release_rating_by_user(16457562, 'kunli0', 5);
+$discog->update_release_rating_by_user(int $release_id, string $username, int $rating);
 ```
 <small>Delete the release’s rating for a given user.</small> 
 ```php
-$discog->delete_release_rating_by_user(16457562, 'kunli0');
+$discog->delete_release_rating_by_user(int $release_id, string $username);
 ```
 
 <br/>
@@ -121,7 +121,7 @@ $discog->delete_release_rating_by_user(16457562, 'kunli0');
 
 <small>Retrieves the community release rating average and count.</small> 
 ```php
-$discog->community_release_rating(16457562);
+$discog->community_release_rating(int $release_id);
 ```
 
 <br/>
@@ -130,7 +130,7 @@ $discog->community_release_rating(16457562);
 
 <small>Retrieves the release’s “have” and “want” counts.</small> 
 ```php
-$discog->release_stats(16457562);
+$discog->release_stats(int $release_id);
 ```
 
 <br/>
@@ -139,16 +139,7 @@ $discog->release_stats(16457562);
 
 <small>Get a master release</small> 
 ```php
-$discog->master_release(2482);
-```
-
-<br/>
-
-**Master Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release)
-
-<small>Get a master release</small>
-```php
-$discog->master_release(2482);
+$discog->master_release(int $master_id);
 ```
 
 <br/>
@@ -157,7 +148,7 @@ $discog->master_release(2482);
 
 <small>Retrieves a list of all Releases that are versions of this master.</small>
 ```php
-$master = $discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'desc']);
+$master = $discog->master_release_versions(int $master_id, array $parameters = null);
 
 foreach($master->releases as $release)
 {
@@ -171,7 +162,7 @@ foreach($master->releases as $release)
 
 <small>Get an artist</small>
 ```php
-$discog->artist(45);
+$discog->artist(int $artist_id);
 ```
 
 <br/>
@@ -180,7 +171,7 @@ $discog->artist(45);
 
 <small>Get an artist’s releases</small> 
 ```php
-$artist = $discog->artist_releases(45, ['sort' => 'year']);
+$artist = $discog->artist_releases(int $artist_id, array $parameters = null);
 
 foreach($artist->releases as $release)
 {
@@ -194,7 +185,7 @@ foreach($artist->releases as $release)
 
 <small>Get a label</small>
 ```php
-$discog->label(107);
+$discog->label(int $label_id);
 ```
 
 <br/>
@@ -203,7 +194,7 @@ $discog->label(107);
 
 <small>Returns a list of Releases associated with the label.</small>
 ```php
-$discog->all_label_releases(107);
+$discog->all_label_releases(int $label_id, array $parameters = null);
 ```
 
 <br/>
@@ -212,7 +203,7 @@ $discog->all_label_releases(107);
 
 <small>Issue a search query to discog's database.</small>
 ```php
-$search = $discog->search('While you were sleeping', ['artist' => 'opiate', 'type' => 'master');
+$search = $discog->search(string $query, array $parameters = null);
 
 foreach($search->results as $result)
 {
@@ -230,7 +221,7 @@ foreach($search->results as $result)
 
 <small>Get a seller’s inventory</small>
 ```php
-$user = $discog->inventory('kunli0', ['sort' => 'artist']);
+$user = $discog->inventory(int $username, array $parameters = null);
 
 foreach($user->listings as $listing)
 {
@@ -244,7 +235,7 @@ foreach($user->listings as $listing)
 
 <small>The Listing resource allows you to view Marketplace listings.</small>
 ```php
-$listing = $discog->listing(172723812);
+$listing = $discog->listing(int $listing_id, string $curr_abbr = null);
 ```
 
 <small>Edit the data associated with a listing.</small>
@@ -256,12 +247,12 @@ $parameters = [
     'status' => 'For Sale'
 ];
         
-$discog->edit_listing(172723812, $parameters);
+$discog->edit_listing(int $listing_id, array $parameters);
 ```
 
 <small>Permanently remove a listing from the Marketplace.</small>
 ```php
-$discog->delete_listing(172723812);
+$discog->delete_listing(int $listing_id);
 ```
 
 <br/>
@@ -276,7 +267,7 @@ $parameters = [
     'price' => 99.00,
 ];
         
-$discog->new_listing($parameters);
+$discog->new_listing(array $parameters);
 ```
 
 <br/>
@@ -285,12 +276,12 @@ $discog->new_listing($parameters);
 
 <small>The Order resource allows you to manage a seller’s Marketplace orders.</small>
 ```php
-$discog->order(156896);
+$discog->order(int $order_id);
 ```
 
 <small>Edit the data associated with an order.</small>
 ```php
-$discog->edit_order(156896, ['status' => $new_status]);
+$discog->edit_order(int $order_id, array $parameters = null);
 ```
 
 <br/>
@@ -323,7 +314,7 @@ foreach($order->messages as $message)
 
 <small>Adds a new message to the order’s message log.</small>
 ```php
-$discog->new_order_message(15359, 'Test Message', 'New Order');
+$discog->new_order_message(int $order_id, string $message = null, string $status = null);
 ```
 
 <br/>
@@ -332,7 +323,7 @@ $discog->new_order_message(15359, 'Test Message', 'New Order');
 
 <small>The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace.</small>
 ```php
-$discog->fee('10.00');
+$discog->fee(float $price);
 ```
 
 <br/>
@@ -341,7 +332,7 @@ $discog->fee('10.00');
 
 <small>The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace given a particular currency.</small>
 ```php
-$discog->fee_with_currency('10.00', 'USD');
+$discog->fee_with_currency(float $price, string $currency = null);
 ```
 
 <br/>
@@ -350,7 +341,7 @@ $discog->fee_with_currency('10.00', 'USD');
 
 <small>Retrieve price suggestions for the provided Release ID.</small>
 ```php
-$discog->price_suggestions(123456);
+$discog->price_suggestions(int $release_id);
 ```
 
 <br/>
@@ -359,7 +350,7 @@ $discog->price_suggestions(123456);
 
 <small>Retrieve marketplace statistics for the provided Release ID.</small>
 ```php
-$discog->price_suggestions(123456);
+$discog->release_statistics(int $release_id, string $curr_abbr = null);
 ```
 
 <br/>
@@ -381,12 +372,12 @@ $discog->identity();
 
 <small>Retrieve a user by username.</small>
 ```php
-$discog->profile('kunli0');
+$discog->profile(string $username);
 ```
 
 <small>Edit a user’s profile data.</small>
 ```php
-$discog->edit_profile('kunli0', ['name' => 'Adekunle Adelakun']);
+$discog->edit_profile(string $username, array $parameters => null);
 ```
 
 <br>
@@ -395,7 +386,7 @@ $discog->edit_profile('kunli0', ['name' => 'Adekunle Adelakun']);
 
 <small>Retrieve a user’s submissions by username.</small>
 ```php
-$user = $discog->user_submissions('kunli0');
+$user = $discog->user_submissions(string $username);
 
 foreach($user->submissions as $submission)
 {
@@ -413,7 +404,7 @@ foreach($user->submissions as $submission)
 
 <small>Retrieve a list of folders in a user’s collection.</small>
 ```php
-$user = $discog->collection_folders('kunli0');
+$user = $discog->collection_folders(string $username);
 
 foreach($user->folders as $folder)
 {
@@ -423,7 +414,7 @@ foreach($user->folders as $folder)
 
 <small>Create a new folder in a user’s collection.</small>
 ```php
-$discog->new_collection_folder('kunli0', 'New Folder');
+$discog->new_collection_folder(string $username, string $name);
 ```
 
 <br/>
@@ -432,17 +423,17 @@ $discog->new_collection_folder('kunli0', 'New Folder');
 
 <small>Retrieve metadata about a folder in a user’s collection.</small>
 ```php
-$discog->collection_folder('kunli0', 1);
+$discog->collection_folder(string $username, int $folder_id);
 ```
 
 <small>Retrieve metadata about a folder in a user’s collection.</small>
 ```php
-$discog->edit_collection_folder('kunli0', 3, 'New Folder Name');
+$discog->edit_collection_folder(string $username, int $folder_id, string $name);
 ```
 
 <small>Delete a folder from a user’s collection.</small>
 ```php
-$discog->delete_collection_folder('kunli0', 3);
+$discog->delete_collection_folder(string $username, int $folder_id);
 ```
 
 <br/>
@@ -451,7 +442,7 @@ $discog->delete_collection_folder('kunli0', 3);
 
 <small>View the user’s collection folders which contain a specified release.</small>
 ```php
-$discog->collection_items_by_release('kunli0', 16457562);
+$discog->collection_items_by_release(string $username, int $release_id);
 ```
 
 <br/>
@@ -460,7 +451,7 @@ $discog->collection_items_by_release('kunli0', 16457562);
 
 <small>Returns the list of item in a folder in a user’s collection.</small>
 ```php
-$discog->collection_items_by_release('kunli0', 1);
+$discog->collection_items_by_release(string $username, int $release_id);
 ```
 
 <br/>
@@ -469,7 +460,7 @@ $discog->collection_items_by_release('kunli0', 1);
 
 <small>Add a release to a folder in a user’s collection.</small>
 ```php
-$discog->add_to_collection_folder('kunli0', 1, 1598736);
+$discog->add_to_collection_folder(string $username, int $folder_id, int $release_id);
 ```
 
 <br/>
@@ -478,7 +469,7 @@ $discog->add_to_collection_folder('kunli0', 1, 1598736);
 
 <small>Change the rating on a release and/or move the instance to another folder.</small>
 ```php
-$discog->change_rating_of_release('kunli0', 1, 1598736, 2921113, 5);
+$discog->change_rating_of_release(string $username, int $folder_id, int $release_id, int $instance_id, array $parameters = null);
 ```
 
 <br/>
@@ -487,7 +478,7 @@ $discog->change_rating_of_release('kunli0', 1, 1598736, 2921113, 5);
 
 <small>Remove an instance of a release from a user’s collection folder.</small>
 ```php
-$discog->delete_instance_from_folder('kunli0', 1, 1598736, 2921113);
+$discog->delete_instance_from_folder(string $username, int $folder_id, int $release_id, int $instance_id);
 ```
 
 <br/>
@@ -496,12 +487,12 @@ $discog->delete_instance_from_folder('kunli0', 1, 1598736, 2921113);
 
 <small>Retrieve a list of user-defined collection notes fields.</small>
 ```php
-$discog->list_custom_fields('kunli0');
+$discog->list_custom_fields(string $username);
 ```
 
 <small>Change the value of a notes field on a particular instance.</small>
 ```php
-$discog->edit_fields_instance('kunli0', 'Testing', 1, 1598736, 3, 3);
+$discog->edit_fields_instance(string $username, string $value, int $folder_id, int $release_id, int $instance_id, int $field_id);
 ```
 
 <br/>
@@ -510,5 +501,54 @@ $discog->edit_fields_instance('kunli0', 'Testing', 1, 1598736, 3, 3);
 
 <small>Returns the minimum, median, and maximum value of a user’s collection.</small>
 ```php
-$discog->collection_value('kunli0');
+$discog->collection_value(string $username);
+```
+
+<br/>
+
+### User Wantlist
+
+***
+
+**Wantlist** [:mag:](https://www.discogs.com/developers#page:user-wantlist,header:user-wantlist-wantlist)
+
+<small>Returns the list of releases in a user’s wantlist.</small>
+```php
+$discog->wantlist(string $username);
+```
+
+<small>Add a release to a user’s wantlist.</small>
+```php
+$discog->add_to_wantlist(string $username, int $relase_id, string $notes = null, int $rating = null);
+```
+
+<small>Edit a release from a user’s wantlist.</small>
+```php
+$discog->edit_from_wantlist(string $username, int $relase_id, string $notes = null, int $rating = null);
+```
+
+<small>Delete a release from a user’s wantlist.</small>
+```php
+$discog->delete_from_wantlist(string $username, int $relase_id, string $notes = null, int $rating = null);
+```
+
+<br/>
+
+### User Lists
+
+***
+
+**User Lists** [:mag:](https://www.discogs.com/developers#page:user-lists,header:user-lists-user-lists)
+
+<small>Returns a User’s Lists.</small>
+```php
+$discog->user_lists(string $username);
+```
+
+<br>
+
+**List** [:mag:](https://www.discogs.com/developers#page:user-lists,header:user-lists-list)
+<small>Returns items from a specified List.</small>
+```php
+$discog->user_lists(int $list_id);
 ```
