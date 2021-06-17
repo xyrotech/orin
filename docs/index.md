@@ -357,7 +357,7 @@ $discog->release_statistics(int $release_id, string $curr_abbr = null);
 
 ### User Identity
 
-<br/>
+***
 
 **Identity** [:mag:](https://www.discogs.com/developers#page:user-identity,header:user-identity-identity)
 
