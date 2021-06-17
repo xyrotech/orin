@@ -50,6 +50,9 @@ echo $artist->name; // 'Aphex Twin'
 <br/>
 
 ### Configuration
+
+***
+
 **DISCOGS_USER_AGENT**
 
 Your application must provide a User-Agent string that identifies itself – preferably something that follows RFC 1945. Some good examples below
@@ -61,6 +64,8 @@ MyDiscogsClient/1.0 +http://mydiscogsclient.org
 > Note: Please don’t just copy one of those! Make it unique so discogs can let you know if your application starts to misbehave – the alternative is that discogs just silently blocks it.
 
 <br/>
+
+
 
 **DISCOGS_TOKEN**
 
@@ -106,10 +111,10 @@ If you are requesting information from an endpoint that may have text formatting
 
 **Release**
 
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-release)
+
+
 Get a Release
-
-[:mag:](https://www.discogs.com/developers#page:database,header:database-release)
-
 ```php
 $discog->release(int $release_id, string $curr_abbr = null);
 ```
@@ -118,10 +123,9 @@ $discog->release(int $release_id, string $curr_abbr = null);
 
 **Release Rating by User**
 
-Retrieves the release’s rating for a given user.
-
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-release-rating-by-user)
 
+Retrieves the release’s rating for a given user.
 ```php
 $discog->release_rating_by_user(int $release_id, string $username);
 ```
@@ -136,13 +140,11 @@ $discog->delete_release_rating_by_user(int $release_id, string $username);
 
 <br/>
 
-**Community Release Rating** 
-
-Retrieves the community release rating average and count.
+**Community Release Rating**
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-community-release-rating)
 
-
+Retrieves the community release rating average and count.
 ```php
 $discog->community_release_rating(int $release_id);
 ```
@@ -162,26 +164,22 @@ $discog->release_stats(int $release_id);
 
 <br/>
 
-**Master Release** 
-
-Get a master release
+**Master Release**
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-master-release)
 
-
+Get a master release
 ```php
 $discog->master_release(int $master_id);
 ```
 
 <br/>
 
-**Master Release Versions** 
-
-Retrieves a list of all Releases that are versions of this master.
+**Master Release Versions**
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
 
-
+Retrieves a list of all Releases that are versions of this master.
 ```php
 $master = $discog->master_release_versions(int $master_id, array $parameters = null);
 
@@ -193,26 +191,22 @@ foreach($master->releases as $release)
 
 <br/>
 
-**Artist** 
-
-Get an artist
+**Artist**
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-artist-releases)
 
-
+Get an artist
 ```php
 $discog->artist(int $artist_id);
 ```
 
 <br/>
 
-**Artist Releases** 
-
-Get an artist’s releases
+**Artist Releases**
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
 
- 
+Get an artist’s releases
 ```php
 $artist = $discog->artist_releases(int $artist_id, array $parameters = null);
 
@@ -224,39 +218,33 @@ foreach($artist->releases as $release)
 
 <br/>
 
-**Label** 
-
-Get a label
+**Label**
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-label)
 
-
+Get a label
 ```php
 $discog->label(int $label_id);
 ```
 
 <br/>
 
-**All Label Releases** 
-
-Returns a list of Releases associated with the label.
+**All Label Releases**
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-all-label-releases)
 
-
+Returns a list of Releases associated with the label.
 ```php
 $discog->all_label_releases(int $label_id, array $parameters = null);
 ```
 
 <br/>
 
-**Search** 
-
-Issue a search query to discog's database.
+**Search**
 
 [:mag: More Info](https://www.discogs.com/developers#page:database,header:database-search)
 
-
+Issue a search query to discog's database.
 ```php
 $search = $discog->search(string $query, array $parameters = null);
 
@@ -272,12 +260,11 @@ foreach($search->results as $result)
 
 ***
 
-**Inventory** 
-
-Get a seller’s inventory
+**Inventory**
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-inventory)
 
+Get a seller’s inventory
 ```php
 $user = $discog->inventory(int $username, array $parameters = null);
 
@@ -289,17 +276,16 @@ foreach($user->listings as $listing)
 
 <br/>
 
-**Listing** 
-
-The Listing resource allows you to view Marketplace listings.
+**Listing**
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-listing)
 
+The Listing resource allows you to view Marketplace listings.
 ```php
 $listing = $discog->listing(int $listing_id, string $curr_abbr = null);
 ```
 
-Edit the data associated with a listing.
+Edit the data associated with a listing. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $parameters = [
     'release_id' => 16457562,
@@ -311,20 +297,18 @@ $parameters = [
 $discog->edit_listing(int $listing_id, array $parameters);
 ```
 
-Permanently remove a listing from the Marketplace.
+Permanently remove a listing from the Marketplace. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->delete_listing(int $listing_id);
 ```
 
 <br/>
 
-**New Listing** 
-
-Create a Marketplace listing.
+**New Listing**
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-new-listing)
 
-
+Create a Marketplace listing. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $parameters = [
     'release_id' => 16457562,
@@ -337,31 +321,27 @@ $discog->new_listing(array $parameters);
 
 <br/>
 
-**Order** 
-
-The Order resource allows you to manage a seller’s Marketplace orders.
+**Order**
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-order)
 
-
+The Order resource allows you to manage a seller’s Marketplace orders. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->order(int $order_id);
 ```
 
-Edit the data associated with an order.
+Edit the data associated with an order. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->edit_order(int $order_id, array $parameters = null);
 ```
 
 <br/>
 
-**List Orders** 
-
-Returns a list of the authenticated user’s orders.
+**List Orders**
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-orders)
 
-
+Returns a list of the authenticated user’s orders. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $user = $discog->list_orders();
 
@@ -373,13 +353,11 @@ foreach($user->orders as $order)
 
 <br/>
 
-**List Order Messages** 
-
-Returns a list of the order’s messages with the most recent first.
+**List Order Messages**
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-order-messages)
 
-
+Returns a list of the order’s messages with the most recent first.
 ```php
 $order = $discog->list_order_messages();
 
@@ -396,13 +374,11 @@ $discog->new_order_message(int $order_id, string $message = null, string $status
 
 <br/>
 
-**Fee** 
-
-The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace.
+**Fee**
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-fee)
 
-
+The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace.
 ```php
 $discog->fee(float $price);
 ```
@@ -411,11 +387,9 @@ $discog->fee(float $price);
 
 **Fee with Currency**
 
-The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace given a particular currency.
-
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-fee-with-currency)
 
-
+The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace given a particular currency.
 ```php
 $discog->fee_with_currency(float $price, string $currency = null);
 ```
@@ -424,22 +398,20 @@ $discog->fee_with_currency(float $price, string $currency = null);
 
 **Price Suggestion**
 
-Retrieve price suggestions for the provided Release ID.
-
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-price-suggestions)
 
+Retrieve price suggestions for the provided Release ID.
 ```php
 $discog->price_suggestions(int $release_id);
 ```
 
 <br/>
 
-**Release Statistics** 
-
-Retrieve marketplace statistics for the provided Release ID.
+**Release Statistics**
 
 [:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-release-statistics)
 
+Retrieve marketplace statistics for the provided Release ID.
 ```php
 $discog->release_statistics(int $release_id, string $curr_abbr = null);
 ```
@@ -450,42 +422,38 @@ $discog->release_statistics(int $release_id, string $curr_abbr = null);
 
 ***
 
-**Identity** 
-
-Retrieve basic information about the authenticated user.
+**Identity**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-identity,header:user-identity-identity)
 
+Retrieve basic information about the authenticated user. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->identity();
 ```
 
 <br/>
 
-**Profile** 
-
-Retrieve a user by username.
+**Profile**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-identity,header:user-identity-profile)
 
+Retrieve a user by username.
 ```php
 $discog->profile(string $username);
 ```
 
-Edit a user’s profile data.
+Edit a user’s profile data. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->edit_profile(string $username, array $parameters => null);
 ```
 
 <br>
 
-**User Submissions** 
-
-Retrieve a user’s submissions by username.
+**User Submissions**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-identity,header:user-identity-user-submissions)
 
-
+Retrieve a user’s submissions by username.
 ```php
 $user = $discog->user_submissions(string $username);
 
@@ -503,10 +471,9 @@ foreach($user->submissions as $submission)
 
 **Collection** 
 
-Retrieve a list of folders in a user’s collection.
-
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection)
 
+Retrieve a list of folders in a user’s collection.
 ```php
 $user = $discog->collection_folders(string $username);
 
@@ -516,24 +483,23 @@ foreach($user->folders as $folder)
 }
 ```
 
-Create a new folder in a user’s collection.
+Create a new folder in a user’s collection. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->new_collection_folder(string $username, string $name);
 ```
 
 <br/>
 
-**Collection Folder** 
-
-Retrieve metadata about a folder in a user’s collection.
+**Collection Folder**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-folder)
 
+Retrieve metadata about a folder in a user’s collection.
 ```php
 $discog->collection_folder(string $username, int $folder_id);
 ```
 
-Retrieve metadata about a folder in a user’s collection.
+Edit the metadata about a folder in a user’s collection.
 ```php
 $discog->edit_collection_folder(string $username, int $folder_id, string $name);
 ```
@@ -545,72 +511,66 @@ $discog->delete_collection_folder(string $username, int $folder_id);
 
 <br/>
 
-**Collection Items by Release** 
-
-View the user’s collection folders which contain a specified release.
+**Collection Items by Release**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-items-by-release)
 
+View the user’s collection folders which contain a specified release.
 ```php
 $discog->collection_items_by_release(string $username, int $release_id);
 ```
 
 <br/>
 
-**Collection Items by Folder** 
-
-Returns the list of item in a folder in a user’s collection.
+**Collection Items by Folder**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-items-by-folder)
 
+Returns the list of item in a folder in a user’s collection.
 ```php
 $discog->collection_items_by_release(string $username, int $release_id);
 ```
 
 <br/>
 
-**Add to Collection Folder** 
-
-Add a release to a folder in a user’s collection.
+**Add to Collection Folder**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-add-to-collection-folder)
 
+Add a release to a folder in a user’s collection. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->add_to_collection_folder(string $username, int $folder_id, int $release_id);
 ```
 
 <br/>
 
-**Change Rating of Release** 
-
-Change the rating on a release and/or move the instance to another folder.
+**Change Rating of Release**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-change-rating-of-release)
 
+Change the rating on a release and/or move the instance to another folder. [:closed_lock_with_key: Protected Endpoint](https://www.discogs.com/developers#page:authentication)
 ```php
 $discog->change_rating_of_release(string $username, int $folder_id, int $release_id, int $instance_id, array $parameters = null);
 ```
 
 <br/>
 
-**Delete Instance from Folder** 
-
-Remove an instance of a release from a user’s collection folder.
+**Delete Instance from Folder**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-delete-instance-from-folder)
 
+Remove an instance of a release from a user’s collection folder.
 ```php
 $discog->delete_instance_from_folder(string $username, int $folder_id, int $release_id, int $instance_id);
 ```
 
 <br/>
 
-**List Custom Fields** 
-
-Retrieve a list of user-defined collection notes fields.
+**List Custom Fields**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-list-custom-fields)
 
+Retrieve a list of user-defined collection notes fields.
 ```php
 $discog->list_custom_fields(string $username);
 ```
@@ -622,12 +582,11 @@ $discog->edit_fields_instance(string $username, string $value, int $folder_id, i
 
 <br/>
 
-**Collection Value** 
-
-Returns the minimum, median, and maximum value of a user’s collection.
+**Collection Value**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-value)
 
+Returns the minimum, median, and maximum value of a user’s collection.
 ```php
 $discog->collection_value(string $username);
 ```
@@ -638,13 +597,11 @@ $discog->collection_value(string $username);
 
 ***
 
-**Wantlist** 
-
-Returns the list of releases in a user’s wantlist.
+**Wantlist**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-wantlist,header:user-wantlist-wantlist)
 
-
+Returns the list of releases in a user’s wantlist.
 ```php
 $discog->wantlist(string $username);
 ```
@@ -670,26 +627,22 @@ $discog->delete_from_wantlist(string $username, int $relase_id, string $notes = 
 
 ***
 
-**User Lists** 
-
-Returns a User’s Lists.
+**User Lists**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-lists,header:user-lists-user-lists)
 
-
+Returns a User’s Lists.
 ```php
 $discog->user_lists(string $username);
 ```
 
 <br>
 
-**List** 
-
-Returns items from a specified List.
+**List**
 
 [:mag: More Info](https://www.discogs.com/developers#page:user-lists,header:user-lists-list)
 
-
+Returns items from a specified List.
 ```php
 $discog->user_lists(int $list_id);
 ```
