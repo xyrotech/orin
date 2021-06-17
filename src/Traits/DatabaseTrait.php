@@ -163,7 +163,6 @@ trait DatabaseTrait
      */
     public function search(string $query, array $parameters) : object
     {
-
         $this->parameters = ['query' => ['q' => $query] + $parameters];
 
         return $this->response('GET', "/database/search");
