@@ -111,7 +111,7 @@ class MarketplaceTest extends TestCase
     {
         $fee = $this->discog->fee_with_currency("10.00", "CAD");
 
-        $this->assertEquals(0.66, $fee->value);
+        $this->assertEquals(0.65, $fee->value);
         $this->assertEquals('200', $fee->status_code);
     }
 

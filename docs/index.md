@@ -104,7 +104,9 @@ If you are requesting information from an endpoint that may have text formatting
 
 ***
 
-**Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
+**Release** 
+
+[:mag:](https://www.discogs.com/developers#page:database,header:database-release)
 
 <small>Get a Release</small> 
 ```php
@@ -113,7 +115,9 @@ $discog->release(int $release_id, string $curr_abbr = null);
 
 <br/>
 
-**Release Rating by User** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-rating-by-user)
+**Release Rating by User** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-release-rating-by-user)
 
 <small>Retrieves the release’s rating for a given user.</small> 
 ```php
@@ -130,7 +134,9 @@ $discog->delete_release_rating_by_user(int $release_id, string $username);
 
 <br/>
 
-**Community Release Rating** [:mag:](https://www.discogs.com/developers#page:database,header:database-community-release-rating)
+**Community Release Rating** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-community-release-rating)
 
 <small>Retrieves the community release rating average and count.</small> 
 ```php
@@ -139,7 +145,9 @@ $discog->community_release_rating(int $release_id);
 
 <br/>
 
-**Release Stats** [:mag:](https://www.discogs.com/developers#page:database,header:database-release-stats)
+**Release Stats** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-release-stats)
 
 <small>Retrieves the release’s “have” and “want” counts.</small> 
 ```php
@@ -148,7 +156,9 @@ $discog->release_stats(int $release_id);
 
 <br/>
 
-**Master Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release)
+**Master Release** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-master-release)
 
 <small>Get a master release</small> 
 ```php
@@ -157,7 +167,9 @@ $discog->master_release(int $master_id);
 
 <br/>
 
-**Master Release Versions** [:mag:](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
+**Master Release Versions** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-master-release-versions)
 
 <small>Retrieves a list of all Releases that are versions of this master.</small>
 ```php
@@ -171,7 +183,9 @@ foreach($master->releases as $release)
 
 <br/>
 
-**Artist** [:mag:](https://www.discogs.com/developers#page:database,header:database-artist-releases)
+**Artist** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-artist-releases)
 
 <small>Get an artist</small>
 ```php
@@ -196,7 +210,9 @@ foreach($artist->releases as $release)
 
 <br/>
 
-**Label** [:mag:](https://www.discogs.com/developers#page:database,header:database-label)
+**Label** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-label)
 
 <small>Get a label</small>
 ```php
@@ -205,7 +221,9 @@ $discog->label(int $label_id);
 
 <br/>
 
-**All Label Releases** [:mag:](https://www.discogs.com/developers#page:database,header:database-all-label-releases)
+**All Label Releases** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-all-label-releases)
 
 <small>Returns a list of Releases associated with the label.</small>
 ```php
@@ -214,7 +232,9 @@ $discog->all_label_releases(int $label_id, array $parameters = null);
 
 <br/>
 
-**Search** [:mag:](https://www.discogs.com/developers#page:database,header:database-search)
+**Search** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:database,header:database-search)
 
 <small>Issue a search query to discog's database.</small>
 ```php
@@ -232,7 +252,9 @@ foreach($search->results as $result)
 
 ***
 
-**Inventory** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-inventory)
+**Inventory** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-inventory)
 
 <small>Get a seller’s inventory</small>
 ```php
@@ -246,7 +268,9 @@ foreach($user->listings as $listing)
 
 <br/>
 
-**Listing** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-listing)
+**Listing** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-listing)
 
 <small>The Listing resource allows you to view Marketplace listings.</small>
 ```php
@@ -272,7 +296,9 @@ $discog->delete_listing(int $listing_id);
 
 <br/>
 
-**New Listing** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-new-listing)
+**New Listing** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-new-listing)
 
 <small>Create a Marketplace listing.</small>
 ```php
@@ -287,7 +313,9 @@ $discog->new_listing(array $parameters);
 
 <br/>
 
-**Order** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-order)
+**Order** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-order)
 
 <small>The Order resource allows you to manage a seller’s Marketplace orders.</small>
 ```php
@@ -301,7 +329,9 @@ $discog->edit_order(int $order_id, array $parameters = null);
 
 <br/>
 
-**List Orders** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-orders)
+**List Orders** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-orders)
 
 <small>Returns a list of the authenticated user’s orders.</small>
 ```php
@@ -315,7 +345,9 @@ foreach($user->orders as $order)
 
 <br/>
 
-**List Order Messages** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-order-messages)
+**List Order Messages** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-list-order-messages)
 
 <small>Returns a list of the order’s messages with the most recent first.</small>
 ```php
@@ -334,7 +366,9 @@ $discog->new_order_message(int $order_id, string $message = null, string $status
 
 <br/>
 
-**Fee** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-fee)
+**Fee** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-fee)
 
 <small>The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace.</small>
 ```php
@@ -343,7 +377,9 @@ $discog->fee(float $price);
 
 <br/>
 
-**Fee with Currency** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-fee-with-currency)
+**Fee with Currency** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-fee-with-currency)
 
 <small>The Fee resource allows you to quickly calculate the fee for selling an item on the Marketplace given a particular currency.</small>
 ```php
@@ -352,7 +388,9 @@ $discog->fee_with_currency(float $price, string $currency = null);
 
 <br/>
 
-**Price Suggestion** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-price-suggestions)
+**Price Suggestion** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-price-suggestions)
 
 <small>Retrieve price suggestions for the provided Release ID.</small>
 ```php
@@ -361,7 +399,9 @@ $discog->price_suggestions(int $release_id);
 
 <br/>
 
-**Release Statistics** [:mag:](https://www.discogs.com/developers#page:marketplace,header:marketplace-release-statistics)
+**Release Statistics** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:marketplace,header:marketplace-release-statistics)
 
 <small>Retrieve marketplace statistics for the provided Release ID.</small>
 ```php
@@ -374,7 +414,9 @@ $discog->release_statistics(int $release_id, string $curr_abbr = null);
 
 ***
 
-**Identity** [:mag:](https://www.discogs.com/developers#page:user-identity,header:user-identity-identity)
+**Identity** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-identity,header:user-identity-identity)
 
 <small>Retrieve basic information about the authenticated user.</small>
 ```php
@@ -383,7 +425,9 @@ $discog->identity();
 
 <br/>
 
-**Profile** [:mag:](https://www.discogs.com/developers#page:user-identity,header:user-identity-profile)
+**Profile** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-identity,header:user-identity-profile)
 
 <small>Retrieve a user by username.</small>
 ```php
@@ -397,7 +441,9 @@ $discog->edit_profile(string $username, array $parameters => null);
 
 <br>
 
-**User Submissions** [:mag:](https://www.discogs.com/developers#page:user-identity,header:user-identity-user-submissions)
+**User Submissions** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-identity,header:user-identity-user-submissions)
 
 <small>Retrieve a user’s submissions by username.</small>
 ```php
@@ -415,7 +461,9 @@ foreach($user->submissions as $submission)
 
 ***
 
-**Collection** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection)
+**Collection** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection)
 
 <small>Retrieve a list of folders in a user’s collection.</small>
 ```php
@@ -434,7 +482,9 @@ $discog->new_collection_folder(string $username, string $name);
 
 <br/>
 
-**Collection Folder** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-folder)
+**Collection Folder** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-folder)
 
 <small>Retrieve metadata about a folder in a user’s collection.</small>
 ```php
@@ -453,7 +503,9 @@ $discog->delete_collection_folder(string $username, int $folder_id);
 
 <br/>
 
-**Collection Items by Release** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-items-by-release)
+**Collection Items by Release** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-items-by-release)
 
 <small>View the user’s collection folders which contain a specified release.</small>
 ```php
@@ -462,7 +514,9 @@ $discog->collection_items_by_release(string $username, int $release_id);
 
 <br/>
 
-**Collection Items by Folder** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-items-by-folder)
+**Collection Items by Folder** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-items-by-folder)
 
 <small>Returns the list of item in a folder in a user’s collection.</small>
 ```php
@@ -471,7 +525,9 @@ $discog->collection_items_by_release(string $username, int $release_id);
 
 <br/>
 
-**Add to Collection Folder** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-add-to-collection-folder)
+**Add to Collection Folder** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-add-to-collection-folder)
 
 <small>Add a release to a folder in a user’s collection.</small>
 ```php
@@ -480,7 +536,9 @@ $discog->add_to_collection_folder(string $username, int $folder_id, int $release
 
 <br/>
 
-**Change Rating of Release** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-change-rating-of-release)
+**Change Rating of Release** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-change-rating-of-release)
 
 <small>Change the rating on a release and/or move the instance to another folder.</small>
 ```php
@@ -489,7 +547,9 @@ $discog->change_rating_of_release(string $username, int $folder_id, int $release
 
 <br/>
 
-**Delete Instance from Folder** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-delete-instance-from-folder)
+**Delete Instance from Folder** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-delete-instance-from-folder)
 
 <small>Remove an instance of a release from a user’s collection folder.</small>
 ```php
@@ -498,7 +558,9 @@ $discog->delete_instance_from_folder(string $username, int $folder_id, int $rele
 
 <br/>
 
-**List Custom Fields** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-list-custom-fields)
+**List Custom Fields** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-list-custom-fields)
 
 <small>Retrieve a list of user-defined collection notes fields.</small>
 ```php
@@ -512,7 +574,9 @@ $discog->edit_fields_instance(string $username, string $value, int $folder_id, i
 
 <br/>
 
-**Collection Value** [:mag:](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-value)
+**Collection Value** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-collection,header:user-collection-collection-value)
 
 <small>Returns the minimum, median, and maximum value of a user’s collection.</small>
 ```php
@@ -525,7 +589,9 @@ $discog->collection_value(string $username);
 
 ***
 
-**Wantlist** [:mag:](https://www.discogs.com/developers#page:user-wantlist,header:user-wantlist-wantlist)
+**Wantlist** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-wantlist,header:user-wantlist-wantlist)
 
 <small>Returns the list of releases in a user’s wantlist.</small>
 ```php
@@ -553,7 +619,9 @@ $discog->delete_from_wantlist(string $username, int $relase_id, string $notes = 
 
 ***
 
-**User Lists** [:mag:](https://www.discogs.com/developers#page:user-lists,header:user-lists-user-lists)
+**User Lists** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-lists,header:user-lists-user-lists)
 
 <small>Returns a User’s Lists.</small>
 ```php
@@ -562,7 +630,9 @@ $discog->user_lists(string $username);
 
 <br>
 
-**List** [:mag:](https://www.discogs.com/developers#page:user-lists,header:user-lists-list)
+**List** 
+
+[:mag: More Info](https://www.discogs.com/developers#page:user-lists,header:user-lists-list)
 
 <small>Returns items from a specified List.</small>
 ```php
