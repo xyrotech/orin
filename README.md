@@ -1,6 +1,6 @@
 # Discog PHP Client
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/xyrotech/orin.svg?style=flat-square)](https://packagist.org/packages/xyrotech/orin)
+[!![Packagist Version](https://img.shields.io/packagist/v/xyrotech/orin)](https://packagist.org/packages/xyrotech/orin)
 [![Tests](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml)
 [![Check & fix styling](https://github.com/xyrotech/orin/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/php-cs-fixer.yml)
 [![Psalm](https://github.com/xyrotech/orin/actions/workflows/psalm.yml/badge.svg?branch=main)](https://github.com/xyrotech/orin/actions/workflows/psalm.yml)
