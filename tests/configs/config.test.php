@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'DISCOGS_TOKEN' => 'afCQWkoDrtVfxXKKWfWmssFxgFWYxWbhyiXtDGJh',
+    'DISCOGS_TOKEN' => 'mJyThcfggqluvgHNuAeAQqSUyXdyRahWtdvYNilA',
 
     /*
     |--------------------------------------------------------------------------
