@@ -86,12 +86,12 @@ class MarketplaceTest extends TestCase
 
         $edit_order = $this->discog->edit_order($get_order->id, ['shipping' => $shipping]);
 
-        $this->assertEquals($shipping, $edit_order->shipping['value']);
+        $this->assertEquals($shipping, $edit_order->shipping->value);
         $this->assertEquals('200', $edit_order->status_code);
 
         $list_order_messages = $this->discog->list_orders_messages($get_order->id);
 
-        $this->assertEquals("status", $list_order_messages->messages[0]->type);
+        $this->assertEquals("shipping", $list_order_messages->messages[0]->type);
         $this->assertEquals('200', $list_order_messages->status_code);
 
         $new_order_message = $this->discog->new_order_message($get_order->id, 'Testing', $get_order->status);
