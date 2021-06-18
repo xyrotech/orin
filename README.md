@@ -5,6 +5,7 @@
 [![Check & fix styling](https://github.com/xyrotech/orin/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/php-cs-fixer.yml)
 [![Psalm](https://github.com/xyrotech/orin/actions/workflows/psalm.yml/badge.svg?branch=main)](https://github.com/xyrotech/orin/actions/workflows/psalm.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/xyrotech/orin.svg?style=flat-square)](https://packagist.org/packages/xyrotech/orin)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/xyrotech/orin)
 
 Orin is a Discogs API PHP client library which utilizes GuzzleHttp.
 
