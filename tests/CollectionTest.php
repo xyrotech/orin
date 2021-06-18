@@ -64,7 +64,7 @@ class CollectionTest extends TestCase
     {
         $folder = $this->discog->collection_items_by_folder($this->discog->config['USERNAME'], 0);
 
-        $this->assertcontains($folder->releases[0]->id, [8836, 2097562] );
+        $this->assertcontains($folder->releases[0]->id, [8836, 2097562]);
         $this->assertEquals('200', $folder->status_code);
     }
 
