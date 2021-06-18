@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+    'DISCOGS_USER_AGENT' => 'MyDiscogsClient/1.0 +http://mydiscogsclient.org',
 
     /*
     |--------------------------------------------------------------------------
@@ -101,10 +101,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | Username associate with Discog Token / Consumer Key/Secret
-    | The name associated with the discogs account
+    |
     |
     */
 
     'USERNAME' => 'USERNAME',
-    'TEST_NAME' => 'TEST NAME',
 ];

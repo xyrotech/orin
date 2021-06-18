@@ -46,15 +46,24 @@ class MultiTest extends TestCase
 
         $profile = $this->discog->profile($this->discog->config['USERNAME']);
 
-        $this->assertEquals($this->discog->config['TEST_NAME'], $profile->name);
+        $this->assertEquals($this->discog->config['USERNAME'], $profile->username);
         $this->assertEquals('200', $profile->status_code);
+
+        $old_name = $profile->name;
 
         // Edit Profile
 
-        $profile = $this->discog->edit_profile($this->discog->config['USERNAME'], ['name' => $this->discog->config['TEST_NAME']]);
+        $profile = $this->discog->edit_profile($this->discog->config['USERNAME'], ['name' => 'Change Me']);
 
-        $this->assertEquals($this->discog->config['USERNAME'], $profile->username);
+        $this->assertEquals('Change Me', $profile->name);
         $this->assertEquals('200', $profile->status_code);
+
+        $profile = $this->discog->edit_profile($this->discog->config['USERNAME'], ['name' => $old_name]);
+
+        $this->assertEquals($old_name, $profile->name);
+        $this->assertEquals('200', $profile->status_code);
+
+
 
         // User Submissions
 

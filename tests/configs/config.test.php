@@ -94,10 +94,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | Username associate with Discog Token / Consumer Key/Secret
-    | The name associated with the discogs account
+    |
     |
     */
 
     'USERNAME' => 'kunli0',
-    'TEST_NAME' => 'Adekunle Adelakun',
 ];
