@@ -55,7 +55,7 @@ class CollectionTest extends TestCase
     {
         $folder = $this->discog->collection_items_by_release($this->discog->config['USERNAME'], 16457562);
 
-        $this->assertEquals(540101661, $folder->releases[0]->instance_id);
+        $this->assertEquals(734075722, $folder->releases[0]->instance_id);
         $this->assertEquals('200', $folder->status_code);
     }
 
