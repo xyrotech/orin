@@ -9,7 +9,6 @@
 This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
 
 ## Installation
-**Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
 You can install the package via composer: 
 
 ```bash
