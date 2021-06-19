@@ -1,15 +1,17 @@
 # Discog PHP Client
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/xyrotech/orin.svg?style=flat-square)](https://packagist.org/packages/xyrotech/orin)
+[![Packagist Version](https://img.shields.io/packagist/v/xyrotech/orin)](https://packagist.org/packages/xyrotech/orin)
 [![Tests](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml)
 [![Check & fix styling](https://github.com/xyrotech/orin/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/php-cs-fixer.yml)
 [![Psalm](https://github.com/xyrotech/orin/actions/workflows/psalm.yml/badge.svg?branch=main)](https://github.com/xyrotech/orin/actions/workflows/psalm.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/xyrotech/orin.svg?style=flat-square)](https://packagist.org/packages/xyrotech/orin)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/xyrotech/orin)
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+Orin is a Discogs API PHP client library which utilizes GuzzleHttp.
+
+[:books: Documentation](https://xyrotech.github.io/orin/)
 
 ## Installation
-**Release** [:mag:](https://www.discogs.com/developers#page:database,header:database-release)
 You can install the package via composer: 
 
 ```bash
@@ -18,7 +20,7 @@ composer require xyrotech/orin
 
 ## Usage
 
-Mimic the config.test.php file in src directory, and fill out relevant fields for high tier rate limiting.
+Mimic the orin_config.test.php file in src directory, and fill out relevant fields for high tier rate limiting.
 
 ```php
 $config = include('orin_config.php');
@@ -48,9 +50,18 @@ var_dump($label->releases); // An array of label releases
 ```
 ## Testing
 
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/xyrotech/orin.git && composer install
+```
+
+Update <code>/tests/configs/config.test.php</code> with your own authentication. Be sure to change the username and test name at the bottom of the config to match the account information.
+
 ```bash
 composer test
 ```
+> Orders may not work properly as it would require you to create a listing and buy it using another account to push the order to the "SOLD" status.
 
 ```bash
 composer format

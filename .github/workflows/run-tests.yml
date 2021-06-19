@@ -34,4 +34,6 @@ jobs:
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
+        env:
+          DISCOG_TOKEN: ${{ secrets.DISCOG_TOKEN }}
         run: vendor/bin/phpunit
