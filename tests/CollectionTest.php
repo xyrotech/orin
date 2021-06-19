@@ -12,9 +12,7 @@ class CollectionTest extends TestCase
 
     public function setUp() : void
     {
-
-        if(getenv('DISCOG_TOKEN'))
-        {
+        if (getenv('DISCOG_TOKEN')) {
             $config = [
                 'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
                 'DISCOGS_CONSUMER_KEY' => null,
