@@ -17,7 +17,7 @@ class DatabaseTest extends TestCase
         $this->discog = new Orin($config);
     }
 
-    /** @test */
+
     public function verify_release()
     {
         $release = $this->discog->release(192988);
@@ -26,7 +26,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals(200, $release->status_code);
     }
 
-    /** @test */
+
     public function verify_release_rating_by_user()
     {
         $release_rating = $this->discog->release_rating_by_user(16457562, $this->discog->config['USERNAME']);
@@ -48,7 +48,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals(204, $delete_rating->status_code);
     }
 
-    /** @test */
+
     public function verify_community_release_rating()
     {
         $community_release_rating = $this->discog->community_release_rating(16457562);
@@ -57,7 +57,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $community_release_rating->status_code);
     }
 
-    /** @test */
+
     public function verify_release_stats()
     {
         $release_stats = $this->discog->release_stats(16457562);
@@ -68,7 +68,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $release_stats->status_code);
     }
 
-    /** @test */
+
     public function verify_master_release()
     {
         $master = $this->discog->master_release(2482);
@@ -77,7 +77,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $master->status_code);
     }
 
-    /** @test */
+
     public function verify_master_release_versions()
     {
         $master_releases = $this->discog->master_release_versions(2482, ['sort' => 'released', 'sort_order' => 'desc']);
@@ -86,7 +86,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $master_releases->status_code);
     }
 
-    /** @test */
+
     public function verify_artist()
     {
         $artist = $this->discog->artist(45);
@@ -95,7 +95,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $artist->status_code);
     }
 
-    /** @test */
+
     public function verify_artist_releases()
     {
         $artist = $this->discog->artist_releases(45, ['sort' => 'year']);
@@ -104,7 +104,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $artist->status_code);
     }
 
-    /** @test */
+
     public function verify_label()
     {
         $label = $this->discog->label(107);
@@ -113,7 +113,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $label->status_code);
     }
 
-    /** @test */
+
     public function verify_all_label_releases()
     {
         $label = $this->discog->all_label_releases(107);
@@ -122,7 +122,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals('200', $label->status_code);
     }
 
-    /** @test */
+
     public function verify_search()
     {
         $search = $this->discog->search("While You Were Sleeping", ['artist' => "Opiate", 'type' => "master"]);

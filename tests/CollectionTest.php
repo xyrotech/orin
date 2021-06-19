@@ -12,7 +12,23 @@ class CollectionTest extends TestCase
 
     public function setUp() : void
     {
-        $config = include('configs/config.test.php');
+
+        if(getenv('DISCOG_TOKEN'))
+        {
+            $config = [
+                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
+                'DISCOGS_CONSUMER_KEY' => null,
+                'DISCOGS_CONSUMER_SECRET' => null,
+                'DISCOGS_VERSION' => 'v2',
+                'DISCOGS_MEDIA_TYPE' => 'discogs',
+                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'RATE_THRESHOLD' => '6',
+                'USERNAME' => 'kunli0',
+                'TEST_NAME' => 'Adekunle Adelakun',
+            ];
+        } else {
+            $config = include('configs/config.php');
+        }
 
         $this->discog = new Orin($config);
     }
