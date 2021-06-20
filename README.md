@@ -56,7 +56,7 @@ Clone the repository and install dependencies:
 git clone https://github.com/xyrotech/orin.git && composer install
 ```
 
-Update <code>/tests/configs/config.test.php</code> with your own authentication. Be sure to change the username and test name at the bottom of the config to match the account information.
+Create your on config.php based on <code>/tests/configs/config.test.php</code> with your own authentication. Be sure to change the username at the bottom of the config to match the account information.
 
 ```bash
 composer test
