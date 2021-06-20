@@ -24,7 +24,6 @@ class CollectionTest extends TestCase
                 'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
                 'RATE_THRESHOLD' => '6',
                 'USERNAME' => 'kunli0',
-                'TEST_NAME' => 'Adekunle Adelakun',
             ];
         } else {
             $config = include('configs/config.php');

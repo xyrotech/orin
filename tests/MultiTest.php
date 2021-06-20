@@ -12,12 +12,26 @@ class MultiTest extends TestCase
 
     public function setUp(): void
     {
-        $config = include('configs/config.test.php');
+        if(getenv('DISCOG_TOKEN'))
+        {
+            $config = [
+                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
+                'DISCOGS_CONSUMER_KEY' => null,
+                'DISCOGS_CONSUMER_SECRET' => null,
+                'DISCOGS_VERSION' => 'v2',
+                'DISCOGS_MEDIA_TYPE' => 'discogs',
+                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'RATE_THRESHOLD' => '6',
+                'USERNAME' => 'kunli0',
+            ];
+        } else {
+            $config = include('configs/config.php');
+        }
 
         $this->discog = new Orin($config);
     }
 
-
+    /** @test */
     public function verify_user_lists()
     {
         $users = $this->discog->user_lists($this->discog->config['USERNAME']);
@@ -34,7 +48,7 @@ class MultiTest extends TestCase
         $this->assertEquals('200', $list->status_code);
     }
 
-
+    /** @test */
     public function verify_identity()
     {
         $identity = $this->discog->identity();
@@ -63,8 +77,6 @@ class MultiTest extends TestCase
         $this->assertEquals($old_name, $profile->name);
         $this->assertEquals('200', $profile->status_code);
 
-
-
         // User Submissions
 
         $user = $this->discog->user_submissions($this->discog->config['USERNAME']);
@@ -80,7 +92,7 @@ class MultiTest extends TestCase
         $this->assertEquals('200', $user->status_code);
     }
 
-
+    /** @test */
     public function verify_wantlist()
     {
         $releases = [

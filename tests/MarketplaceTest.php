@@ -12,12 +12,26 @@ class MarketplaceTest extends TestCase
 
     public function setUp() : void
     {
-        $config = include('configs/config.test.php');
+        if(getenv('DISCOG_TOKEN'))
+        {
+            $config = [
+                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
+                'DISCOGS_CONSUMER_KEY' => null,
+                'DISCOGS_CONSUMER_SECRET' => null,
+                'DISCOGS_VERSION' => 'v2',
+                'DISCOGS_MEDIA_TYPE' => 'discogs',
+                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'RATE_THRESHOLD' => '6',
+                'USERNAME' => 'kunli0',
+            ];
+        } else {
+            $config = include('configs/config.php');
+        }
 
         $this->discog = new Orin($config);
     }
 
-
+    /** @test */
     public function verify_inventory()
     {
         $inventory = $this->discog->inventory($this->discog->config['USERNAME'], ['sort' => 'artist']);
@@ -26,7 +40,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('200', $inventory->status_code);
     }
 
-
+    /** @test */
     public function verify_new_edit_delete_listing()
     {
         $parameters = [
@@ -67,7 +81,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('204', $delete_listing->status_code);
     }
 
-
+    /** @test */
     public function verify_list_orders()
     {
         $list = $this->discog->list_orders();
@@ -99,7 +113,7 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('201', $new_order_message->status_code);
     }
 
-
+    /** @test */
     public function verify_fee()
     {
         $fee = $this->discog->fee("10.00");
@@ -108,16 +122,16 @@ class MarketplaceTest extends TestCase
         $this->assertEquals('200', $fee->status_code);
     }
 
-
+    /** @test */
     public function verify_fee_with_currency()
     {
-        $fee = $this->discog->fee_with_currency("10.00", "CAD");
+        $fee = $this->discog->fee_with_currency("10.00", "USD");
 
-        $this->assertEquals(0.65, $fee->value);
+        $this->assertEquals(0.8, $fee->value);
         $this->assertEquals('200', $fee->status_code);
     }
 
-
+    /** @test */
     public function verify_price_suggestions()
     {
         $price_suggestions = $this->discog->price_suggestions(16457562);
@@ -126,7 +140,7 @@ class MarketplaceTest extends TestCase
     }
 
 
-
+    /** @test */
     public function verify_release_statistics()
     {
         $release_stats = $this->discog->release_statistics(16457562);
