@@ -20,7 +20,6 @@ class OrinTest extends TestCase
     /** @test */
     public function verify_client_using_token_auth()
     {
-
         if (getenv('DISCOG_TOKEN')) {
             $config = [
                 'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
@@ -46,7 +45,6 @@ class OrinTest extends TestCase
     /** @test */
     public function verify_client_using_no_auth()
     {
-
         $discog = new Orin();
 
         $this->assertEquals($discog->limit, 25);
@@ -56,7 +54,6 @@ class OrinTest extends TestCase
     /** @test */
     public function verify_client_using_key_secret_auth()
     {
-
         $config = [
             'DISCOGS_TOKEN' => null,
             'DISCOGS_CONSUMER_KEY' => 'YOUR_CONSUMER_KEY',
