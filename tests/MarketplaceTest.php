@@ -104,7 +104,7 @@ class MarketplaceTest extends TestCase
 
         $list_order_messages = $this->discog->list_orders_messages($get_order->id);
 
-        $this->assertContains( $list_order_messages->messages[0]->type, ["shipping", "message"]);
+        $this->assertContains($list_order_messages->messages[0]->type, ["shipping", "message"]);
         $this->assertEquals('200', $list_order_messages->status_code);
 
         $new_order_message = $this->discog->new_order_message($get_order->id, 'Testing', $get_order->status);
