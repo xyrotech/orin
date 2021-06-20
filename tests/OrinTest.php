@@ -8,25 +8,11 @@ use Xyrotech\Orin\Orin;
 
 class OrinTest extends TestCase
 {
-    public function test_config()
-    {
-        $config = include('src/orin_config.test.php');
-
-        $this->assertArrayHasKey('DISCOGS_TOKEN', $config);
-        $this->assertArrayHasKey('DISCOGS_CONSUMER_KEY', $config);
-        $this->assertArrayHasKey('DISCOGS_CONSUMER_SECRET', $config);
-        $this->assertArrayHasKey('DISCOGS_VERSION', $config);
-        $this->assertArrayHasKey('DISCOGS_MEDIA_TYPE', $config);
-        $this->assertArrayHasKey('DISCOGS_USER_AGENT', $config);
-    }
-
 
     /** @test */
     public function base_uri_is_correct()
     {
-        $config = include('configs/config.test.noauth.php');
-
-        $discog = new Orin($config);
+        $discog = new Orin();
 
         $this->assertEquals('https://api.discogs.com', $discog->client->getConfig('base_uri'));
     }
@@ -34,7 +20,23 @@ class OrinTest extends TestCase
     /** @test */
     public function verify_client_using_token_auth()
     {
-        $config = include('configs/config.test.php');
+
+        if (getenv('DISCOG_TOKEN')) {
+            $config = [
+                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
+                'DISCOGS_CONSUMER_KEY' => null,
+                'DISCOGS_CONSUMER_SECRET' => null,
+                'DISCOGS_VERSION' => 'v2',
+                'DISCOGS_MEDIA_TYPE' => 'discogs',
+                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'RATE_THRESHOLD' => '6',
+                'USERNAME' => 'kunli0',
+            ];
+        } else {
+            $config = include('configs/config.php');
+        }
+
+        $this->discog = new Orin($config);
 
         $discog = new Orin($config);
 
@@ -44,9 +46,8 @@ class OrinTest extends TestCase
     /** @test */
     public function verify_client_using_no_auth()
     {
-        $config = include('configs/config.test.noauth.php');
 
-        $discog = new Orin($config);
+        $discog = new Orin();
 
         $this->assertEquals($discog->limit, 25);
     }
@@ -55,7 +56,20 @@ class OrinTest extends TestCase
     /** @test */
     public function verify_client_using_key_secret_auth()
     {
-        $config = include('configs/config.test.half.php');
+
+        $config = [
+            'DISCOGS_TOKEN' => null,
+            'DISCOGS_CONSUMER_KEY' => 'YOUR_CONSUMER_KEY',
+            'DISCOGS_CONSUMER_SECRET' => 'YOUR_CONSUMER_SECRET',
+            'DISCOGS_VERSION' => 'v2',
+            'DISCOGS_MEDIA_TYPE' => 'discogs',
+            'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+            'RATE_THRESHOLD' => '6',
+            'USERNAME' => 'kunli0',
+        ];
+
+
+        $this->discog = new Orin($config);
 
         $discog = new Orin($config);
 
@@ -65,7 +79,20 @@ class OrinTest extends TestCase
     /** @test */
     public function verify_rates()
     {
-        $config = include('configs/config.test.php');
+        if (getenv('DISCOG_TOKEN')) {
+            $config = [
+                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
+                'DISCOGS_CONSUMER_KEY' => null,
+                'DISCOGS_CONSUMER_SECRET' => null,
+                'DISCOGS_VERSION' => 'v2',
+                'DISCOGS_MEDIA_TYPE' => 'discogs',
+                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'RATE_THRESHOLD' => '6',
+                'USERNAME' => 'kunli0',
+            ];
+        } else {
+            $config = include('configs/config.php');
+        }
 
         $discog = new Orin($config);
 

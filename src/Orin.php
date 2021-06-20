@@ -71,8 +71,11 @@ class Orin
             $this->headers['Authorization'] = $this->getAuthHeader();
         }
 
-        if ($this->config['DISCOGS_USER_AGENT'] != null) {
+        if (isset($this->config['DISCOGS_VERSION']) && $this->config['DISCOGS_USER_AGENT'] != null) {
             $this->headers['User-Agent'] = $this->config['DISCOGS_USER_AGENT'];
+        } else
+        {
+            $this->headers['User-Agent'] = 'MyDiscogsClient/1.0 +http://mydiscogsclient.org';
         }
 
         if ($this->getAcceptHeader() != null) {

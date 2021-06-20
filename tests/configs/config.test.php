@@ -13,29 +13,36 @@ return [
     |
     */
 
-    'DISCOGS_TOKEN' => 'mJyThcfggqluvgHNuAeAQqSUyXdyRahWtdvYNilA',
+    'DISCOGS_TOKEN' => 'YOUR_TOKEN',
 
     /*
     |--------------------------------------------------------------------------
     | Discogs Consumer Key
     |--------------------------------------------------------------------------
     |
-    | I'm not sure what this is, but it is used as header information per request.
+    | OAuth consumer key
+    | After you have created an application  navigate to this link:
+    | https://www.discogs.com/settings/developers and click on the settings
+    | button next to you app to reveal the key and secret
+    |
     |
     */
 
-    'DISCOGS_CONSUMER_KEY' => null,
+    'DISCOGS_CONSUMER_KEY' => 'YOUR_CONSUMER_KEY',
 
     /*
     |--------------------------------------------------------------------------
     | Discogs Consumer Secret
     |--------------------------------------------------------------------------
     |
-    | I'm not sure what this is, but it is used as header information per request.
+    | OAuth consumer secret
+    | After you have created an application from this page link:
+    | https://www.discogs.com/settings/developers and click on the settings
+    | button next to you app to reveal the key and secret
     |
     */
 
-    'DISCOGS_CONSUMER_SECRET' => null,
+    'DISCOGS_CONSUMER_SECRET' => 'YOUR_CONSUMER_SECRET',
 
     /*
     |--------------------------------------------------------------------------
@@ -75,7 +82,7 @@ return [
     |
     */
 
-    'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+    'DISCOGS_USER_AGENT' => 'MyDiscogsClient/1.0 +http://mydiscogsclient.org',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +93,7 @@ return [
     |
     */
 
-    'RATE_THRESHOLD' => '6',
+    'RATE_THRESHOLD' => '2',
 
     /*
     |--------------------------------------------------------------------------
@@ -98,5 +105,5 @@ return [
     |
     */
 
-    'USERNAME' => 'kunli0',
+    'USERNAME' => 'USERNAME',
 ];
