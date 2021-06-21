@@ -1,4 +1,4 @@
-# Discog PHP Client
+# Discogs PHP Client
 
 [![Packagist Version](https://img.shields.io/packagist/v/xyrotech/orin)](https://packagist.org/packages/xyrotech/orin)
 [![Tests](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml)
