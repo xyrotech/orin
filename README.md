@@ -18,6 +18,9 @@ You can install the package via composer:
 composer require xyrotech/orin
 ```
 
+## Requirements
+PHP >= 7.4
+
 ## Usage
 
 Mimic the orin_config.test.php file in src directory, and fill out relevant fields for high tier rate limiting.
