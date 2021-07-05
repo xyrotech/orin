@@ -115,6 +115,12 @@ class MultiTest extends TestCase
 
         $this->assertEquals('201', $add->status_code);
 
+        // Edit wantlist item
+
+        $add = $this->discog->edit_from_wantlist($this->discog->config['USERNAME'], $release_id, 'testing', 5);
+
+        $this->assertEquals('200', $add->status_code);
+
         // Delete from wantlist
 
         $delete = $this->discog->delete_from_wantlist($this->discog->config['USERNAME'], $release_id);

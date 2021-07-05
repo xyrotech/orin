@@ -33,6 +33,12 @@ class CollectionTest extends TestCase
     /** @test */
     public function verify_new_meta_delete_collection_folder()
     {
+
+        // Get folders
+        $folders = $this->discog->collection_folders($this->discog->config['USERNAME']);
+
+        $this->assertEquals('200', $folders->status_code);
+
         // Creating "new" folder
         $new_folder = $this->discog->new_collection_folder($this->discog->config['USERNAME'], 'new');
 

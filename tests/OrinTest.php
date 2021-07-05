@@ -14,12 +14,17 @@ class OrinTest extends TestCase
     {
         $discog = new Orin();
 
+        $config = include('src/orin_config.test.php');
+
+        $this->assertEquals('v2', $config['DISCOGS_VERSION']);
+
         $this->assertEquals('https://api.discogs.com', $discog->client->getConfig('base_uri'));
     }
 
     /** @test */
     public function verify_client_using_token_auth()
     {
+        // Used for github automation testing
         if (getenv('DISCOG_TOKEN')) {
             $config = [
                 'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
@@ -76,6 +81,7 @@ class OrinTest extends TestCase
     /** @test */
     public function verify_rates()
     {
+        // Used for github automation testing
         if (getenv('DISCOG_TOKEN')) {
             $config = [
                 'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),

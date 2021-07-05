@@ -10,6 +10,7 @@ require 'IdentityTrait.php';
 require 'ListTrait.php';
 require 'MarketplaceTrait.php';
 require 'WantlistTrait.php';
+require 'AuthenticationTrait.php';
 
 trait EndpointsTrait
 {
@@ -21,6 +22,7 @@ trait EndpointsTrait
     use CollectionTrait;
     use ListTrait;
     use WantlistTrait;
+    use AuthenticationTrait;
 
 
     /**
@@ -34,7 +36,23 @@ trait EndpointsTrait
     {
         $response = $this->client->request($type, self::base_uri . $uri, $this->parameters);
 
-        $data = json_decode((string) $response->getBody()) ?? new stdClass();
+        if (! isset($this->parameters['headers'])) {
+            $data = json_decode((string) $response->getBody()) ?? new stdClass();
+        } else {
+            $oauth = explode('&', (string) $response->getBody());
+
+            $data = new stdClass();
+
+            foreach ($oauth as $item) {
+                $parts = explode('=', $item);
+
+                $key = $parts[0];
+
+                $data->$key = $parts[1];
+            }
+        }
+
+
         $data->status_code = $response->getStatusCode();
         $data->rates = $this->setRates($response->getHeaders());
 
