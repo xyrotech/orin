@@ -28,7 +28,7 @@ Mimic the orin_config.test.php file in src directory, and fill out relevant fiel
 ```php
 $config = include('orin_config.php');
 
-$discog = new Xyrotech\Orin\Orin($config);
+$discog = new Xyrotech\Orin($config);
 
 $artist = $discog->artist(45);
 
@@ -45,7 +45,7 @@ This library follows the [API Documentation](https://www.discogs.com/developers)
 ```php
 $config = include('orin_config.php');
 
-$discog = new Xyrotech\Orin\Orin($config);
+$discog = new Xyrotech\Orin($config);
 
 $label = $discog->all_label_releases(1);
 
