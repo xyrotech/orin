@@ -34,7 +34,7 @@ cp vendor/xyrotech/orin/src/orin_config.test.php myconfig.php
 
 Start using the library! See example below
 ```php
-use Xyrotech\Orin\Orin;
+use Xyrotech\Orin;
 
 $config = include('myconfig.php');
 $discog = new Orin($config);
