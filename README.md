@@ -28,7 +28,7 @@ Mimic the orin_config.test.php file in src directory, and fill out relevant fiel
 ```php
 $config = include('orin_config.php');
 
-$discog = new Xyrotech\Orin($config);
+$discog = new Xyrotech\Orin\Orin($config);
 
 $artist = $discog->artist(45);
 
