@@ -1,4 +1,4 @@
-# Discog PHP Client
+# Discogs PHP Client
 
 [![Packagist Version](https://img.shields.io/packagist/v/xyrotech/orin)](https://packagist.org/packages/xyrotech/orin)
 [![Tests](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml/badge.svg)](https://github.com/xyrotech/orin/actions/workflows/run-tests.yml)
@@ -17,6 +17,9 @@ You can install the package via composer:
 ```bash
 composer require xyrotech/orin
 ```
+
+## Requirements
+PHP >= 7.4
 
 ## Usage
 
@@ -56,7 +59,7 @@ Clone the repository and install dependencies:
 git clone https://github.com/xyrotech/orin.git && composer install
 ```
 
-Create your on config.php based on <code>/tests/configs/config.test.php</code> with your own authentication. Be sure to change the username at the bottom of the config to match the account information.
+Create your own config.php based on <code>/tests/configs/config.test.php</code> with your own authentication. Be sure to change the username at the bottom of the config to match the account information.
 
 ```bash
 composer test
