@@ -35,5 +35,8 @@ jobs:
 
       - name: Execute tests
         env:
-          DISCOG_TOKEN: ${{ secrets.DISCOG_TOKEN }}
+          DISCOGS_TOKEN: ${{ secrets.DISCOGS_TOKEN }}
+          DISCOGS_CONSUMER_KEY: ${{ secrets.DISCOGS_CONSUMER_KEY }}
+          DISCOGS_CONSUMER_SECRET: ${{ secrets.DISCOGS_CONSUMER_SECRET }}
+          OAUTH_CALLBACK: ${{ secrets.OAUTH_CALLBACK }}
         run: vendor/bin/phpunit
