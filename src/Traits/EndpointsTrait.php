@@ -1,6 +1,6 @@
 <?php
 
-namespace Xyrotech\Orin\Traits;
+namespace Xyrotech\Traits;
 
 use stdClass;
 

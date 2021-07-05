@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Xyrotech\Orin;
+namespace Xyrotech;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
-use Xyrotech\Orin\Traits\EndpointsTrait;
+use Xyrotech\Traits\EndpointsTrait;
 
 require 'Traits/EndpointsTrait.php';
 

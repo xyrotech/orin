@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Xyrotech\\Orin\\": "src"
+            "Xyrotech\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Xyrotech\\Orin\\Tests\\": "tests"
+            "Xyrotech\\Tests\\": "tests"
         }
     },
     "scripts": {

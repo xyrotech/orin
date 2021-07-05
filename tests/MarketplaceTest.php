@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Xyrotech\Orin\Tests;
+namespace Xyrotech\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Xyrotech\Orin\Orin;
+use Xyrotech\Orin;
 
 class MarketplaceTest extends TestCase
 {
