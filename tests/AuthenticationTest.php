@@ -12,7 +12,7 @@ class AuthenticationTest extends TestCase
     /** @test */
     public function verify_request_token()
     {
-        if (getenv('DISCOGS_TOKEN')) {
+        if (getenv('DISCOGS_TOKEN') !== false) {
             $config = [
                 'DISCOGS_TOKEN' => getenv('DISCOGS_TOKEN'),
                 'DISCOGS_CONSUMER_KEY' => getenv('DISCOGS_CONSUMER_KEY'),
