@@ -12,11 +12,11 @@ class AuthenticationTest extends TestCase
     /** @test */
     public function verify_request_token()
     {
-        if (getenv('DISCOG_TOKEN')) {
+        if (getenv('DISCOGS_TOKEN')) {
             $config = [
-                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
-                'DISCOGS_CONSUMER_KEY' => getenv('DISCOG_CONSUMER_KEY'),
-                'DISCOGS_CONSUMER_SECRET' => getenv('DISCOG_CONSUMER_SECRET'),
+                'DISCOGS_TOKEN' => getenv('DISCOGS_TOKEN'),
+                'DISCOGS_CONSUMER_KEY' => getenv('DISCOGS_CONSUMER_KEY'),
+                'DISCOGS_CONSUMER_SECRET' => getenv('DISCOGS_CONSUMER_SECRET'),
                 'DISCOGS_VERSION' => 'v2',
                 'DISCOGS_MEDIA_TYPE' => 'discogs',
                 'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',

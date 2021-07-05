@@ -12,9 +12,9 @@ class MultiTest extends TestCase
 
     public function setUp(): void
     {
-        if (getenv('DISCOG_TOKEN')) {
+        if (getenv('DISCOGS_TOKEN')) {
             $config = [
-                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
+                'DISCOGS_TOKEN' => getenv('DISCOGS_TOKEN'),
                 'DISCOGS_CONSUMER_KEY' => null,
                 'DISCOGS_CONSUMER_SECRET' => null,
                 'DISCOGS_VERSION' => 'v2',

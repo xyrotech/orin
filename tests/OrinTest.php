@@ -25,9 +25,9 @@ class OrinTest extends TestCase
     public function verify_client_using_token_auth()
     {
         // Used for github automation testing
-        if (getenv('DISCOG_TOKEN')) {
+        if (getenv('DISCOGS_TOKEN')) {
             $config = [
-                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
+                'DISCOGS_TOKEN' => getenv('DISCOGS_TOKEN'),
                 'DISCOGS_CONSUMER_KEY' => null,
                 'DISCOGS_CONSUMER_SECRET' => null,
                 'DISCOGS_VERSION' => 'v2',
@@ -82,9 +82,9 @@ class OrinTest extends TestCase
     public function verify_rates()
     {
         // Used for github automation testing
-        if (getenv('DISCOG_TOKEN')) {
+        if (getenv('DISCOGS_TOKEN')) {
             $config = [
-                'DISCOGS_TOKEN' => getenv('DISCOG_TOKEN'),
+                'DISCOGS_TOKEN' => getenv('DISCOGS_TOKEN'),
                 'DISCOGS_CONSUMER_KEY' => null,
                 'DISCOGS_CONSUMER_SECRET' => null,
                 'DISCOGS_VERSION' => 'v2',
