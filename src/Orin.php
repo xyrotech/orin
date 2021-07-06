@@ -126,8 +126,10 @@ class Orin
         $this->rates['remaining'] = $headers['X-Discogs-Ratelimit-Remaining'][0];
         $this->rates['limit'] = $headers['X-Discogs-Ratelimit'][0];
 
+        $rate = $this->config['RATE_THRESHOLD'] ?? 2;
+
         // The magic number 6 comes from +1 the greatest number of request per test which is 5.
-        if ($this->rates['remaining'] <= $this->config['RATE_THRESHOLD']) {
+        if ($this->rates['remaining'] <= $rate) {
             sleep(60);
         }
 
