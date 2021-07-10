@@ -19,7 +19,7 @@ class AuthenticationTest extends TestCase
                 'DISCOGS_CONSUMER_SECRET' => getenv('DISCOGS_CONSUMER_SECRET'),
                 'DISCOGS_VERSION' => 'v2',
                 'DISCOGS_MEDIA_TYPE' => 'discogs',
-                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'DISCOGS_USER_AGENT' => getenv('DISCOGS_USER_AGENT'),
                 'OAUTH_CALLBACK' => getenv('OAUTH_CALLBACK'),
                 'RATE_THRESHOLD' => '6',
                 'USERNAME' => 'kunli0',

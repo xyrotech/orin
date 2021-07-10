@@ -3,15 +3,15 @@
 [![API](https://www.discogs.com/images/discogs-white.png)](https://www.discogs.com/developers) 
 ## API CLIENT
 
-## Todo List
+## Endpoint Todo List
 
-- [x] Database Endpoints
-- [x] Marketplace Endpoints
+- [x] Database
+- [x] Marketplace
 - [x] User Identiy
 - [x] User Collection
 - [x] User Wantlist
 - [x] User Lists
-- [ ] Authentication
+- [x] Authentication
 - [ ] Inventory Export
 - [ ] Inventory Upload
 
@@ -19,7 +19,7 @@
 
 ## Getting Started
 ***
-Install via Composer:
+Install via Composer
 ```bash
 composer require xyrotech/orin
 ```
@@ -43,6 +43,28 @@ $artist = $discogs->artist(45);
 echo $artist->name; // 'Aphex Twin'
 ```
 
+<br/>
+
+###Tips
+
+***
+
+**Rate Limits**
+
+Attached along to each response are your rate limits according to Discogs rolling 60 second rate limit. To access these limits use the following
+
+```php
+use Xyrotech\Orin;
+
+$config = include('myconfig.php');
+$discog = new Orin($config);
+
+$artist = $discogs->artist(45);
+
+$artist->rates['used']; // 1
+$artist->rates['remaining']; // 59
+$artist->rates['limit']; // 60
+```
 <br/>
 
 ### Configuration
@@ -101,7 +123,13 @@ If you are requesting information from an endpoint that may have text formatting
 
 Default: 2, Testing: 6
 
-Mostly used for testing purposes.
+Mostly used for testing purposes. This threshold leaves X amount of buffer on your used rate limit.
+
+<br/>
+
+**OAUTH_CALLBACK**
+
+After the user verifies their account via OAuth they will be sent to this webpage so that your application can store OAuth credentials.
 
 <br/>
 
@@ -657,4 +685,30 @@ $discog->user_lists(string $username);
 Returns items from a specified List.
 ```php
 $discog->user_lists(int $list_id);
+```
+
+<br/>
+
+### Authentication
+
+***
+
+**Request Token**
+
+[:mag: More Info](https://www.discogs.com/developers#page:authentication,header:authentication-request-token-url)
+
+Generate the request token
+```php
+$discog->request_token();
+```
+
+<br>
+
+**List**
+
+[:mag: More Info](https://www.discogs.com/developers#page:authentication,header:authentication-access-token-url)
+
+Generate the access token.
+```php
+$discog->access_token(string $oauth_token, string $oauth_token_secret, string $verifier);
 ```

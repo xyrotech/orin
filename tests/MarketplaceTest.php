@@ -19,7 +19,7 @@ class MarketplaceTest extends TestCase
                 'DISCOGS_CONSUMER_SECRET' => null,
                 'DISCOGS_VERSION' => 'v2',
                 'DISCOGS_MEDIA_TYPE' => 'discogs',
-                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'DISCOGS_USER_AGENT' => getenv('DISCOGS_USER_AGENT'),
                 'RATE_THRESHOLD' => '6',
                 'USERNAME' => 'kunli0',
             ];

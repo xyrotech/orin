@@ -32,7 +32,7 @@ class OrinTest extends TestCase
                 'DISCOGS_CONSUMER_SECRET' => null,
                 'DISCOGS_VERSION' => 'v2',
                 'DISCOGS_MEDIA_TYPE' => 'discogs',
-                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'DISCOGS_USER_AGENT' => getenv('DISCOGS_USER_AGENT'),
                 'RATE_THRESHOLD' => '6',
                 'USERNAME' => 'kunli0',
             ];
@@ -65,7 +65,7 @@ class OrinTest extends TestCase
             'DISCOGS_CONSUMER_SECRET' => 'YOUR_CONSUMER_SECRET',
             'DISCOGS_VERSION' => 'v2',
             'DISCOGS_MEDIA_TYPE' => 'discogs',
-            'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+            'DISCOGS_USER_AGENT' => getenv('DISCOGS_USER_AGENT'),
             'RATE_THRESHOLD' => '6',
             'USERNAME' => 'kunli0',
         ];
@@ -89,7 +89,7 @@ class OrinTest extends TestCase
                 'DISCOGS_CONSUMER_SECRET' => null,
                 'DISCOGS_VERSION' => 'v2',
                 'DISCOGS_MEDIA_TYPE' => 'discogs',
-                'DISCOGS_USER_AGENT' => 'Orin/0.1 +http://orin.xyrotech.com',
+                'DISCOGS_USER_AGENT' => getenv('DISCOGS_USER_AGENT'),
                 'RATE_THRESHOLD' => '6',
                 'USERNAME' => 'kunli0',
             ];
