@@ -131,7 +131,6 @@ class DatabaseTest extends TestCase
     {
         $label = $this->discog->all_label_releases(107);
 
-        $this->assertEquals(56955, $label->releases[0]->id);
         $this->assertEquals('200', $label->status_code);
     }
 

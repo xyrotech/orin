@@ -17,13 +17,16 @@
     "require": {
         "php": ">=7.4",
         "guzzlehttp/guzzle": "^7.0",
-        "spatie/guzzle-rate-limiter-middleware": "^2.0"
+        "spatie/guzzle-rate-limiter-middleware": "^2.0",
+        "spatie/laravel-package-tools": "^1.4.3",
+        "illuminate/contracts": "^8.37"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
         "phpunit/phpunit": "^9.5",
         "spatie/ray": "^1.10",
-        "vimeo/psalm": "^4.3"
+        "vimeo/psalm": "^4.3",
+        "orchestra/testbench": "^6.15"
     },
     "autoload": {
         "psr-4": {
@@ -43,6 +46,13 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Xyrotech\\OrinServiceProvider"
+            ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

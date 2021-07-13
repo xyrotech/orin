@@ -14,7 +14,7 @@ class OrinTest extends TestCase
     {
         $discog = new Orin();
 
-        $config = include('src/orin_config.test.php');
+        $config = include('config/orin.php');
 
         $this->assertEquals('v2', $config['DISCOGS_VERSION']);
 

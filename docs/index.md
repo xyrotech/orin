@@ -26,7 +26,7 @@ composer require xyrotech/orin
 
 Copy test config file.
 ```bash
-cp vendor/xyrotech/orin/src/orin_config.test.php myconfig.php
+cp vendor/xyrotech/orin/src/orin.php myconfig.php
 ```
 > Note: While technically this isn't require, there's no guarentee your API call will work at all
 
@@ -45,7 +45,7 @@ echo $artist->name; // 'Aphex Twin'
 
 <br/>
 
-###Tips
+### Tips
 
 ***
 
