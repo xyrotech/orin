@@ -26,7 +26,12 @@ composer require xyrotech/orin
 
 Copy test config file.
 ```bash
-cp vendor/xyrotech/orin/src/orin.php myconfig.php
+cp vendor/xyrotech/orin/config/orin.php myconfig.php
+```
+
+If using laravel use the publish command to import the config file
+```bash
+php artisan vendor:publish --provider="Xyrotech\OrinServiceProvider" --tag="orin-config"
 ```
 > Note: While technically this isn't require, there's no guarentee your API call will work at all
 
