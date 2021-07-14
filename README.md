@@ -23,10 +23,20 @@ PHP >= 7.4
 
 ## Usage
 
-Mimic the orin_config.test.php file in src directory, and fill out relevant fields for high tier rate limiting.
+Copy the config file.
+
+### Plain PHP
+```php
+cp vendor/xyrotech/orin/config/orin.php myconfig
+```
+
+### Laravel
+```php
+php artisan vendor:publish --provider="Xyrotech\OrinServiceProvider" --tag="orin-config"
+```
 
 ```php
-$config = include('orin_config.php');
+$config = include('orin.php');
 
 $discog = new Xyrotech\Orin($config);
 
