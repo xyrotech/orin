@@ -2,6 +2,10 @@
 
 All notable changes to `orin` will be documented in this file.
 
+## 1.1.4 - 08-22-2021
+
+- Bug fix on database search.
+
 ## 1.1.3 - 07-05-2021
 
 - Added Laravel functionality
